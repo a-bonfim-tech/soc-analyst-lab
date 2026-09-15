@@ -1,0 +1,11 @@
+.DS_Store
+.env
+*.log
+*.pcap
+*.pcapng
+*.dmp
+*.raw
+*.mem
+evidence/private/
+credentials/
+secrets/
