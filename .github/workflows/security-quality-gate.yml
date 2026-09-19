@@ -48,3 +48,21 @@ jobs:
           done
 
           echo "Repository structure validation passed."
+
+      - name: Validate YAML syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          while IFS= read -r -d '' file; do
+            echo "Validating YAML: $file"
+            ruby -e 'require "yaml"; YAML.load_file(ARGV[0])' "$file"
+          done < <(
+            find . \
+              -type f \
+              \( -name "*.yml" -o -name "*.yaml" \) \
+              -not -path "./.git/*" \
+              -print0
+          )
+
+          echo "YAML syntax validation passed."
