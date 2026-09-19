@@ -1,0 +1,17 @@
+# SYNTHETIC TEST DATA — NOT ORIGINAL INCIDENT EVIDENCE
+# Scenario derived from SOC-2026-001 for detection-engineering exercises.
+# Timestamps and behaviors reflect the documented investigation, while log
+# formatting, process IDs, ports, and unspecified implementation details are synthetic.
+
+Sep 16 00:27:03 srv-web-01 sshd[820]: Failed password for invalid user admin from 10.10.20.45 port 51101 ssh2
+Sep 16 00:27:14 srv-web-01 sshd[821]: Failed password for root from 10.10.20.45 port 51102 ssh2
+Sep 16 00:27:26 srv-web-01 sshd[822]: Failed password for ubuntu from 10.10.20.45 port 51103 ssh2
+Sep 16 00:31:04 srv-web-01 sshd[849]: Failed password for ubuntu from 10.10.20.45 port 51147 ssh2
+Sep 16 00:31:11 srv-web-01 sshd[851]: Accepted password for ubuntu from 10.10.20.45 port 51148 ssh2
+Sep 16 00:31:11 srv-web-01 sshd[851]: pam_unix(sshd:session): session opened for user ubuntu(uid=1001)
+Sep 16 00:31:26 srv-web-01 sudo[875]: ubuntu : authentication failure ; TTY=pts/0 ; PWD=/home/ubuntu ; USER=root ; COMMAND=/usr/bin/bash
+Sep 16 00:31:39 srv-web-01 sudo[881]: ubuntu : authentication failure ; TTY=pts/0 ; PWD=/home/ubuntu ; USER=root
+Sep 16 00:32:04 srv-web-01 sudo[892]: ubuntu : TTY=pts/0 ; PWD=/home/ubuntu ; USER=root ; COMMAND=/usr/bin/cat /etc/shadow
+Sep 16 00:32:04 srv-web-01 sudo[892]: pam_unix(sudo:session): session opened for user root(uid=0) by ubuntu(uid=1001)
+Sep 16 00:32:07 srv-web-01 sudo[892]: pam_unix(sudo:session): session closed for user root
+Sep 16 00:34:48 srv-web-01 sshd[851]: pam_unix(sshd:session): session closed for user ubuntu

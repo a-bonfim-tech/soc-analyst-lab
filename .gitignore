@@ -9,3 +9,6 @@
 evidence/private/
 credentials/
 secrets/
+
+# Allow explicitly synthetic detection-engineering test fixtures.
+!07-lab/detection-tests/**/*.log
