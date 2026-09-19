@@ -1,0 +1,3 @@
+soc:
+  severity: high
+    invalid-indentation: true
