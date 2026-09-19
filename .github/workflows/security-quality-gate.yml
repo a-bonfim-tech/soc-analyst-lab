@@ -1,0 +1,50 @@
+name: Security & Quality Gate
+
+on:
+  push:
+    branches:
+      - main
+      - feature/security-quality-gate
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  repository-validation:
+    name: Repository Validation
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Verify required SOC Lab directories
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          required_directories=(
+            "00-governance"
+            "01-runbooks"
+            "02-alerts"
+            "03-investigations"
+            "04-detection-rules"
+            "05-threat-intelligence"
+            "06-scripts"
+            "07-lab"
+            "08-tryhackme"
+            "09-reports"
+            "10-evidence"
+          )
+
+          for directory in "${required_directories[@]}"; do
+            if [[ ! -d "$directory" ]]; then
+              echo "ERROR: Required directory missing: $directory"
+              exit 1
+            fi
+          done
+
+          echo "Repository structure validation passed."
