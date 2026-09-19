@@ -90,7 +90,10 @@ jobs:
         run: |
           set -euo pipefail
 
+          test_count=0
+
           while IFS= read -r -d '' test_script; do
+            test_count=$((test_count + 1))
             echo "Running detection test: $test_script"
             bash "$test_script"
           done < <(
@@ -100,4 +103,9 @@ jobs:
               -print0
           )
 
-          echo "Detection engineering tests passed."
+          if [[ "$test_count" -eq 0 ]]; then
+            echo "ERROR: No detection engineering tests found."
+            exit 1
+          fi
+
+          echo "Detection engineering tests passed: $test_count test(s)."
