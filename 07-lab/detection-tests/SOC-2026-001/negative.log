@@ -1,0 +1,10 @@
+# SYNTHETIC TEST DATA — NOT ORIGINAL INCIDENT EVIDENCE
+# Benign administrative scenario for detection-engineering negative testing.
+# This fixture intentionally contains SSH and sudo activity but no sensitive credential-file access.
+
+Sep 16 10:15:02 srv-web-01 sshd[1201]: Accepted publickey for adminops from 10.10.10.21 port 52201 ssh2
+Sep 16 10:15:02 srv-web-01 sshd[1201]: pam_unix(sshd:session): session opened for user adminops(uid=1002)
+Sep 16 10:16:18 srv-web-01 sudo[1220]: adminops : TTY=pts/1 ; PWD=/home/adminops ; USER=root ; COMMAND=/usr/bin/systemctl status nginx
+Sep 16 10:16:18 srv-web-01 sudo[1220]: pam_unix(sudo:session): session opened for user root(uid=0) by adminops(uid=1002)
+Sep 16 10:16:19 srv-web-01 sudo[1220]: pam_unix(sudo:session): session closed for user root
+Sep 16 10:18:44 srv-web-01 sshd[1201]: pam_unix(sshd:session): session closed for user adminops

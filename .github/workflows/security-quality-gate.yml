@@ -66,3 +66,46 @@ jobs:
           )
 
           echo "YAML syntax validation passed."
+
+      - name: Validate Bash syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          while IFS= read -r -d '' file; do
+            echo "Validating Bash syntax: $file"
+            bash -n "$file"
+          done < <(
+            find . \
+              -type f \
+              -name "*.sh" \
+              -not -path "./.git/*" \
+              -print0
+          )
+
+          echo "Bash syntax validation passed."
+
+      - name: Run detection engineering tests
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          test_count=0
+
+          while IFS= read -r -d '' test_script; do
+            test_count=$((test_count + 1))
+            echo "Running detection test: $test_script"
+            bash "$test_script"
+          done < <(
+            find 07-lab/detection-tests \
+              -type f \
+              -name "test.sh" \
+              -print0
+          )
+
+          if [[ "$test_count" -eq 0 ]]; then
+            echo "ERROR: No detection engineering tests found."
+            exit 1
+          fi
+
+          echo "Detection engineering tests passed: $test_count test(s)."
