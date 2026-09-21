@@ -1,0 +1,23 @@
+TimeGenerated,UserPrincipalName,UserDisplayName,IPAddress,Location,AppDisplayName,ResultType,ResultDescription,IsInteractive,IsRisky,RiskEventTypes_V2
+2026-09-21T07:41:12Z,alex.meyer@contoso-lab.example,Alex Meyer,192.0.2.21,DE,Microsoft 365,0,Success,true,false,
+2026-09-21T08:02:31Z,sara.klein@contoso-lab.example,Sara Klein,192.0.2.34,DE,Microsoft 365,0,Success,true,false,
+2026-09-21T08:15:44Z,jonas.becker@contoso-lab.example,Jonas Becker,192.0.2.55,DE,Azure Portal,0,Success,true,false,
+2026-09-21T08:47:09Z,alex.meyer@contoso-lab.example,Alex Meyer,192.0.2.21,DE,Microsoft Teams,0,Success,true,false,
+2026-09-21T09:11:58Z,sara.klein@contoso-lab.example,Sara Klein,192.0.2.34,DE,SharePoint Online,0,Success,true,false,
+2026-09-21T09:35:21Z,jonas.becker@contoso-lab.example,Jonas Becker,192.0.2.55,DE,Microsoft 365,0,Success,true,false,
+2026-09-21T10:22:10Z,alex.meyer@contoso-lab.example,Alex Meyer,192.0.2.21,DE,Azure Portal,0,Success,true,false,
+2026-09-21T10:54:42Z,sara.klein@contoso-lab.example,Sara Klein,192.0.2.34,DE,Microsoft Teams,0,Success,true,false,
+2026-09-21T11:18:03Z,jonas.becker@contoso-lab.example,Jonas Becker,192.0.2.55,DE,SharePoint Online,0,Success,true,false,
+2026-09-21T20:31:02Z,alex.meyer@contoso-lab.example,Alex Meyer,203.0.113.77,NL,Azure Portal,50126,Invalid username or password,true,true,unfamiliarFeatures
+2026-09-21T20:31:19Z,alex.meyer@contoso-lab.example,Alex Meyer,203.0.113.77,NL,Azure Portal,50126,Invalid username or password,true,true,unfamiliarFeatures
+2026-09-21T20:31:37Z,alex.meyer@contoso-lab.example,Alex Meyer,203.0.113.77,NL,Azure Portal,50126,Invalid username or password,true,true,unfamiliarFeatures
+2026-09-21T20:31:55Z,alex.meyer@contoso-lab.example,Alex Meyer,203.0.113.77,NL,Azure Portal,50126,Invalid username or password,true,true,unfamiliarFeatures
+2026-09-21T20:32:14Z,alex.meyer@contoso-lab.example,Alex Meyer,203.0.113.77,NL,Azure Portal,50126,Invalid username or password,true,true,unfamiliarFeatures
+2026-09-21T20:32:33Z,alex.meyer@contoso-lab.example,Alex Meyer,203.0.113.77,NL,Azure Portal,50126,Invalid username or password,true,true,unfamiliarFeatures
+2026-09-21T20:33:01Z,alex.meyer@contoso-lab.example,Alex Meyer,203.0.113.77,NL,Azure Portal,0,Success,true,true,unfamiliarFeatures
+2026-09-21T20:34:12Z,alex.meyer@contoso-lab.example,Alex Meyer,203.0.113.77,NL,Microsoft 365,0,Success,true,true,unfamiliarFeatures
+2026-09-21T20:36:40Z,alex.meyer@contoso-lab.example,Alex Meyer,203.0.113.77,NL,SharePoint Online,0,Success,true,true,unfamiliarFeatures
+2026-09-21T20:40:05Z,sara.klein@contoso-lab.example,Sara Klein,198.51.100.18,DE,Microsoft 365,50126,Invalid username or password,true,false,
+2026-09-21T20:40:26Z,sara.klein@contoso-lab.example,Sara Klein,198.51.100.18,DE,Microsoft 365,0,Success,true,false,
+2026-09-21T20:45:17Z,jonas.becker@contoso-lab.example,Jonas Becker,192.0.2.55,DE,Azure Portal,50074,Strong authentication is required,true,false,
+2026-09-21T20:46:02Z,jonas.becker@contoso-lab.example,Jonas Becker,192.0.2.55,DE,Azure Portal,0,Success,true,false,

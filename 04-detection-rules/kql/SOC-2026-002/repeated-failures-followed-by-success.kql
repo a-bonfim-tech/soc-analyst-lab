@@ -1,0 +1,24 @@
+SigninLogs
+| where tostring(ResultType) != "0"
+| summarize
+    FailureCount = count(),
+    FirstFailure = min(TimeGenerated),
+    LastFailure = max(TimeGenerated)
+  by UserPrincipalName, IPAddress
+| join kind=inner (
+    SigninLogs
+    | where tostring(ResultType) == "0"
+    | summarize
+        FirstSuccess = min(TimeGenerated)
+      by UserPrincipalName, IPAddress
+) on UserPrincipalName, IPAddress
+| where FailureCount >= 5
+| where FirstSuccess between (LastFailure .. LastFailure + 5m)
+| project
+    UserPrincipalName,
+    IPAddress,
+    FailureCount,
+    FirstFailure,
+    LastFailure,
+    FirstSuccess
+| order by FirstSuccess asc
