@@ -1,0 +1,19 @@
+title: Linux Sudo Access to Etc Shadow
+id: 5ef93535-46a7-4de3-a692-2f6c6f4f4769
+status: experimental
+description: Detects sudo activity referencing /etc/shadow on Linux systems.
+author: Andre Bonfim
+date: 2026-09-21
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    - '/etc/shadow'
+  condition: selection
+falsepositives:
+  - Legitimate administrative or security operations
+level: medium
+tags:
+  - attack.credential_access
+  - attack.t1003.008

@@ -67,6 +67,13 @@ jobs:
 
           echo "YAML syntax validation passed."
 
+      - name: Validate Sigma rules
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check --quiet pysigma
+          python 06-scripts/validate_sigma.py
+
       - name: Validate Bash syntax
         shell: bash
         run: |

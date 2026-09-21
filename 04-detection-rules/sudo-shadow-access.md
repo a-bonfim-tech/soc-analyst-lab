@@ -99,3 +99,22 @@ following SSH authentication activity.
 
 The investigation classified the activity as suspicious with authorization
 pending and did not establish confirmed compromise.
+
+## Controlled Lab Validation
+
+The detection hypothesis was additionally validated against real telemetry
+generated in an isolated Ubuntu 24.04 Docker laboratory.
+
+The controlled reproduction generated failed SSH authentications, successful
+SSH authentication, sudo execution, and access to `/etc/shadow`.
+
+Evidence:
+
+`10-evidence/SOC-2026-001/real-lab-auth.txt`
+
+A Sigma implementation is available at:
+
+`04-detection-rules/sigma/linux-sudo-shadow-access.yml`
+
+The Sigma rule is syntax-parsed with pySigma and regression-tested against
+positive and negative evidence in the repository.
