@@ -1,24 +1,25 @@
 SigninLogs
-| where tostring(ResultType) != "0"
-| summarize
-    FailureCount = count(),
-    FirstFailure = min(TimeGenerated),
-    LastFailure = max(TimeGenerated)
-  by UserPrincipalName, IPAddress
+| where tostring(ResultType) == "0"
+| project UserPrincipalName, IPAddress, SuccessTime=TimeGenerated, SuccessApp=AppDisplayName
 | join kind=inner (
     SigninLogs
-    | where tostring(ResultType) == "0"
-    | summarize
-        FirstSuccess = min(TimeGenerated)
-      by UserPrincipalName, IPAddress
+    | where tostring(ResultType) != "0"
+    | project UserPrincipalName, IPAddress, FailureTime=TimeGenerated
 ) on UserPrincipalName, IPAddress
+| where FailureTime between (SuccessTime - 5m .. SuccessTime)
+| summarize
+    FailureCount = count(),
+    FirstFailure = min(FailureTime),
+    LastFailure = max(FailureTime)
+  by UserPrincipalName, IPAddress, SuccessTime, SuccessApp
 | where FailureCount >= 5
-| where FirstSuccess between (LastFailure .. LastFailure + 5m)
+| summarize arg_min(SuccessTime, *) by UserPrincipalName, IPAddress
 | project
     UserPrincipalName,
     IPAddress,
     FailureCount,
     FirstFailure,
     LastFailure,
-    FirstSuccess
-| order by FirstSuccess asc
+    SuccessTime,
+    SuccessApp
+| order by SuccessTime asc

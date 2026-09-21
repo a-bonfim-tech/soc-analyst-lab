@@ -75,11 +75,18 @@ These values are synthetic scenario attributes and do not represent an actual Mi
 
 ## 6. Detection Logic
 
-The KQL detection identifies a user and source IP where:
+The KQL detection evaluates successful authentications and identifies a user
+and source IP where:
 
-1. five or more authentication failures occur;
-2. a successful authentication subsequently occurs;
-3. the success occurs within five minutes after the last failure.
+1. a successful authentication occurs;
+2. five or more non-success authentication events from the same user and
+   source IP occurred during the preceding five-minute window;
+3. when multiple successes qualify for the same user and source IP, the
+   earliest qualifying success is retained.
+
+This success-anchored correlation prevents an earlier unrelated successful
+authentication from suppressing detection of a later failure burst followed
+by a qualifying success.
 
 Detection artifact:
 
@@ -92,7 +99,8 @@ The query returned one result:
 - FailureCount: 6
 - FirstFailure: 20:31:02 UTC
 - LastFailure: 20:32:33 UTC
-- FirstSuccess: 20:33:01 UTC
+- SuccessTime: 20:33:01 UTC
+- SuccessApp: Azure Portal
 
 ## 7. Analytical Hypothesis
 
