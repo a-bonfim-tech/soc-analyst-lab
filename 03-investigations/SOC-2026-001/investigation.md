@@ -1,4 +1,4 @@
-# SOC Alert Triage Runbook
+# SOC-2026-001 — SSH Authentication Investigation
 
 ## Purpose
 
@@ -197,9 +197,7 @@ When escalating, provide:
 
 ## 11. Lessons Learned
 
-Record:
-
-- What worked?
-- What evidence was missing?
-- What could improve detection?
-- What could improve triage?
+- Authentication logs were sufficient to reconstruct the core SSH and sudo timeline.
+- Authorization context was the main missing evidence.
+- Detection should correlate failed authentication, successful login, privilege escalation, and sensitive-file access.
+- Tier 1 triage improves when asset ownership, scheduled testing, and normal login sources are immediately available.
