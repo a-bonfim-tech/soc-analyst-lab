@@ -29,20 +29,24 @@ Current components:
 
 - macOS analyst workstation
 - Kali Linux adversary-simulation workstation
-- Git and GitHub for version-controlled documentation
+- Docker-based Linux lab for controlled security telemetry
+- Azure Data Explorer for real KQL execution against lab datasets
+- Git and GitHub for version-controlled documentation and CI
 - TryHackMe for guided SOC training
 - MITRE ATT&CK for behavioral mapping
+- Sigma and KQL detection engineering
+- Automated detection regression tests
+- Synthetic and controlled real lab telemetry
 - ChatGPT for investigation exercises and analyst training
 - Codex for defensive automation and repository engineering
 
 Planned components:
 
-- SIEM/XDR platform
-- Linux monitored endpoint
+- Production SIEM/XDR platform
 - Centralized telemetry collection
-- Controlled attack simulation
-- Detection rules
-- Real log-based investigations
+- Persistent monitored Windows and Linux endpoints
+- Real Microsoft Entra ID identity telemetry
+- EDR/XDR endpoint telemetry
 
 ## Repository Structure
 
@@ -137,6 +141,36 @@ See:
 
 `03-investigations/SOC-2026-001/`
 
+### SOC-2026-002 — Identity Sign-in Investigation with KQL
+
+Cloud authentication investigation executed with KQL in Azure Data Explorer using a synthetic SigninLogs-style dataset.
+
+The scenario contains repeated authentication failures followed by successful authentication from the same user and source IP, with subsequent access to multiple cloud applications.
+
+Tier 1 activities included:
+
+- KQL-based authentication analysis;
+- user and source-IP timeline reconstruction;
+- source and location baseline comparison;
+- risk-context analysis;
+- repeated-failure-followed-by-success correlation;
+- false-positive and noise differentiation;
+- MITRE ATT&CK candidate mapping;
+- detection regression testing;
+- investigation documentation and severity assessment.
+
+The KQL detection identified six authentication failures followed by successful authentication within five minutes while excluding isolated failure scenarios included in the dataset.
+
+The exercise used Azure Data Explorer rather than Microsoft Sentinel, and the authentication telemetry is explicitly synthetic.
+
+Final Tier 1 status:
+
+**Suspicious authentication activity — contextual validation required; compromise not confirmed.**
+
+See:
+
+`03-investigations/SOC-2026-002/`
+
 ## MITRE ATT&CK
 
 MITRE ATT&CK is used to map observed behaviors to relevant tactics and techniques.
@@ -165,4 +199,4 @@ Active development.
 
 Current stage:
 
-**Tier 1 foundations and SOC laboratory infrastructure.**
+**Tier 1 investigations, detection engineering, KQL analysis, and reproducible SOC lab validation.**
