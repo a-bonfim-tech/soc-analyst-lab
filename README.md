@@ -1,9 +1,3 @@
-<p align="center">
-  <img src="assets/soc-analyst-lab-banner.png"
-       alt="SOC Analyst Lab — Detection Engineering, Incident Response and DFIR"
-       width="100%">
-</p>
-
 # SOC Analyst Lab
 
 Hands-on Security Operations Center (SOC) training laboratory focused on developing practical Tier 1 SOC Analyst skills through alert triage, log analysis, incident investigation, detection engineering, threat intelligence, and documented escalation workflows.
