@@ -360,6 +360,395 @@ This exercise demonstrates practical understanding of:
 - forensic documentation;
 - distinction between evidence, interpretation, and conclusion.
 
+
+## EDR and RMM Considerations
+
+Endpoint-management platforms can provide an alternative to direct interactive
+access during an incident.
+
+Endpoint Detection and Response platforms may support:
+
+- endpoint telemetry;
+- forensic artifact collection;
+- live-response actions;
+- threat detection;
+- containment;
+- remote investigation.
+
+Agent-based DFIR platforms can similarly support remote collection, host-state
+analysis, threat hunting, and response operations.
+
+These capabilities are most effective when the organization has deployed and
+tested them before the incident.
+
+Introducing unfamiliar remote-management tooling during an active compromise
+creates additional risk.
+
+Potential problems include:
+
+- command timeouts;
+- incomplete or truncated results;
+- insufficient privileges;
+- limited forensic capabilities;
+- attacker visibility into management infrastructure;
+- compromise of the management platform itself.
+
+The investigation therefore favored known and controlled access mechanisms over
+improvised use of unfamiliar management tooling.
+
+## Network Access vs. Authentication
+
+Network connectivity and authentication are separate controls.
+
+A VPN may make an endpoint reachable without automatically granting access to
+Windows, Active Directory, or application resources.
+
+Conceptually:
+
+```text
+Network reachability
+        |
+        v
+Authentication
+        |
+        v
+Authorization
+        |
+        v
+Forensic action
+```
+
+Each layer must be evaluated independently.
+
+## Active Directory Access Planning
+
+The investigation required considering whether a dedicated domain identity was
+necessary.
+
+Potential DFIR requirements included:
+
+- collecting evidence across multiple systems;
+- querying Active Directory;
+- examining authentication activity;
+- investigating domain controllers;
+- resolving identities;
+- accessing affected servers;
+- pivoting between systems as evidence developed.
+
+Read-only directory access may be sufficient for some investigative questions,
+but it does not necessarily provide the endpoint-level permissions required for
+forensic acquisition.
+
+## Least Privilege
+
+High privilege should not be used merely because it is available.
+
+The preferred principle is:
+
+> Use the minimum privilege capable of completing the authorized forensic task.
+
+Some incident-response operations may require elevated privileges, but privilege
+should remain scoped, justified, auditable, and temporary.
+
+## Security Policy Exceptions
+
+Incident urgency does not eliminate governance.
+
+The training scenario included a conflict between an existing privileged-access
+policy and the operational requirements of a remote incident investigation.
+
+The appropriate response was escalation rather than bypass.
+
+A defensible exception process should include:
+
+- documented operational justification;
+- management authorization;
+- dedicated incident-specific identity;
+- logging and accountability;
+- defined lifetime;
+- post-incident revocation.
+
+This separates legitimate emergency access from uncontrolled policy violation.
+
+## Initial Evidence Prioritization
+
+High-value systems for early collection may include:
+
+### Domain controllers
+
+Useful for investigating:
+
+- authentication activity;
+- account use;
+- privilege changes;
+- directory modifications.
+
+### Internet-facing systems
+
+Potential entry points include:
+
+- web servers;
+- remote-access infrastructure;
+- messaging services;
+- virtual desktop infrastructure.
+
+### Customer-identified suspicious hosts
+
+Systems already associated with suspicious behavior should be evaluated early.
+
+### Administrator workstations
+
+Privileged workstations may expose:
+
+- administrator credentials;
+- attacker monitoring of remediation activity;
+- access to high-value infrastructure;
+- incident-response communications.
+
+## RDP Forensic Considerations
+
+Remote Desktop Protocol provides a complete interactive Windows session, but it
+also increases the investigator footprint.
+
+An interactive login may:
+
+- create Windows events;
+- modify user-state artifacts;
+- alter timestamps;
+- create session artifacts;
+- expose credentials in memory;
+- complicate separation between investigator and attacker activity.
+
+RDP therefore remains useful, but should not automatically be selected when a
+less intrusive access method can accomplish the forensic objective.
+
+## WinRM for Remote DFIR
+
+Windows Remote Management provides remote command-line access and underpins
+PowerShell Remoting.
+
+For incident response it offers several useful properties:
+
+- remote PowerShell execution;
+- automation;
+- repeatability;
+- operations across multiple endpoints;
+- reduced dependence on graphical desktop sessions.
+
+The laboratory demonstrated that successful WinRM use depends on several
+prerequisites:
+
+- appropriate local privilege;
+- working WinRM service configuration;
+- authentication configuration;
+- valid credential objects;
+- correct trust configuration where required.
+
+## Troubleshooting Lessons
+
+Several operational errors demonstrated useful troubleshooting principles.
+
+### Privilege matters
+
+Changes to local WinRM client configuration may require an elevated PowerShell
+session.
+
+### Commands should be isolated during troubleshooting
+
+Combining several configuration commands into one malformed input makes it
+difficult to identify the root cause.
+
+Running commands independently improves fault isolation.
+
+### Credential objects must exist before use
+
+Remote-session commands that reference an uninitialized credential object will
+fail before authentication even begins.
+
+### Trust configuration affects remote authentication
+
+Remote Windows management may require explicit trust configuration depending on
+the authentication method and environment.
+
+### Shell context matters
+
+PowerShell cmdlets must be executed within PowerShell rather than assumed to be
+native commands available in every Windows command interpreter.
+
+## WinRM Session Behavior
+
+The laboratory demonstrated an important distinction between interactive desktop
+sessions and PowerShell Remoting.
+
+A remote PowerShell session does not behave like a normal graphical RDP session
+and therefore should not be expected to appear identically in interactive user
+session enumeration.
+
+This distinction matters when interpreting host telemetry during an
+investigation.
+
+## WMI for Remote Investigation
+
+Windows Management Instrumentation provides another mechanism for remote system
+discovery and administration.
+
+Useful DFIR applications include:
+
+- process discovery;
+- system inventory;
+- startup-entry enumeration;
+- configuration inspection;
+- remote querying;
+- investigation at scale.
+
+WMI does not provide the same interactive shell experience as PowerShell
+Remoting, but it can expose valuable evidence even when interactive access is
+not desirable or available.
+
+## Persistence Investigation
+
+Remote WMI enumeration of Windows startup commands identified an anomalous
+startup entry.
+
+The relevant evidence consisted of:
+
+- a startup item with an unusual name;
+- an executable launched from a user-writable public directory;
+- persistence configured through a machine-level Windows Run key.
+
+### Evidence
+
+A startup command referenced an executable located under a public user-accessible
+directory rather than a conventional application or operating-system location.
+
+### Interpretation
+
+An executable launched automatically from a user-writable directory is
+suspicious because such locations are commonly more accessible to non-system
+processes and users.
+
+### Corroborating context
+
+The command was registered through a Windows startup persistence mechanism.
+
+### Assessment
+
+The combination of:
+
+```text
+unusual executable
+        +
+user-writable path
+        +
+automatic startup
+        +
+machine-level Run key
+```
+
+was assessed as suspicious persistence requiring further investigation.
+
+### Confidence
+
+High for the presence of the persistence mechanism.
+
+Additional evidence would still be required to independently attribute the
+executable to a particular threat actor or intrusion stage.
+
+## RDP, WinRM and WMI Comparison
+
+| Method | Primary purpose | DFIR advantage | Primary concern |
+|---|---|---|---|
+| RDP | Interactive desktop | Full GUI access | Large forensic footprint |
+| WinRM | Remote PowerShell | Automation and scalable command execution | Requires configuration and authentication |
+| WMI | Remote querying | Broad discovery and inventory capabilities | Less interactive than a remote shell |
+
+These technologies are complementary rather than interchangeable.
+
+## Completed Investigation Workflow
+
+The completed exercise can be represented as:
+
+```text
+Incident declared
+        |
+        v
+Determine access requirements
+        |
+        v
+Evaluate trust in existing customer infrastructure
+        |
+        v
+Establish dedicated investigation connectivity
+        |
+        v
+Determine authentication and privilege requirements
+        |
+        v
+Select appropriate remote access method
+        |
+        +-------------------------------+
+        |               |               |
+        v               v               v
+       RDP            WinRM            WMI
+        |               |               |
+ Interactive       Remote shell    Remote discovery
+        |               |               |
+        +---------------+---------------+
+                        |
+                        v
+               Inspect forensic evidence
+                        |
+                        v
+                 Correlate findings
+                        |
+                        v
+               Document conclusions
+```
+
+## Additional Lessons Learned
+
+### Connectivity is not authorization
+
+Being able to reach a system does not mean the investigator is authenticated or
+authorized to perform forensic actions.
+
+### Investigator tooling leaves evidence
+
+Remote-access mechanisms, interactive sessions, PowerShell Remoting, and WMI
+queries all create observable activity.
+
+Investigator actions must therefore be documented.
+
+### Remote collection benefits from preparation
+
+Organizations that deploy and validate EDR, DFIR agents, logging, and remote
+response capabilities before an incident can investigate more efficiently.
+
+### Windows remote administration is operationally diverse
+
+RDP, WinRM, and WMI expose different levels of interaction and create different
+forensic footprints.
+
+### Persistence should be assessed contextually
+
+A startup entry is not automatically malicious.
+
+Assessment should consider:
+
+- executable path;
+- signing or provenance;
+- user context;
+- persistence location;
+- surrounding telemetry;
+- file characteristics;
+- relationship to the incident timeline.
+
+### Governance remains part of incident response
+
+Authorization, escalation, least privilege, accountability, and customer
+coordination are operational security controls, not administrative obstacles.
+
+
 ## Training Provenance
 
 This artifact was independently written after authorized hands-on training in a
@@ -373,6 +762,8 @@ analytical reasoning for defensive cybersecurity practice.
 
 ## Current Status
 
-Tasks 1–3 of the training scenario have been investigated and documented.
+The authorized DFIR training scenario has been completed.
 
-Further laboratory tasks are intentionally not included in this artifact yet.
+The portfolio artifact documents the transferable investigation methodology and
+technical lessons from the full exercise while intentionally excluding lab
+credentials, flags, target identifiers, and challenge-specific answer values.
