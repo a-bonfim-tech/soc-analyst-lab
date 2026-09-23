@@ -40,6 +40,7 @@ foreach ($source in $sources) {
         required=$source.Required; status='unavailable'; count=0; file=$null; error_code=$null
     }
     $writer = $null
+    $observedIds = @{}
     $path = Join-Path $destination ($source.Name + '.xml')
     try {
         $log = Get-WinEvent -ListLog $source.Channel -ErrorAction Stop
@@ -55,6 +56,7 @@ foreach ($source in $sources) {
                 # Preserve the actual EventRecord XML; never synthesize a record.
                 $writer.WriteLine($_.ToXml())
                 $entry['count'] += 1
+                $observedIds[[int]$_.Id] = $true
             }
         } catch {
             if ($_.FullyQualifiedErrorId -notlike 'NoMatchingEventsFound*') { throw }
@@ -74,6 +76,11 @@ foreach ($source in $sources) {
         }
         $entry.error_code = $_.FullyQualifiedErrorId
         Write-Warning ($source.Name + ': unavailable or incomplete; see metadata.json.')
+    }
+    $entry['observed_event_ids'] = @($observedIds.Keys | Sort-Object)
+    $entry['unobserved_event_ids'] = @($source.Ids | Where-Object { -not $observedIds.ContainsKey([int]$_) })
+    if ($entry['unobserved_event_ids'].Count -gt 0) {
+        Write-Warning ($source.Name + ': IDs not observed in this export: ' + ($entry['unobserved_event_ids'] -join ',') + '; verify coverage separately.')
     }
     $inventory += [pscustomobject]$entry
 }

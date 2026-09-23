@@ -27,7 +27,10 @@ expected audit categories, process-command-line policy, Sysmon configuration and
 PowerShell settings before the exercise. Do not turn controls on through this
 package. Configure a separate approved VM image if prerequisites are missing.
 No-event results are not invented into events or evidence of absent activity.
-No requirement to induce Defender detections.
+No requirement to induce Defender detections. The collector lists observed and
+unobserved selected event IDs, including for required channels. The importer reports
+coverage from validated events separately; it does not parse partial exports. An
+unobserved ID is a limitation, not proof that its audit policy/filter is disabled.
 
 Every accepted source event must have native System fields: Provider Name, EventID,
 EventRecordID, TimeCreated SystemTime with timezone, Computer and Channel. Retain

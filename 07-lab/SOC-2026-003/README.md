@@ -97,8 +97,13 @@ Get-Content -LiteralPath (Join-Path $root 'final\metadata.json')
 Each baseline/final package contains metadata.json, manifest.json, manifest.sha256,
 and security.xml, sysmon.xml, powershell.xml, defender.xml for queryable channels.
 Empty queried channels produce an empty Events wrapper with status no_events;
-unavailable channels produce no XML; interrupted exports remain *.xml.partial.
-Inventory records every source/status/count/error code. All retained files except
+unavailable channels produce no XML; caught export failures retain *.xml.partial.
+A forced process termination or VM crash may leave an unfinished XML/package without
+a manifest; such a package must not be ingested as a successful collection.
+Inventory records every source/status/count/error code, observed event IDs and
+unobserved selected IDs. Unobserved IDs are coverage limitations to investigate,
+not proof of disabled logging or a requirement to manufacture activity. Exit 0
+still means nonempty required sources, not every selected ID observed. All retained files except
 the manifest and its checksum are covered by the manifest. Do not edit partial files
 into valid evidence. Required source gaps prevent collection readiness.
 
@@ -139,8 +144,9 @@ python3 -B -m unittest discover -s 07-lab/SOC-2026-003/collection -p 'test_*.py'
 
 Tests create temporary, explicitly artificial XML packages solely to exercise parser
 behavior. They are never collected evidence. No Windows runtime execution is claimed.
-This historical branch lacks SOC-2026-004's portfolio validator; do not import that
-case merely to obtain a validator. Existing checks remain applicable where available.
+Current main has been incorporated without rewriting the historical commits. Run
+`python3 -B 06-scripts/validate_portfolio.py` from the repository root using the
+existing validation environment. This does not replace the Windows parser preflight.
 
 ## Command references
 

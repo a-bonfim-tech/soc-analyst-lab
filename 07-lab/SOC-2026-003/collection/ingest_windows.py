@@ -116,10 +116,16 @@ def verify_package(directory):
             raise ValueError('channel export missing')
         used_files.add(filename)
         raw = (directory / filename).read_bytes()
-        if b'<!DOCTYPE' in raw.upper() or b'<!ENTITY' in raw.upper():
+        # Collector exports UTF-8 only. Decode before checking declarations so
+        # UTF-16/32 cannot bypass the DTD guard through interleaved NUL bytes.
+        text = raw.decode('utf-8-sig')
+        declaration = re.search(r"<\?xml\b[^?]*\bencoding\s*=\s*['\"]([^'\"]+)['\"]", text)
+        if '\x00' in text or (declaration and declaration.group(1).lower() != 'utf-8'):
+            raise ValueError('collector XML must be UTF-8')
+        if '<!DOCTYPE' in text.upper() or '<!ENTITY' in text.upper():
             raise ValueError('DTD/entities prohibited')
         source_hash = hashlib.sha256(raw).hexdigest()
-        root = ET.fromstring(raw)
+        root = ET.fromstring(text)
         if root.tag != 'Events':
             raise ValueError('expected Events XML wrapper')
         if len(root) != count or (status == 'collected') != (count > 0):
@@ -164,8 +170,14 @@ def verify_package(directory):
     if metadata.get('required_sources_collected') is not (not missing):
         raise ValueError('required source readiness mismatch')
     rows.sort(key=lambda r: (r['timestamp_utc'], r['channel'], int(r['record_id'])))
+    coverage = {}
+    for name, (log, ids, _) in SOURCES.items():
+        observed = {row['event_id'] for row in rows if row['channel'] == log}
+        coverage[name] = dict(observed_event_ids=sorted(observed),
+                              unobserved_event_ids=sorted(ids - observed))
     summary = dict(case_id='SOC-2026-003', phase=metadata['phase'], event_count=len(rows),
                    required_sources_missing=missing, channels=metadata['channels'],
+                   validated_event_coverage=coverage,
                    manifest_sha256=digest(directory / 'manifest.json'),
                    note='Integrity and schema verified; provenance authenticity requires operator review. No incident conclusions.')
     return rows, summary

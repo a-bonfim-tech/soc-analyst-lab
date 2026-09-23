@@ -25,7 +25,14 @@ try {
     Set-Content -LiteralPath $marker -Value 'SOC003 benign lab marker' -Encoding UTF8
     Write-Output 'Marker activities completed; verify actual event availability after export.'
 } finally {
-    if (Test-Path -LiteralPath $key) { Remove-Item -LiteralPath $key -Recurse -ErrorAction Stop }
-    if (Test-Path -LiteralPath $marker) { Remove-Item -LiteralPath $marker -ErrorAction Stop }
-    Write-Output ('Activity ended UTC: ' + [datetimeoffset]::UtcNow.ToString('o'))
+    # Attempt both cleanups even if one fails; propagate failure to the operator.
+    try {
+        if (Test-Path -LiteralPath $key) { Remove-Item -LiteralPath $key -Recurse -ErrorAction Stop }
+    } finally {
+        try {
+            if (Test-Path -LiteralPath $marker) { Remove-Item -LiteralPath $marker -ErrorAction Stop }
+        } finally {
+            Write-Output ('Activity ended UTC: ' + [datetimeoffset]::UtcNow.ToString('o'))
+        }
+    }
 }

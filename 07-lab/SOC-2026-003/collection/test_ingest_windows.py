@@ -111,6 +111,27 @@ class Ingestion(unittest.TestCase):
         p.write_text('<!DOCTYPE Events><Events/>');seal(self.root)
         with self.assertRaisesRegex(ValueError,'DTD'):ingest.verify_package(self.root)
 
+    def test_encoding_contract_and_entity_rejection(self):
+        p = self.root / 'sysmon.xml'
+        xml = '<Events>' + event(ingest.SOURCES['sysmon'][0], 1) + '</Events>'
+        for raw in (xml.encode('utf-16'), xml.encode('utf-16-le'),
+                    ('<?xml version="1.0" encoding="iso-8859-1"?>' + xml).encode(),
+                    ('<!DOCTYPE Events [<!ENTITY x "TEST-ONLY">]>' + xml).encode()):
+            p.write_bytes(raw); seal(self.root)
+            with self.assertRaises(ValueError): ingest.verify_package(self.root)
+        p.write_bytes(('<?xml version="1.0" encoding="utf-8"?>' + xml).encode())
+        seal(self.root)
+        self.assertEqual(len(ingest.verify_package(self.root)[0]), 2)
+
+    def test_event_coverage_is_explicit_not_fabricated(self):
+        rows, summary = ingest.verify_package(self.root)
+        self.assertEqual(len(rows), 2)
+        self.assertEqual(summary['validated_event_coverage']['security'],
+                         dict(observed_event_ids=[4624], unobserved_event_ids=[4625,4672,4688]))
+        self.assertEqual(summary['validated_event_coverage']['sysmon'],
+                         dict(observed_event_ids=[1], unobserved_event_ids=[3,11,12,13,14]))
+        self.assertEqual(summary['required_sources_missing'], [])
+
     def test_missing_source_partial_and_exit_two(self):
         p=self.root/'sysmon.xml';p.rename(self.root/'sysmon.xml.partial')
         self.meta['channels'][1].update(status='partial',file='sysmon.xml.partial')
