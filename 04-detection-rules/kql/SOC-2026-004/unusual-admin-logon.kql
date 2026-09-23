@@ -1,0 +1,10 @@
+// Security004 uses EventID/LogonType:int. AssetContext004 is one row per host.
+// Expected SEC-009. Context arrays: privileged_accounts, expected_admin_sources.
+// Inner join intentionally excludes unknown hosts; monitor context coverage separately.
+Security004
+| where EventID == 4624 and LogonType == 10
+| join kind=inner (AssetContext004 | project Computer=hostname, privileged_accounts, expected_admin_sources) on Computer
+| where set_has_element(privileged_accounts, Account)
+| where isnotempty(IpAddress) and not(set_has_element(expected_admin_sources, IpAddress))
+| project TimeGenerated, RecordId, Computer, Account, IpAddress, TargetLogonId, LogonType
+| order by TimeGenerated asc

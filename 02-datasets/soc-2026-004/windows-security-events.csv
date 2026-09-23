@@ -1,0 +1,14 @@
+RecordId,TimeGenerated,Computer,EventID,Account,LogonType,IpAddress,TargetLogonId,SubjectLogonId,SubjectUserName,TargetUserName,ProcessName,PrivilegeList
+SEC-001,2026-09-23T08:00:00Z,SYN-WIN-04,4624,SYNTH\lee,2,,0x100,,,lee,C:\Windows\System32\svchost.exe,
+SEC-002,2026-09-23T08:05:00Z,SYN-WIN-04,4624,SYNTH\ops.admin,10,192.0.2.10,0x110,,,ops.admin,C:\Windows\System32\svchost.exe,
+SEC-003,2026-09-23T08:05:01Z,SYN-WIN-04,4672,SYNTH\ops.admin,,,,0x110,ops.admin,,,SeDebugPrivilege SeBackupPrivilege
+SEC-004,2026-09-23T08:10:00Z,SYN-WIN-04,4625,SYNTH\lee,3,192.0.2.21,,,,lee,,
+SEC-005,2026-09-23T08:10:20Z,SYN-WIN-04,4624,SYNTH\lee,3,192.0.2.21,0x120,,,lee,C:\Windows\System32\svchost.exe,
+SEC-006,2026-09-23T09:00:00Z,SYN-WIN-04,4625,SYNTH\ops.admin,10,198.51.100.24,,,,ops.admin,,
+SEC-007,2026-09-23T09:00:10Z,SYN-WIN-04,4625,SYNTH\ops.admin,10,198.51.100.24,,,,ops.admin,,
+SEC-008,2026-09-23T09:00:20Z,SYN-WIN-04,4625,SYNTH\ops.admin,10,198.51.100.24,,,,ops.admin,,
+SEC-009,2026-09-23T09:01:00Z,SYN-WIN-04,4624,SYNTH\ops.admin,10,198.51.100.24,0x900,,,ops.admin,C:\Windows\System32\svchost.exe,
+SEC-010,2026-09-23T09:01:01Z,SYN-WIN-04,4672,SYNTH\ops.admin,,,,0x900,ops.admin,,,SeDebugPrivilege SeBackupPrivilege
+SEC-011,2026-09-23T09:03:00Z,SYN-WIN-04,4624,NT AUTHORITY\SYSTEM,5,,0x3e7,,,SYSTEM,C:\Windows\System32\svchost.exe,
+SEC-012,2026-09-23T09:03:01Z,SYN-WIN-04,4672,NT AUTHORITY\SYSTEM,,,,0x3e7,SYSTEM,,,SeDebugPrivilege SeBackupPrivilege
+SEC-013,2026-09-23T09:05:00Z,SYN-WIN-04,4624,SYNTH\lee,10,198.51.100.30,0x130,,,lee,C:\Windows\System32\svchost.exe,

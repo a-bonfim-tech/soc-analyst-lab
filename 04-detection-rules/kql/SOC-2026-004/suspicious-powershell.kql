@@ -1,0 +1,9 @@
+// Input: flattened Sysmon004 table; see validation guide. Expected SYS-005.
+// Candidate behavior; encoded text and Office ancestry do not prove malware.
+Sysmon004
+| where EventID == 1
+| where Image endswith @"\powershell.exe" or Image endswith @"\pwsh.exe"
+| where ParentImage endswith @"\winword.exe" or ParentImage endswith @"\excel.exe" or ParentImage endswith @"\outlook.exe"
+| where CommandLine contains " -EncodedCommand " or CommandLine contains " -enc "
+| project UtcTime, RecordId, Computer, User, LogonId, ProcessGuid, Image, ParentImage, CommandLine
+| order by UtcTime asc
