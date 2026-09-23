@@ -107,6 +107,49 @@ still means nonempty required sources, not every selected ID observed. All retai
 the manifest and its checksum are covered by the manifest. Do not edit partial files
 into valid evidence. Required source gaps prevent collection readiness.
 
+## Recollection after temporal-filter correction
+
+Do not rerun activity.ps1, replace the original activity or use a new activity window.
+Deploy only the corrected collector, perform the parser preflight, and preserve the
+failed package. Read the ORIGINAL activity_start_utc and activity_end_utc from the
+private preserved JSON activity-window record. Never infer them from this example,
+current time, the event examples or a new execution. In this package directory:
+
+```powershell
+$windowPath = Read-Host 'Path to the preserved activity-window JSON record'
+$window = Get-Content -Raw -LiteralPath $windowPath | ConvertFrom-Json
+foreach ($value in @($window.activity_start_utc, $window.activity_end_utc)) {
+    if ([string]::IsNullOrWhiteSpace($value) -or $value -notmatch '(Z|[+-]\d{2}:\d{2})$') {
+        throw 'Original timestamp with explicit offset required; do not reconstruct it'
+    }
+}
+$activityStart = [datetimeoffset]::Parse($window.activity_start_utc, [cultureinfo]::InvariantCulture)
+$activityEnd = [datetimeoffset]::Parse($window.activity_end_utc, [cultureinfo]::InvariantCulture)
+$destination = Join-Path (Split-Path -Parent $windowPath) ('final-recollect-' + [guid]::NewGuid().ToString('N'))
+& .\collection\collect_windows.ps1 -AuthorizedDisposableLab -Phase final `
+    -StartUtc $activityStart -EndUtc $activityEnd -OutputDirectory $destination
+$LASTEXITCODE
+```
+
+The new directory contains a recollection of existing endpoint logs, not newly
+executed activity. Missing records may reflect retention or query/collection issues;
+an empty package alone does not prove no telemetry exists. Defender remains optional.
+
+Temporal diagnosis: the old filter passed DateTimeOffset.UtcDateTime (Kind=Utc).
+The published Get-WinEvent implementation calls ToString, DateTime.Parse and then
+ToUniversalTime, allowing UTC wall time to be reinterpreted as local time. At UTC+02
+this queries two hours earlier. Its formatter also limits fractional precision.
+The corrected collector supplies an inclusive UTC SystemTime XPath with seven
+fractional digits, bypassing that path entirely. Merely passing LocalDateTime would
+address the wall-clock mismatch but not preserve the original fractional bounds.
+Metadata and native event timestamps remain unchanged.
+
+[Microsoft's legacy query builder source](https://github.com/PowerShell/PowerShell/blob/v6.0.0-alpha.9/src/Microsoft.PowerShell.Commands.Diagnostics/GetEventCommand.cs)
+provides the conversion path. Local regression tests model it and check the collector
+source template; they do not execute the Windows 5.1 binary or native event query.
+The exact endpoint runtime result must be verified by recollection. No real telemetry
+was generated, copied into tests or collected by this correction.
+
 ## E — cleanup
 
 activity.ps1 uses finally cleanup. If interrupted or the VM crashes, use its printed

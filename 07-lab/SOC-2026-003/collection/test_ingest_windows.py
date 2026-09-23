@@ -173,4 +173,57 @@ class Ingestion(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'window'):ingest.verify_package(self.root)
 
 
+
+class CollectorTimeFiltering(unittest.TestCase):
+    """Source-bound temporal model, not Windows execution or endpoint evidence.
+
+    Models Get-WinEvent's ToString -> DateTime.Parse -> ToUniversalTime path.
+    Fixed XPath bounds are taken from the collector template. Native Windows
+    Event Log execution must still be verified during authorized recollection.
+    """
+    def query_bounds(self, start, end, local_offset):
+        import re
+        from datetime import datetime, timezone, timedelta
+        source = SCRIPT.with_name('collect_windows.ps1').read_text()
+        if 'StartTime=$StartUtc.UtcDateTime; EndTime=$EndUtc.UtcDateTime' in source:
+            local = timezone(timedelta(hours=local_offset))
+            def legacy(value):
+                utc = datetime.fromisoformat(value.replace('Z', '+00:00')).astimezone(timezone.utc)
+                # DateTime.ToString() drops Kind/offset and fractional seconds.
+                wall = utc.replace(tzinfo=None, microsecond=0)
+                return ingest.stamp(wall.replace(tzinfo=local).astimezone(timezone.utc).isoformat())
+            return legacy(start), legacy(end)
+        self.assertIn('-FilterXPath $filter', source)
+        self.assertIn('$StartUtc.UtcDateTime.ToString("yyyy-MM-ddTHH:mm:ss.fffffff\'Z\'",', source)
+        self.assertIn('$EndUtc.UtcDateTime.ToString("yyyy-MM-ddTHH:mm:ss.fffffff\'Z\'",', source)
+        self.assertIn('@SystemTime >= \'$queryStart\' and @SystemTime <= \'$queryEnd\'', source)
+        self.assertNotIn('StartTime=', source)
+        return ingest.stamp(start), ingest.stamp(end)
+
+    def test_utc_plus_two_includes_inside_event_once(self):
+        start, end = self.query_bounds('2026-09-23T15:59:20Z', '2026-09-23T15:59:30Z', 2)
+        # Artificial timestamp corresponding to 17:59:23 local, not a collected record.
+        records = ['2026-09-23T17:59:23+02:00']
+        hits = [event for event in records if start <= ingest.stamp(event) <= end]
+        self.assertEqual(len(hits), 1)
+
+    def test_inclusive_boundaries_at_100ns_precision(self):
+        start, end = self.query_bounds('2026-09-23T15:59:20.1234567Z', '2026-09-23T15:59:30.7654321Z', 2)
+        events = ['2026-09-23T17:59:20.1234566+02:00',
+                  '2026-09-23T17:59:20.1234567+02:00',
+                  '2026-09-23T17:59:20.1234568+02:00',
+                  '2026-09-23T17:59:30.7654320+02:00',
+                  '2026-09-23T17:59:30.7654321+02:00',
+                  '2026-09-23T17:59:30.7654322+02:00']
+        self.assertEqual([start <= ingest.stamp(e) <= end for e in events],
+                         [False, True, True, True, True, False])
+
+    def test_offset_preservation_and_determinism(self):
+        expected = ('2026-09-23T15:59:20.0000000Z', '2026-09-23T15:59:30.0000000Z')
+        for endpoint_offset in (0, 1, 2, -5, 5.5):
+            for _ in range(2):
+                self.assertEqual(self.query_bounds('2026-09-23T17:59:20+02:00',
+                                                  '2026-09-23T17:59:30+02:00', endpoint_offset), expected)
+
+
 if __name__=='__main__':unittest.main()

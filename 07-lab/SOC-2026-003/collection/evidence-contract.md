@@ -46,6 +46,10 @@ container bytes or every event in a channel.
 - Collect baseline and final packages separately, using explicit UTC bounds (maximum
   two hours each). Record requested window and actual export start/end, timezone,
   actual hostname, collector identity, OS, PowerShell version and script SHA-256.
+- The query interval is inclusive: start <= native SystemTime <= end. Explicit UTC
+  XPath bounds retain seven fractional digits and bypass FilterHashtable's local-time
+  reinterpretation. Metadata retains requested UTC bounds unchanged. No timezone
+  constant, window widening or local wall-clock assumption is used.
 - Event timestamps remain verbatim in raw XML. Derived UTC timestamps retain seven
   fractional digits; original timestamp strings remain available separately.
 - Preserve native hostnames privately, including source FQDN if present. Importer

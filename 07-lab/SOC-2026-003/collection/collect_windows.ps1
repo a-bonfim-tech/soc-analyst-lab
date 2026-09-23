@@ -33,6 +33,10 @@ $sources = @(
     @{ Name='powershell'; Channel='Microsoft-Windows-PowerShell/Operational'; Ids=@(4103,4104); Required=$false },
     @{ Name='defender'; Channel='Microsoft-Windows-Windows Defender/Operational'; Ids=@(1116,1117); Required=$false }
 )
+# FilterHashtable stringifies DateTime and reparses it as local time, losing Kind
+# and precision. Query native SystemTime directly in UTC to preserve exact bounds.
+$queryStart = $StartUtc.UtcDateTime.ToString("yyyy-MM-ddTHH:mm:ss.fffffff'Z'", [System.Globalization.CultureInfo]::InvariantCulture)
+$queryEnd = $EndUtc.UtcDateTime.ToString("yyyy-MM-ddTHH:mm:ss.fffffff'Z'", [System.Globalization.CultureInfo]::InvariantCulture)
 $inventory = @()
 foreach ($source in $sources) {
     $entry = [ordered]@{
@@ -49,10 +53,9 @@ foreach ($source in $sources) {
         $writer.WriteLine('<?xml version="1.0" encoding="utf-8"?>')
         $writer.WriteLine('<Events>')
         try {
-            Get-WinEvent -FilterHashtable @{
-                LogName=$source.Channel; Id=$source.Ids
-                StartTime=$StartUtc.UtcDateTime; EndTime=$EndUtc.UtcDateTime
-            } -Oldest -ErrorAction Stop | ForEach-Object {
+            $idPredicate = ($source.Ids | ForEach-Object { 'EventID=' + [int]$_ }) -join ' or '
+            $filter = "*[System[($idPredicate) and TimeCreated[@SystemTime >= '$queryStart' and @SystemTime <= '$queryEnd']]]"
+            Get-WinEvent -LogName $source.Channel -FilterXPath $filter -Oldest -ErrorAction Stop | ForEach-Object {
                 # Preserve the actual EventRecord XML; never synthesize a record.
                 $writer.WriteLine($_.ToXml())
                 $entry['count'] += 1
