@@ -1,2 +1,3 @@
 # Parser validation only; no Sigma backend.
 pysigma==0.11.23
+pytest>=9.0,<10.0

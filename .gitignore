@@ -12,3 +12,7 @@ secrets/
 
 # Allow explicitly synthetic detection-engineering test fixtures.
 !07-lab/detection-tests/**/*.log
+
+# Python generated artifacts
+__pycache__/
+*.py[cod]
