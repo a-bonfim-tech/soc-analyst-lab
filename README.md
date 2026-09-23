@@ -1,3 +1,9 @@
+<p align="center">
+  <img src="assets/soc-analyst-lab-banner.png"
+       alt="SOC Analyst Lab — Detection Engineering, Incident Response and DFIR"
+       width="100%">
+</p>
+
 # SOC Analyst Lab
 
 Hands-on Blue Team portfolio covering alert triage, evidence correlation, detection engineering, DFIR collection planning and documented escalation. Lab evidence and synthetic fixtures are labeled explicitly; this repository does not claim professional production SOC experience.
