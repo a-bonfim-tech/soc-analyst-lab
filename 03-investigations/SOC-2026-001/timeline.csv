@@ -1,4 +1,4 @@
 Timestamp,Source,Event,Asset,Account,Evidence reference,Interpretation,Confidence
-UNKNOWN,lab auth excerpt,8 password failures,UNKNOWN,"admin;root;ubuntu",real-lab-auth.txt lines 4-19,Source-order observations; elapsed time unknown,High in text only
-UNKNOWN,lab auth excerpt,Accepted password,UNKNOWN,ubuntu,real-lab-auth.txt line 21,Authentication recorded; authorization unknown,High in text only
-Sep 21 21:09:17 (year and timezone UNKNOWN),sudo-formatted excerpt,cat /etc/shadow recorded,UNKNOWN,ubuntu as root,real-lab-auth.txt lines 24-25,Command outcome and disclosure not retained,High in text only
+UNKNOWN,lab auth excerpt,8 password failures,UNKNOWN,"admin;root;labuser",real-lab-auth.txt lines 10-25,Source-order observations; elapsed time unknown,High in text only
+UNKNOWN,lab auth excerpt,Accepted password,UNKNOWN,labuser,real-lab-auth.txt line 27,Authentication recorded; authorization unknown,High in text only
+Sep 21 21:09:17 (year and timezone UNKNOWN),sudo-formatted excerpt,cat /etc/shadow recorded,UNKNOWN,labuser as root,real-lab-auth.txt lines 30-31,Command outcome and disclosure not retained,High in text only

@@ -2,13 +2,13 @@
 
 Retrospective portfolio review. This supersedes unsupported execution details in the scenario narrative; it does not rewrite the original log.
 
-Source: [real-lab-auth.txt](../../10-evidence/SOC-2026-001/real-lab-auth.txt), described by the repository as controlled real lab telemetry. Original acquisition metadata and a complete time-bounded export are absent; authenticity is not independently established.
+Source: [real-lab-auth.txt](../../10-evidence/SOC-2026-001/real-lab-auth.txt), described by the repository as controlled real lab telemetry. The published copy is sanitized: internal addressing and the laboratory account name are replaced with TEST-NET-1 address `192.0.2.45` and account label `labuser`. Original acquisition metadata and a complete time-bounded export are absent; authenticity is not independently established.
 
 | Retained observation | Source lines | Interpretation / limit |
 |---|---|---|
-| Eight `Failed password` records: admin 2, root 2, ubuntu 4 | 4,7,9,11,13,15,17,19 | Multiple failed attempts; no retained timestamps for these records, no five-minute rate established |
-| One `Accepted password for ubuntu` from the same source | 21 | Successful authentication recorded; authorization and target inventory not established |
-| Sudo-formatted entry naming USER=root and cat /etc/shadow | 24–25 | Sensitive command recorded; output, exit status and actual file disclosure unproven |
+| Eight `Failed password` records: admin 2, root 2, labuser 4 | 10,13,15,17,19,21,23,25 | Multiple failed attempts; no retained timestamps for these records, no five-minute rate established |
+| One `Accepted password for labuser` from the same source | 27 | Successful authentication recorded; authorization and target inventory not established |
+| Sudo-formatted entry naming USER=root and cat /etc/shadow | 30–31 | Sensitive command recorded; output, exit status and actual file disclosure unproven |
 
 The excerpt does NOT establish 47 failures, the September 16 alert time, a 30-day baseline, inventory ownership, scheduled-test absence, failed sudo attempts, root session opening/closure or a complete host/session timeline. Those are scenario context in the original exercise, not independently retained observations.
 

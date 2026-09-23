@@ -6,9 +6,9 @@ behaviors documented in SOC-2026-001.
 Environment:
 
 - Target hostname: srv-web-01
-- Target IP: 10.10.20.10
-- Attacker-simulation hostname: kali-redteam-01
-- Source IP: 10.10.20.45
+- Target identity: intentionally omitted from the public retained excerpt
+- Source identity: intentionally omitted from the public retained excerpt
+- Published source IP: 192.0.2.45 (TEST-NET-1 documentation address)
 - Container image: Ubuntu 24.04
 - Telemetry sources: OpenSSH and sudo
 - Execution environment: isolated Docker network
@@ -21,13 +21,15 @@ Observed laboratory behavior includes:
 
 - failed SSH password authentication;
 - successful SSH password authentication;
-- privileged access to `/etc/shadow`.
+- a privileged command record referencing `/etc/shadow`.
 
 The contents of `/etc/shadow` were not captured.
 
 This is real telemetry from a controlled laboratory reproduction. It is not
-original incident evidence.
+original incident evidence. The public copy is sanitized: internal addressing
+and the laboratory account name were replaced while preserving the observable
+event sequence and analyst-relevant behavior.
 
 SHA-256:
 
-`100edcdc35f1a4f36e8158e128cac3d1b86d3c05186aadc74107017fe217e665`
+`3ff9508275a3d8f21f62ca9dd7e5f763c5a8d56a5be67edf086a575bc3aaf903`
