@@ -1,0 +1,33 @@
+title: Office Parent Encoded PowerShell
+id: da46d71f-4236-5871-8e9c-b62a51b87c8f
+status: experimental
+description: Encoded PowerShell launched by Office. Review content and authorization;
+  encoding alone is not malicious.
+author: SOC Analyst Lab
+date: '2026-09-23'
+references:
+- https://attack.mitre.org/techniques/T1059/001/
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection:
+    EventID: 1
+    Image|endswith:
+    - \powershell.exe
+    - \pwsh.exe
+    ParentImage|endswith:
+    - \winword.exe
+    - \excel.exe
+    - \outlook.exe
+    CommandLine|contains:
+    - ' -EncodedCommand '
+    - ' -enc '
+  condition: selection
+falsepositives:
+- Authorized administration or software deployment; validate with asset owner and
+  change record.
+level: medium
+tags:
+- attack.execution
+- attack.t1059.001

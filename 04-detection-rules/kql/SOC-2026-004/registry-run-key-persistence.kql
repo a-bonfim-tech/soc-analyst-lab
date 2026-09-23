@@ -1,0 +1,8 @@
+// Expected SYS-007; this observes configuration, not execution at logon.
+Sysmon004
+| where EventID == 13
+| where TargetObject contains @"\Software\Microsoft\Windows\CurrentVersion\Run\"
+| where Details contains @"\Users\Public\" or Details contains @"\AppData\"
+| where Details endswith ".exe" or Details endswith '.exe"'
+| project UtcTime, RecordId, Computer, User, ProcessGuid, Image, TargetObject, Details
+| order by UtcTime asc
