@@ -1,0 +1,2 @@
+# Parser validation only; no Sigma backend.
+pysigma==0.11.23

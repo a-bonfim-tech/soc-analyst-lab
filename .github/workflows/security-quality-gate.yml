@@ -5,6 +5,8 @@ on:
     branches:
       - main
       - 'feature/**'
+      - 'chore/**'
+      - 'docs/**'
   pull_request:
     branches:
       - main
@@ -16,10 +18,16 @@ jobs:
   repository-validation:
     name: Repository Validation
     runs-on: ubuntu-24.04
+    timeout-minutes: 10
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
 
       - name: Verify required SOC Lab directories
         shell: bash
@@ -30,13 +38,18 @@ jobs:
             "00-governance"
             "01-runbooks"
             "02-alerts"
+            "02-datasets"
             "03-investigations"
+            "03-dfir"
             "04-detection-rules"
             "05-threat-intelligence"
+            "05-automation"
             "06-scripts"
             "07-lab"
             "08-tryhackme"
             "09-reports"
+            "09-templates"
+            "tests"
             "10-evidence"
           )
 
@@ -71,7 +84,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python -m pip install --disable-pip-version-check --quiet pysigma==0.11.23
+          python -m pip install --disable-pip-version-check --quiet -r requirements-dev.txt
           python 06-scripts/validate_sigma.py
 
       - name: Validate SOC-2026-004 and portfolio integrity
