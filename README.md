@@ -9,7 +9,7 @@ Hands-on Blue Team portfolio covering alert triage, evidence correlation, detect
 | [SOC-2026-004 — flagship reproducible Windows case](03-investigations/SOC-2026-004/investigation.md) | Synthetic Windows Security/Sysmon, Sigma conditions, KQL queries, timeline and Tier 2 handoff | Implemented synthetic case; local validation documented; KQL runtime validation pending |
 | [SOC-2026-001 — SSH investigation](03-investigations/SOC-2026-001/investigation.md) | Failed/successful authentication, privileged activity, sensitive-file access and escalation | Laboratory investigation; authorization limitations documented |
 | [SOC-2026-002 — SIEM/KQL investigation](03-investigations/SOC-2026-002/investigation.md) | Synthetic sign-in correlation, Azure Data Explorer investigation and regression tests | Documented lab execution; not production identity telemetry |
-| [SOC-2026-003 — real Windows telemetry track](https://github.com/a-bonfim-tech/soc-analyst-lab/blob/ec12e5d713229fa7fb9afd027153d6604789b319/07-lab/SOC-2026-003/lab-plan.md) | Reserved for real endpoint-generated Windows telemetry | Planned / unfinished; original branch and plan preserved |
+| SOC-2026-003 — real Windows telemetry track | Reserved for real endpoint-generated Windows telemetry | Planned / unfinished; implementation track preserved separately. |
 
 ## Inspect and reproduce SOC-2026-004
 

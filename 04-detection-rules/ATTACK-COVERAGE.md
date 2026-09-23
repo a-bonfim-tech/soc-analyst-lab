@@ -6,7 +6,7 @@ Synthetic fixture behavior only; not broad ATT&CK coverage or production efficac
 |---|---|---|---|---|---|---|
 | Office-parent encoded PowerShell | Sysmon 1 | T1059.001 represented execution mechanism; intent unconfirmed | [Rule](sigma/SOC-2026-004/suspicious-powershell.yml) | [Query](kql/SOC-2026-004/suspicious-powershell.kql) | SYS-005 | pySigma parse + local selection regression |
 | Remote privileged account outside baseline | Security 4624 + asset context; 4672 corroborates manually | T1078 candidate only; successful authentication is not proof of account abuse | [Rule](sigma/SOC-2026-004/unusual-admin-logon.yml) | [Query](kql/SOC-2026-004/unusual-admin-logon.kql) | SEC-009/010 | pySigma parse + local enriched selection regression |
-| Run value in writable location | Sysmon 13 | T1547.001 configuration; execution at next logon unproven | [Rule](sigma/SOC-2026-004/registry-run-key-persistence.yml) | [Query](kql/SOC-2026-004/registry-run-key-persistence.kql) | SYS-007 | pySigma parse + local selection regression |
+| Run value referencing Public or AppData executable | Sysmon 13 | T1547.001 configuration; execution at next logon unproven | [Rule](sigma/SOC-2026-004/registry-run-key-persistence.yml) | [Query](kql/SOC-2026-004/registry-run-key-persistence.kql) | SYS-007 | pySigma parse + local selection regression |
 
 [Dataset](../02-datasets/soc-2026-004/README.md) ·
 [Investigation](../03-investigations/SOC-2026-004/investigation.md) ·
@@ -29,3 +29,9 @@ scripts, alternate hives or every autostart method. Expand only with fixtures/te
 
 Network activity is not mapped to C2. Assigned privileges are not mapped to privilege
 escalation. Automated timeline ATT&CK fields remain empty; analyst mappings live here.
+
+The Public-directory match is a location heuristic, not proof of write permissions.
+No effective ACLs were collected; verify them for the relevant identity and path.
+AppData is generally user-writable in the owning user context, not necessarily by
+other accounts. Neither path matching nor a Run value proves malicious intent or
+execution at logon.

@@ -1,8 +1,9 @@
 title: Run Value Referencing Public Or AppData Executable
 id: 21f8abc9-b9ed-5202-82d8-ba960b79ad72
 status: experimental
-description: Run value references an executable in a user-writable path. Review provenance;
-  legitimate updaters can match.
+description: Run value references a Public or AppData executable. Public is a location
+  heuristic, not proof of write permissions; verify effective ACLs. AppData is generally
+  writable in the owning user context. Review provenance; legitimate updaters can match.
 author: SOC Analyst Lab
 date: '2026-09-23'
 references:

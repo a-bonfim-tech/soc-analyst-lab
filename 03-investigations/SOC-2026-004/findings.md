@@ -4,7 +4,7 @@
 |---|---|---|---|
 | SEC-006–010: failures, then type 10 success outside supplied admin baseline, same host/account/source; 4672 matches session | Administrative access merits authorization review | Privileged session observed; account compromise unconfirmed | High observation; low compromise |
 | SYS-005: PowerShell, Office parent, encoded command, matching session | Unusual execution path; automation is an alternative | Candidate T1059.001 behavior, not proof of malware | High execution representation; low maliciousness |
-| SYS-007: matching process GUID, user Run value and public executable path | Autostart mechanism configured in writable location | T1547.001 configuration represented; execution at logon unproven | High configuration; no execution evidence |
+| SYS-007: matching process GUID, user Run value and public executable path | Autostart mechanism configured in a public/user-accessible or potentially writable location; effective ACLs were not collected and require verification | T1547.001 configuration represented; execution at logon unproven | High configuration; no execution evidence |
 | SYS-006: same GUID to TEST-NET endpoint, port 443 | Process-associated network activity | No C2 or exfiltration conclusion | High correlation; low purpose |
 
 ## Negative/control evidence
