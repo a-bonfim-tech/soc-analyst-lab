@@ -6,13 +6,17 @@ Investigate a simulated cloud identity authentication sequence using KQL and a s
 
 This exercise is designed to reproduce a Tier 1 SOC workflow applicable to Microsoft Sentinel-style authentication investigations.
 
+## Execution evidence boundary
+
+**KQL_WRITTEN. Runtime execution NOT VERIFIED: no retained query output or execution metadata was found.** Earlier Azure Data Explorer execution was reported in prose; that report does not satisfy the retained-output gate. Python regression models and fixture-derived expected rows are not a KQL engine.
+
 ## 1. Data Source
 
 - Platform: Azure Data Explorer Free Cluster
 - Database: SOC2026002
 - Table: SigninLogs
 - Dataset: Synthetic
-- Events ingested: 22
+- Fixture events: 22; ingestion NOT VERIFIED
 - Query language: KQL
 
 The dataset is synthetic and must not be represented as production Microsoft Entra ID or Microsoft Sentinel telemetry.
@@ -92,7 +96,7 @@ Detection artifact:
 
 `04-detection-rules/kql/SOC-2026-002/repeated-failures-followed-by-success.kql`
 
-The query returned one result:
+Expected result derived from the fixture and local model (not retained KQL output):
 
 - UserPrincipalName: alex.meyer@contoso-lab.example
 - IPAddress: 203.0.113.77
@@ -155,7 +159,7 @@ Escalate for:
 ## 12. Limitations
 
 - Dataset is synthetic.
-- Azure Data Explorer was used instead of a production Microsoft Sentinel workspace.
+- Azure Data Explorer use was reported, but runtime output is not retained; execution is NOT VERIFIED.
 - No real Microsoft Entra ID tenant telemetry was analyzed.
 - No device, MFA, Conditional Access, token, endpoint, or network telemetry is available.
 - Geographic information is scenario data, not independent IP geolocation.
@@ -163,6 +167,10 @@ Escalate for:
 
 ## 13. Current Conclusion
 
-The KQL investigation successfully identified a repeated-failure-followed-by-success authentication pattern while excluding isolated benign-style failures included in the dataset.
+The written query and local regression model describe a repeated-failure-followed-by-success pattern. The model distinguishes the bounded fixtures; KQL runtime behavior remains NOT VERIFIED.
 
 The activity is classified as suspicious for training purposes, but account compromise is not confirmed.
+
+## Retained timeline and retrospective decision
+
+[All 22 fixture rows](timeline.csv) preserve their explicit timestamps. Initial severity was not independently recorded; do not invent it. The documented recommended Medium remains a lab judgment after fixture review. Escalation questions are listed above; no real escalation or containment was performed. T1110.001 and T1078 remain CANDIDATE, not established malicious behavior.

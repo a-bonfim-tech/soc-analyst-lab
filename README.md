@@ -8,13 +8,19 @@
 
 Hands-on Blue Team portfolio covering alert triage, evidence correlation, detection engineering, DFIR collection planning and documented escalation. Lab evidence and synthetic fixtures are labeled explicitly; this repository does not claim professional production SOC experience.
 
+## Review and reproduce
+
+[Reproduction](REPRODUCE.md) · [Interview defense](INTERVIEW_DEFENSE.md) · [Evidence and lab severity](01-runbooks/evidence-and-severity.md) · [Templates](09-templates/README.md) · [KQL evidence states](04-detection-rules/kql/README.md)
+
+SOC-2026-001 combines historical scenario prose with a retained lab excerpt. Read its [evidence review](03-investigations/SOC-2026-001/evidence-review.md) before relying on counts, timestamps or baseline assertions.
+
 ## Flagship investigations
 
 | Case | Evidence and reviewer entry point | Status |
 |---|---|---|
 | [SOC-2026-004 — flagship reproducible Windows case](03-investigations/SOC-2026-004/investigation.md) | Synthetic Windows Security/Sysmon, Sigma conditions, KQL queries, timeline and Tier 2 handoff | Implemented synthetic case; local validation documented; KQL runtime validation pending |
 | [SOC-2026-001 — SSH investigation](03-investigations/SOC-2026-001/investigation.md) | Failed/successful authentication, privileged activity, sensitive-file access and escalation | Laboratory investigation; authorization limitations documented |
-| [SOC-2026-002 — SIEM/KQL investigation](03-investigations/SOC-2026-002/investigation.md) | Synthetic sign-in correlation, Azure Data Explorer investigation and regression tests | Documented lab execution; not production identity telemetry |
+| [SOC-2026-002 — SIEM/KQL investigation](03-investigations/SOC-2026-002/investigation.md) | Synthetic sign-in correlation, Azure Data Explorer investigation and regression tests | KQL written; execution reported but no retained runtime output; synthetic identity data |
 | SOC-2026-003 — real Windows telemetry track | Reserved for real endpoint-generated Windows telemetry | Planned / unfinished; implementation track preserved separately. |
 
 ## Inspect and reproduce SOC-2026-004
@@ -59,7 +65,7 @@ Current components:
 - macOS analyst workstation
 - Kali Linux adversary-simulation workstation
 - Docker-based Linux lab for controlled security telemetry
-- Azure Data Explorer for real KQL execution against lab datasets
+- Azure Data Explorer-style KQL queries; runtime execution NOT VERIFIED without retained output
 - Git and GitHub for version-controlled documentation and CI
 - TryHackMe for guided SOC training
 - MITRE ATT&CK for behavioral mapping
@@ -172,7 +178,7 @@ See:
 
 ### SOC-2026-002 — Identity Sign-in Investigation with KQL
 
-Cloud authentication investigation executed with KQL in Azure Data Explorer using a synthetic SigninLogs-style dataset.
+Cloud authentication investigation using written KQL and a synthetic SigninLogs-style dataset; reported Azure Data Explorer execution is NOT VERIFIED because output is not retained.
 
 The scenario contains repeated authentication failures followed by successful authentication from the same user and source IP, with subsequent access to multiple cloud applications.
 
@@ -188,9 +194,9 @@ Tier 1 activities included:
 - detection regression testing;
 - investigation documentation and severity assessment.
 
-The KQL detection identified six authentication failures followed by successful authentication within five minutes while excluding isolated failure scenarios included in the dataset.
+The fixture and local regression model contain six authentication failures followed by success within five minutes; this is an expected KQL result, not retained runtime output.
 
-The exercise used Azure Data Explorer rather than Microsoft Sentinel, and the authentication telemetry is explicitly synthetic.
+Azure Data Explorer use is reported but not independently evidenced by retained output; the authentication telemetry is explicitly synthetic.
 
 Final Tier 1 status:
 
