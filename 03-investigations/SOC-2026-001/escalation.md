@@ -1,5 +1,7 @@
 # SOC-2026-001 — Tier 1 Escalation
 
+> **Historical scenario narrative, not a verified real-event timeline.** Read the [retained evidence review](evidence-review.md) first. Counts, dates, baseline and authorization assertions below exceed the retained excerpt and must not be presented as observed facts. The original exercise is preserved for traceability.
+
 ## Status
 
 Escalated to Tier 2

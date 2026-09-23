@@ -1,5 +1,7 @@
 # SOC-2026-001 — SSH Authentication Investigation
 
+> **Historical scenario narrative, not a verified real-event timeline.** Read the [retained evidence review](evidence-review.md) first. Counts, dates, baseline and authorization assertions below exceed the retained excerpt and must not be presented as observed facts. The original exercise is preserved for traceability.
+
 ## Purpose
 
 Provide a repeatable procedure for Tier 1 SOC analysts to validate, investigate, classify, document, and escalate security alerts.

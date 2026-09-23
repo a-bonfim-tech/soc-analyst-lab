@@ -1,0 +1,23 @@
+Timestamp,Source,Event,Asset,Account,Evidence reference,Interpretation,Confidence
+2026-09-21T07:41:12Z,synthetic SigninLogs,Success,Microsoft 365,alex.meyer@contoso-lab.example,signinlogs-synthetic.csv row 2,Scenario attribute; not real tenant activity,High in fixture only
+2026-09-21T08:02:31Z,synthetic SigninLogs,Success,Microsoft 365,sara.klein@contoso-lab.example,signinlogs-synthetic.csv row 3,Scenario attribute; not real tenant activity,High in fixture only
+2026-09-21T08:15:44Z,synthetic SigninLogs,Success,Azure Portal,jonas.becker@contoso-lab.example,signinlogs-synthetic.csv row 4,Scenario attribute; not real tenant activity,High in fixture only
+2026-09-21T08:47:09Z,synthetic SigninLogs,Success,Microsoft Teams,alex.meyer@contoso-lab.example,signinlogs-synthetic.csv row 5,Scenario attribute; not real tenant activity,High in fixture only
+2026-09-21T09:11:58Z,synthetic SigninLogs,Success,SharePoint Online,sara.klein@contoso-lab.example,signinlogs-synthetic.csv row 6,Scenario attribute; not real tenant activity,High in fixture only
+2026-09-21T09:35:21Z,synthetic SigninLogs,Success,Microsoft 365,jonas.becker@contoso-lab.example,signinlogs-synthetic.csv row 7,Scenario attribute; not real tenant activity,High in fixture only
+2026-09-21T10:22:10Z,synthetic SigninLogs,Success,Azure Portal,alex.meyer@contoso-lab.example,signinlogs-synthetic.csv row 8,Scenario attribute; not real tenant activity,High in fixture only
+2026-09-21T10:54:42Z,synthetic SigninLogs,Success,Microsoft Teams,sara.klein@contoso-lab.example,signinlogs-synthetic.csv row 9,Scenario attribute; not real tenant activity,High in fixture only
+2026-09-21T11:18:03Z,synthetic SigninLogs,Success,SharePoint Online,jonas.becker@contoso-lab.example,signinlogs-synthetic.csv row 10,Scenario attribute; not real tenant activity,High in fixture only
+2026-09-21T20:31:02Z,synthetic SigninLogs,Invalid username or password,Azure Portal,alex.meyer@contoso-lab.example,signinlogs-synthetic.csv row 11,Scenario attribute; not real tenant activity,High in fixture only
+2026-09-21T20:31:19Z,synthetic SigninLogs,Invalid username or password,Azure Portal,alex.meyer@contoso-lab.example,signinlogs-synthetic.csv row 12,Scenario attribute; not real tenant activity,High in fixture only
+2026-09-21T20:31:37Z,synthetic SigninLogs,Invalid username or password,Azure Portal,alex.meyer@contoso-lab.example,signinlogs-synthetic.csv row 13,Scenario attribute; not real tenant activity,High in fixture only
+2026-09-21T20:31:55Z,synthetic SigninLogs,Invalid username or password,Azure Portal,alex.meyer@contoso-lab.example,signinlogs-synthetic.csv row 14,Scenario attribute; not real tenant activity,High in fixture only
+2026-09-21T20:32:14Z,synthetic SigninLogs,Invalid username or password,Azure Portal,alex.meyer@contoso-lab.example,signinlogs-synthetic.csv row 15,Scenario attribute; not real tenant activity,High in fixture only
+2026-09-21T20:32:33Z,synthetic SigninLogs,Invalid username or password,Azure Portal,alex.meyer@contoso-lab.example,signinlogs-synthetic.csv row 16,Scenario attribute; not real tenant activity,High in fixture only
+2026-09-21T20:33:01Z,synthetic SigninLogs,Success,Azure Portal,alex.meyer@contoso-lab.example,signinlogs-synthetic.csv row 17,Scenario attribute; not real tenant activity,High in fixture only
+2026-09-21T20:34:12Z,synthetic SigninLogs,Success,Microsoft 365,alex.meyer@contoso-lab.example,signinlogs-synthetic.csv row 18,Scenario attribute; not real tenant activity,High in fixture only
+2026-09-21T20:36:40Z,synthetic SigninLogs,Success,SharePoint Online,alex.meyer@contoso-lab.example,signinlogs-synthetic.csv row 19,Scenario attribute; not real tenant activity,High in fixture only
+2026-09-21T20:40:05Z,synthetic SigninLogs,Invalid username or password,Microsoft 365,sara.klein@contoso-lab.example,signinlogs-synthetic.csv row 20,Scenario attribute; not real tenant activity,High in fixture only
+2026-09-21T20:40:26Z,synthetic SigninLogs,Success,Microsoft 365,sara.klein@contoso-lab.example,signinlogs-synthetic.csv row 21,Scenario attribute; not real tenant activity,High in fixture only
+2026-09-21T20:45:17Z,synthetic SigninLogs,Strong authentication is required,Azure Portal,jonas.becker@contoso-lab.example,signinlogs-synthetic.csv row 22,Scenario attribute; not real tenant activity,High in fixture only
+2026-09-21T20:46:02Z,synthetic SigninLogs,Success,Azure Portal,jonas.becker@contoso-lab.example,signinlogs-synthetic.csv row 23,Scenario attribute; not real tenant activity,High in fixture only
