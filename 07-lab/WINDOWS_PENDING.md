@@ -1,13 +1,13 @@
-# Real Windows telemetry — PENDING retained evidence
+# SOC-2026-003 — PLANNED real Windows endpoint telemetry
 
-SOC-2026-004 is synthetic. It does not close the real Windows event-log gap.
+SOC-2026-004 is synthetic and does not close this evidence gap. The public portfolio must not imply that SOC-2026-003 has a remotely available implementation or completed collection.
 
-The preserved local branch `feature/soc-2026-003-windows-endpoint` contains the existing SOC-2026-003 plan, harmless activity script, UTC-window collector, evidence contract, ingestion and tests. At audit time it is not a remote branch. Do not push it or rerun activity merely to satisfy portfolio navigation. This document does not alter that implementation or its scope.
+At the 2026-09-23 remote audit, the repository exposed only `main`, no tags and no Actions artifacts. The previously cited commit `ec12e5d713229fa7fb9afd027153d6604789b319` was not available through the GitHub commit API. Local development is not public evidence and is outside this publication branch; no local SOC-2026-003 implementation is modified or pushed by this change.
 
-Use that branch's `07-lab/SOC-2026-003/README.md` and `collection/evidence-contract.md` for exact collection commands and acceptance criteria. A user-reported run is not a retained package inspected here. Recollect the original activity interval as documented; do not invent results.
+## Acceptance gate
 
-Required review: private raw event XML plus manifest/metadata and hashes; channel/provider/event ID; original and normalized UTC time; record ID; pseudonymized host/account; collection errors and observed/unobserved IDs; unchanged source hashes; derived timeline and analyst rationale. Authentication and process events must be attributed to their actual provider. Absence of optional Defender events is not absence of threat.
+Before changing the case from PLANNED, retain and privately review an authorized package containing raw event XML, collection manifest/metadata, hashes, channel/provider/event IDs, original and normalized UTC timestamps, record IDs, pseudonymized host/account context, collection errors and observed/unobserved IDs. Preserve original bytes and distinguish collection completeness from absence of suspicious behavior.
 
-Workflow after collection: verify package → ingest → inspect event content → distinguish FACT/INFERENCE/UNKNOWN → correlate bounded host/account/process context → investigate benign explanations → assign retrospective lab severity → hand off unresolved questions. Service/task persistence and account-change coverage are future scoped extensions, not claims about current collection.
+Then validate ingestion, derive a timeline, correlate the available host/account/logon/process identifiers, investigate benign explanations, document FACT/INFERENCE/UNKNOWN, assign justified lab severity and prepare an escalation with unresolved questions. Missing optional events do not prove absence of threat.
 
-Do not mark complete before retained real event content, completeness limitations and the analyst's interpretation have been reviewed. Native Windows PowerShell execution was not performed by this remediation.
+Do not invent collection results or rerun activity merely to populate a portfolio. A user-reported run does not replace inspected retained evidence. Native Windows execution and real event collection are not validated by the synthetic test suite.

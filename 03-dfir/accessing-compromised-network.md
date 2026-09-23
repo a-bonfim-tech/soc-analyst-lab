@@ -1,5 +1,7 @@
 # Accessing a Compromised Network — DFIR Access Methodology
 
+> Evidence status: TRAINING-DERIVED. Observations below are reported exercise observations; the original endpoint artifacts are not retained here for independent verification. Confidence labels describe the exercise analysis and must not be read as independently verified incident findings. No professional incident-response experience is claimed.
+
 ## Purpose
 
 Document a defensible methodology for establishing access to a compromised

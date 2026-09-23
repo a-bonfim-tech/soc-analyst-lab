@@ -1,11 +1,11 @@
 # Reproduce bounded SOC artifacts
 
-Prerequisites: Python 3, Bash, Git, isolated Python environment with `pysigma==0.11.23` (includes YAML support). Run from repository root. No Windows endpoint, SIEM backend or cloud credentials are used by these local tests.
+Prerequisites: Python 3.12 (CI), Python 3.10+ for the local utilities, Bash, Git, isolated Python environment with `pysigma==0.11.23` (includes YAML support). Run from repository root. No Windows endpoint, SIEM backend or cloud credentials are used by these local tests.
 
 ```sh
 python3 -m venv .venv
 . .venv/bin/activate
-python -m pip install pysigma==0.11.23
+python -m pip install -r requirements-dev.txt
 python -B -m unittest discover -s tests -v
 python -B 06-scripts/validate_sigma.py
 python -B 06-scripts/validate_portfolio.py

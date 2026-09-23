@@ -20,8 +20,10 @@ No production SOC work, retained KQL engine results or reviewed real Windows pac
 
 ## Five questions to defend from evidence
 
-1. Why eight vs 47 failures? Evidence: [03-investigations/SOC-2026-001/evidence-review.md](03-investigations/SOC-2026-001/evidence-review.md); if this artifact cannot answer, state UNKNOWN and identify the missing source.
-2. what is timestamp unknown? Evidence: [03-investigations/SOC-2026-001/evidence-review.md](03-investigations/SOC-2026-001/evidence-review.md); if this artifact cannot answer, state UNKNOWN and identify the missing source.
-3. does Run prove execution? Evidence: [03-investigations/SOC-2026-001/evidence-review.md](03-investigations/SOC-2026-001/evidence-review.md); if this artifact cannot answer, state UNKNOWN and identify the missing source.
-4. why escalate? Evidence: [03-investigations/SOC-2026-001/evidence-review.md](03-investigations/SOC-2026-001/evidence-review.md); if this artifact cannot answer, state UNKNOWN and identify the missing source.
-5. why pySigma parse is not backend validation? Evidence: [03-investigations/SOC-2026-001/evidence-review.md](03-investigations/SOC-2026-001/evidence-review.md); if this artifact cannot answer, state UNKNOWN and identify the missing source.
+1. Why eight rather than 47 failed passwords? Compare the retained excerpt with the [SOC001 evidence review](03-investigations/SOC-2026-001/evidence-review.md); the larger count belongs to scenario prose.
+2. Which timestamps are unknown? Inspect the [SOC001 timeline](03-investigations/SOC-2026-001/timeline.csv): do not invent the year or timezone absent from the retained lines.
+3. Does a Run value prove persistence executed? Read the [SOC004 findings](03-investigations/SOC-2026-004/findings.md): configuration is suspicious but execution and malicious intent require further evidence; effective ACLs are also uncollected.
+4. Why escalate, and what should Tier 2 resolve? Defend the rationale and open questions in the [SOC004 handoff](03-investigations/SOC-2026-004/escalation.md).
+5. Why is pySigma parsing insufficient to claim an operational detection? Read the [validation guide](07-lab/detection-tests/SOC-2026-004/README.md): syntax/model checks are distinct from backend translation, engine execution and production effectiveness.
+
+If the artifact cannot support an answer, state UNKNOWN and identify the missing evidence.
