@@ -5,7 +5,6 @@ behaviors documented in SOC-2026-001.
 
 Environment:
 
-- Target hostname: srv-web-01
 - Target identity: intentionally omitted from the public retained excerpt
 - Source identity: intentionally omitted from the public retained excerpt
 - Published source IP: 192.0.2.45 (TEST-NET-1 documentation address)
