@@ -1,25 +1,31 @@
+# Sanitized retained lab evidence
+# Source: controlled personal SOC laboratory.
+# Public copy intentionally replaces internal addressing and lab account names.
+# Event sequence and analyst-relevant behavior are preserved.
+# 192.0.2.0/24 is TEST-NET-1 documentation space.
+
 Server listening on 0.0.0.0 port 22.
 Server listening on :: port 22.
-Invalid user admin from 10.10.20.45 port 40858
-Failed password for invalid user admin from 10.10.20.45 port 40858 ssh2
-Connection closed by invalid user admin 10.10.20.45 port 40858 [preauth]
-Invalid user admin from 10.10.20.45 port 40872
-Failed password for invalid user admin from 10.10.20.45 port 40872 ssh2
-Connection closed by invalid user admin 10.10.20.45 port 40872 [preauth]
-Failed password for root from 10.10.20.45 port 40880 ssh2
-Connection closed by authenticating user root 10.10.20.45 port 40880 [preauth]
-Failed password for root from 10.10.20.45 port 40890 ssh2
-Connection closed by authenticating user root 10.10.20.45 port 40890 [preauth]
-Failed password for ubuntu from 10.10.20.45 port 35276 ssh2
-Connection closed by authenticating user ubuntu 10.10.20.45 port 35276 [preauth]
-Failed password for ubuntu from 10.10.20.45 port 35292 ssh2
-Connection closed by authenticating user ubuntu 10.10.20.45 port 35292 [preauth]
-Failed password for ubuntu from 10.10.20.45 port 35306 ssh2
-Connection closed by authenticating user ubuntu 10.10.20.45 port 35306 [preauth]
-Failed password for ubuntu from 10.10.20.45 port 40270 ssh2
-Connection closed by authenticating user ubuntu 10.10.20.45 port 40270 [preauth]
-Accepted password for ubuntu from 10.10.20.45 port 40272 ssh2
-Received disconnect from 10.10.20.45 port 40272:11: disconnected by user
-Disconnected from user ubuntu 10.10.20.45 port 40272
-Sep 21 21:09:17 : ubuntu : PWD=/home/ubuntu ; USER=root ; COMMAND=/usr/bin/cat
+Invalid user admin from 192.0.2.45 port 40858
+Failed password for invalid user admin from 192.0.2.45 port 40858 ssh2
+Connection closed by invalid user admin 192.0.2.45 port 40858 [preauth]
+Invalid user admin from 192.0.2.45 port 40872
+Failed password for invalid user admin from 192.0.2.45 port 40872 ssh2
+Connection closed by invalid user admin 192.0.2.45 port 40872 [preauth]
+Failed password for root from 192.0.2.45 port 40880 ssh2
+Connection closed by authenticating user root 192.0.2.45 port 40880 [preauth]
+Failed password for root from 192.0.2.45 port 40890 ssh2
+Connection closed by authenticating user root 192.0.2.45 port 40890 [preauth]
+Failed password for labuser from 192.0.2.45 port 35276 ssh2
+Connection closed by authenticating user labuser 192.0.2.45 port 35276 [preauth]
+Failed password for labuser from 192.0.2.45 port 35292 ssh2
+Connection closed by authenticating user labuser 192.0.2.45 port 35292 [preauth]
+Failed password for labuser from 192.0.2.45 port 35306 ssh2
+Connection closed by authenticating user labuser 192.0.2.45 port 35306 [preauth]
+Failed password for labuser from 192.0.2.45 port 40270 ssh2
+Connection closed by authenticating user labuser 192.0.2.45 port 40270 [preauth]
+Accepted password for labuser from 192.0.2.45 port 40272 ssh2
+Received disconnect from 192.0.2.45 port 40272:11: disconnected by user
+Disconnected from user labuser 192.0.2.45 port 40272
+Sep 21 21:09:17 : labuser : PWD=/home/labuser ; USER=root ; COMMAND=/usr/bin/cat
     /etc/shadow
