@@ -1,6 +1,35 @@
 # SOC Analyst Lab
 
-Hands-on Security Operations Center (SOC) training laboratory focused on developing practical Tier 1 SOC Analyst skills through alert triage, log analysis, incident investigation, detection engineering, threat intelligence, and documented escalation workflows.
+<p align="center">
+  <img src="assets/soc-analyst-lab-banner.png"
+       alt="SOC Analyst Lab — Detection Engineering, Incident Response and DFIR"
+       width="100%">
+</p>
+
+Hands-on Blue Team portfolio covering alert triage, evidence correlation, detection engineering, DFIR collection planning and documented escalation. Lab evidence and synthetic fixtures are labeled explicitly; this repository does not claim professional production SOC experience.
+
+## Flagship investigations
+
+| Case | Evidence and reviewer entry point | Status |
+|---|---|---|
+| [SOC-2026-004 — flagship reproducible Windows case](03-investigations/SOC-2026-004/investigation.md) | Synthetic Windows Security/Sysmon, Sigma conditions, KQL queries, timeline and Tier 2 handoff | Implemented synthetic case; local validation documented; KQL runtime validation pending |
+| [SOC-2026-001 — SSH investigation](03-investigations/SOC-2026-001/investigation.md) | Failed/successful authentication, privileged activity, sensitive-file access and escalation | Laboratory investigation; authorization limitations documented |
+| [SOC-2026-002 — SIEM/KQL investigation](03-investigations/SOC-2026-002/investigation.md) | Synthetic sign-in correlation, Azure Data Explorer investigation and regression tests | Documented lab execution; not production identity telemetry |
+| SOC-2026-003 — real Windows telemetry track | Reserved for real endpoint-generated Windows telemetry | Planned / unfinished; implementation track preserved separately. |
+
+## Inspect and reproduce SOC-2026-004
+
+[Investigation](03-investigations/SOC-2026-004/investigation.md) →
+[synthetic evidence](02-datasets/soc-2026-004/README.md) →
+[detections and ATT&CK limits](04-detection-rules/ATTACK-COVERAGE.md) →
+[validation procedure](07-lab/detection-tests/SOC-2026-004/README.md) →
+[timeline](03-investigations/SOC-2026-004/timeline.csv) →
+[Tier 2 escalation](03-investigations/SOC-2026-004/escalation.md).
+
+- **Detection engineering:** three Sigma rules with positive/negative fixture tests; corresponding KQL queries with explicit custom-table contracts. No Sigma backend or KQL execution claimed for this case.
+- **Automation:** [Python timeline builder](05-automation/build_timeline.py) preserves source evidence, normalizes UTC and relates host/session/process identifiers.
+- **Quality:** [Security & Quality Gate](.github/workflows/security-quality-gate.yml) includes rule parsing, regression tests, evidence schemas, timeline reproducibility and basic repository integrity checks. Local results do not imply a successful remote CI run.
+- **DFIR:** [access methodology](03-dfir/accessing-compromised-network.md), [key artifacts matrix](03-dfir/key-artifacts-matrix.md), [compromised-host collection checklist](03-dfir/compromised-host-collection-checklist.md).
 
 ## Objectives
 

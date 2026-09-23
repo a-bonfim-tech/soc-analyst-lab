@@ -1,0 +1,21 @@
+{
+  "synthetic": true,
+  "hostname": "SYN-WIN-04",
+  "asset_type": "Windows workstation",
+  "owner_team": "Synthetic finance operations",
+  "environment": "offline fixture only",
+  "criticality": "medium",
+  "expected_admin_sources": [
+    "192.0.2.10"
+  ],
+  "privileged_accounts": [
+    "SYNTH\\ops.admin"
+  ],
+  "normal_patterns": [
+    "lee: interactive productivity work",
+    "ops.admin: remote administration from the documented jump source",
+    "SYSTEM: service logons"
+  ],
+  "authorization_status": "09:01 remote session not yet verified",
+  "notes": "All names, addresses and events independently invented. TEST-NET addresses do not identify real targets. Baseline is supplied fixture context, not learned history."
+}

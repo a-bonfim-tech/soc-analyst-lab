@@ -71,8 +71,15 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python -m pip install --disable-pip-version-check --quiet pysigma
+          python -m pip install --disable-pip-version-check --quiet pysigma==0.11.23
           python 06-scripts/validate_sigma.py
+
+      - name: Validate SOC-2026-004 and portfolio integrity
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -B -m unittest discover -s tests -v
+          python -B 06-scripts/validate_portfolio.py
 
       - name: Validate Bash syntax
         shell: bash
