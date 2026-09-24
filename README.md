@@ -2,37 +2,46 @@
 
 <p align="center"><img src="assets/soc-analyst-lab-banner.png" alt="SOC Analyst Lab — practical security investigations" width="100%"></p>
 
-Evidence-first portfolio for an entry-level **SOC Analyst / Security Operations** role. It demonstrates bounded lab investigation, alert triage, timeline reconstruction, detection logic, evidence handling and written escalation. It does not establish professional production SOC experience.
+Hands-on **SOC investigation portfolio** showing how I move from an alert or security signal to evidence correlation, timeline reconstruction, severity assessment, disposition and escalation.
 
-## 30-second review
+**ALERT → INVESTIGATE → CORRELATE EVIDENCE → ASSESS SEVERITY → ESCALATE / CLOSE**
 
-| Case | Evidence boundary | Demonstrated analyst work |
+## See a complete investigation in 3 minutes
+
+**[SOC-2026-003 — Windows endpoint investigation](03-investigations/SOC-2026-003/investigation.md)**
+
+Real endpoint-generated Windows Security, Sysmon and PowerShell telemetry across **541 normalized source events**.
+
+**Analyst path:** suspicious activity → multi-source correlation → encoded-PowerShell and Registry/file review → timeline reconstruction → severity reassessment → documented disposition.
+
+[Investigation](03-investigations/SOC-2026-003/investigation.md) → [Evidence](10-evidence/SOC-2026-003/windows-endpoint-correlation.md) → [Timeline](03-investigations/SOC-2026-003/timeline.csv) → [Findings](03-investigations/SOC-2026-003/findings.md) → [Disposition](03-investigations/SOC-2026-003/escalation.md)
+
+## Three cases to review
+
+| Case | Evidence | Analyst work |
 |---|---|---|
-| **[SOC-2026-003 — Windows endpoint investigation](03-investigations/SOC-2026-003/investigation.md)** | Real endpoint-generated Windows Security, Sysmon and PowerShell telemetry; 541 normalized source events | Multi-source correlation, timeline reconstruction, encoded-PowerShell review, Registry/file analysis, severity reassessment and disposition |
-| **[SOC-2026-005 — network traffic investigation](03-investigations/SOC-2026-005/investigation.md)** | Real controlled-lab loopback PCAP with TShark and Zeek-derived telemetry | PCAP review, HTTP sequence reconstruction, timing analysis, file-transfer correlation, alternative-hypothesis testing and evidence-bounded disposition |
-| **[SOC-2026-001 — SSH authentication](03-investigations/SOC-2026-001/evidence-review.md)** | Retained controlled-lab Linux authentication excerpt | Failed-authentication review, successful-login correlation, privileged-command analysis and escalation reasoning |
-| **[SOC-2026-004 — Windows detection investigation](03-investigations/SOC-2026-004/investigation.md)** | Reproducible synthetic Windows Security/Sysmon dataset | Sigma and KQL reasoning, detection testing, timeline reconstruction, severity assessment and Tier 2 handoff |
-| **[SOC-2026-002 — identity correlation](03-investigations/SOC-2026-002/investigation.md)** | Synthetic SigninLogs-style dataset | Identity-event correlation, KQL reasoning and hypothesis testing |
+| **[SOC-2026-003 — Windows endpoint](03-investigations/SOC-2026-003/investigation.md)** | Real endpoint-generated Windows Security, Sysmon and PowerShell telemetry | Correlation, timeline reconstruction, PowerShell/Registry/file analysis, severity reassessment and disposition |
+| **[SOC-2026-005 — Network traffic](03-investigations/SOC-2026-005/investigation.md)** | Real controlled-lab loopback PCAP with TShark and Zeek-derived telemetry | HTTP sequence reconstruction, timing analysis, file-transfer correlation, hypothesis testing and disposition |
+| **[SOC-2026-001 — SSH authentication](03-investigations/SOC-2026-001/evidence-review.md)** | Retained controlled-lab Linux authentication excerpt | Failed/successful authentication correlation, privileged-command analysis and escalation reasoning |
 
-## Demonstrated capabilities
+## Demonstrated SOC workflow
 
-- **Alert triage and escalation:** evidence review, severity reassessment, disposition and Tier 2 handoff.
-- **Windows investigation:** Security, Sysmon and PowerShell telemetry correlation across host, process and time context.
-- **Network traffic analysis:** PCAP review with TShark and Zeek, HTTP sequence reconstruction, timing analysis and file-transfer correlation.
-- **Authentication analysis:** failed/successful login correlation and privileged-command review.
+- **Triage:** establish alert context, source, asset, account and time window.
+- **Investigate:** preserve and correlate endpoint, authentication or network evidence.
+- **Reconstruct:** build a bounded timeline and test alternative explanations.
+- **Decide:** reassess severity and distinguish observations from hypotheses.
+- **Act:** document disposition and escalate when the evidence warrants it.
+
+## Additional technical depth
+
 - **Detection engineering:** Sigma rules, KQL analysis, positive/negative controls and documented semantic limitations.
-- **Timeline reconstruction:** Python-based normalization and bounded event correlation with source preservation.
-- **Evidence discipline:** explicit synthetic/real-lab boundaries, retained hashes, reproducibility checks and sanitized publication.
-- **Engineering rigor:** unit tests, repository validation and GitHub Actions quality gates.
+- **Windows investigation:** Security, Sysmon and PowerShell telemetry across host, process and time context.
+- **Network analysis:** PCAP review with TShark and Zeek.
+- **Authentication analysis:** failed/successful login correlation and privileged-command review.
+- **Automation:** Python timeline normalization and bounded event correlation.
+- **Engineering:** unit tests, repository validation and GitHub Actions quality gates.
 
-## Start here
-
-1. **Strongest investigation:** [SOC-2026-003 investigation](03-investigations/SOC-2026-003/investigation.md) → [derived endpoint evidence](10-evidence/SOC-2026-003/windows-endpoint-correlation.md) → [timeline](03-investigations/SOC-2026-003/timeline.csv) → [findings](03-investigations/SOC-2026-003/findings.md) → [disposition](03-investigations/SOC-2026-003/escalation.md).
-2. **Detection-engineering depth:** [SOC-2026-004 investigation](03-investigations/SOC-2026-004/investigation.md) → [Sigma/KQL evidence states](04-detection-rules/kql/README.md) → [local reproduction](REPRODUCE.md).
-3. **Network traffic / PCAP analysis:** [SOC-2026-005 investigation](03-investigations/SOC-2026-005/investigation.md) → [retained network evidence](10-evidence/SOC-2026-005/network-traffic/README.md) → [timeline](03-investigations/SOC-2026-005/timeline.csv) → [findings](03-investigations/SOC-2026-005/findings.md).
-4. **Operational reasoning:** [SOC-2026-001 SSH investigation](03-investigations/SOC-2026-001/evidence-review.md) and [SOC-2026-002 identity correlation](03-investigations/SOC-2026-002/investigation.md).
-
-[Detection rules and ATT&CK limits](04-detection-rules/ATTACK-COVERAGE.md) · [CI definition](.github/workflows/security-quality-gate.yml) · [Interview defense](INTERVIEW_DEFENSE.md)
+[SOC-2026-004 — Sigma/KQL detection investigation](03-investigations/SOC-2026-004/investigation.md) · [SOC-2026-002 — identity correlation](03-investigations/SOC-2026-002/investigation.md) · [Detection evidence states](04-detection-rules/kql/README.md) · [Reproduction](REPRODUCE.md)
 
 ## Scope boundary
 
