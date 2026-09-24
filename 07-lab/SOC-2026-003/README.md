@@ -1,8 +1,16 @@
 # SOC-2026-003 — operator collection package
 
-**READY FOR REAL WINDOWS COLLECTION — case not complete.** No endpoint evidence has
-been collected or analyzed by this preparation pass. The [lab plan](lab-plan.md)
-remains authoritative. [Evidence contract](collection/evidence-contract.md).
+**COMPLETED CONTROLLED WINDOWS COLLECTION.** The procedure below documents the
+collection workflow used for the authorized disposable Windows laboratory exercise.
+
+Public recruiter-safe outputs are available in the
+[Windows endpoint investigation](../../03-investigations/SOC-2026-003/investigation.md)
+and the
+[sanitized derived correlation artifact](../../10-evidence/SOC-2026-003/windows-endpoint-correlation.md).
+Raw endpoint exports remain private because they contain endpoint-specific identifiers.
+
+The [lab plan](lab-plan.md) and
+[evidence contract](collection/evidence-contract.md) document the collection design.
 
 ## Prerequisites
 
