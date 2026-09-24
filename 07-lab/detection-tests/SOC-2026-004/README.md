@@ -33,8 +33,8 @@ validate rule structure. The narrow test evaluator accepts only one AND selectio
 OR lists, equality, contains and endswith; unsupported conditions fail explicitly.
 It is not a Sigma backend. This local detection-test utility does not itself execute KQL,
 perform backend query translation or establish live ingestion, recall estimates or real-world
-false-positive rates. Separately, `unusual-admin-logon.kql` has retained Azure Data Explorer /
-Kusto runtime evidence against the versioned synthetic Security and asset-context fixtures.
+false-positive rates. Separately, `unusual-admin-logon.kql` and `suspicious-powershell.kql` have retained
+Azure Data Explorer / Kusto runtime evidence against their verified versioned synthetic inputs.
 
 Timeline tests cover count/order, byte-for-byte regeneration, exact evidence retention,
 correlation identities, host isolation, timezone normalization, shuffled input,
@@ -60,10 +60,12 @@ not fetch data or embed secret endpoints. Missing hosts are excluded by inner jo
 track context completeness separately. Duplicated context rows would duplicate hits.
 
 Expected results: suspicious-powershell SYS-005; unusual-admin-logon SEC-009;
-registry-run-key-persistence SYS-007. The `unusual-admin-logon.kql` expectation has been
-confirmed by retained Azure Data Explorer / Kusto execution against verified synthetic inputs.
-The PowerShell and registry expectations remain predictions, not KQL runtime results.
-Save actual query output and engine/schema details before upgrading either remaining claim.
+registry-run-key-persistence SYS-007. The `unusual-admin-logon.kql` and
+`suspicious-powershell.kql` expectations have been confirmed by retained Azure Data Explorer /
+Kusto execution against verified synthetic inputs, producing `SEC-009` and `SYS-005`
+respectively. The registry expectation remains a fixture-derived prediction, not a KQL runtime
+result. Save actual query output and engine/schema details before upgrading the remaining
+registry claim.
 
 ## CI
 

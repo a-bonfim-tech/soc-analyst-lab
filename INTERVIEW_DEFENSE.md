@@ -12,11 +12,11 @@ Synthetic case reasoning and restricted local detection tests plus limited Linux
 
 ## Execution, synthetic scope and changes
 
-SOC-2026-002 has retained Azure Data Explorer / Kusto output against a verified synthetic fixture. For SOC-2026-004, `unusual-admin-logon.kql` now has retained Azure Data Explorer / Kusto output against verified synthetic `Security004` and `AssetContext004` inputs; the PowerShell and registry KQL queries remain without retained KQL runtime execution. The earlier Linux narrative exceeded its excerpt; that limitation was corrected, not concealed. Read the reproduction entry for current execution status. New documentation and proposed lab instructions are not newly executed evidence. Describe only work you personally understand and can reproduce; do not memorize AI-generated claims as personal experience.
+SOC-2026-002 has retained Azure Data Explorer / Kusto output against a verified synthetic fixture. For SOC-2026-004, `unusual-admin-logon.kql` and `suspicious-powershell.kql` now have retained Azure Data Explorer / Kusto output against verified synthetic inputs; `registry-run-key-persistence.kql` remains without retained KQL runtime execution. The earlier Linux narrative exceeded its excerpt; that limitation was corrected, not concealed. Read the reproduction entry for current execution status. New documentation and proposed lab instructions are not newly executed evidence. Describe only work you personally understand and can reproduce; do not memorize AI-generated claims as personal experience.
 
 ## Conclusion and boundary
 
-No production SOC work or reviewed real Windows package. Retained KQL engine evidence currently covers SOC-2026-002 and the SOC-2026-004 `unusual-admin-logon.kql` query in Azure Data Explorer / Kusto against synthetic fixtures; it is not Microsoft Sentinel or production-tenant evidence. The other SOC-2026-004 KQL queries remain without retained runtime execution. Containment recommendations are not actions taken. Do not invent failures, changes, actions, timestamps or runtime results.
+No production SOC work or reviewed real Windows package. Retained KQL engine evidence currently covers SOC-2026-002 plus the SOC-2026-004 `unusual-admin-logon.kql` and `suspicious-powershell.kql` queries in Azure Data Explorer / Kusto against synthetic fixtures; it is not Microsoft Sentinel or production-tenant evidence. `registry-run-key-persistence.kql` remains without retained runtime execution. Containment recommendations are not actions taken. Do not invent failures, changes, actions, timestamps or runtime results.
 
 ## Five questions to defend from evidence
 

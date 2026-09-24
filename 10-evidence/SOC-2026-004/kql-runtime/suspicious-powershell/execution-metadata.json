@@ -1,0 +1,31 @@
+{
+  "case": "SOC-2026-004",
+  "detection": "suspicious-powershell",
+  "engine": "Azure Data Explorer / Kusto",
+  "database": "SOC2026002",
+  "query_source": "04-detection-rules/kql/SOC-2026-004/suspicious-powershell.kql",
+  "fixture_source": "02-datasets/soc-2026-004/sysmon-events.json",
+  "query_sha256": "2c3b70ba18cb458dd4f7b7fb4fabe0a701af20978294a4e85415cf6bda4d54a2",
+  "fixture_sha256": "b61aaebb5f488531e6122ca05c3cb18a210d3b5ba5a554c49bafece5fff059c5",
+  "runtime_tables": {
+    "Sysmon004": {
+      "row_count": 10
+    }
+  },
+  "started_utc": "2026-09-24T15:07:14.251307+00:00",
+  "finished_utc": "2026-09-24T15:07:59.586126+00:00",
+  "result_rows": 1,
+  "result_columns": [
+    "UtcTime",
+    "RecordId",
+    "Computer",
+    "User",
+    "LogonId",
+    "ProcessGuid",
+    "Image",
+    "ParentImage",
+    "CommandLine"
+  ],
+  "python_version": "3.14.7",
+  "azure_kusto_data_version": "6.0.4"
+}
