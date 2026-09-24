@@ -18,4 +18,4 @@ Expected: positive/negative fixture assertions, rule parsing, integrity and byte
 
 The [004 validation guide](07-lab/detection-tests/SOC-2026-004/README.md) documents timeline regeneration and custom KQL tables. Tests do not execute a Sigma backend or KQL engine, prove production detection efficacy, or create real Windows evidence. Remote validation was observed for hardening commit `954395381a8654eadf16fd5be7f3ee16dc39725e`: [completed PR run](https://github.com/a-bonfim-tech/soc-analyst-lab/actions/runs/35917284472). This does not validate later revisions; inspect their matching completed runs. Delete only the disposable `.venv` you created when finished; do not remove source evidence. Capture tool versions, commit, commands, exit codes and stdout privately before publishing reviewed validation records.
 
-Real Windows: [pending retained evidence gate](07-lab/WINDOWS_PENDING.md). KQL: [runtime evidence status and gate](04-detection-rules/kql/README.md).
+Real Windows: [retained endpoint telemetry status](07-lab/WINDOWS_STATUS.md). KQL: [runtime evidence status and gate](04-detection-rules/kql/README.md).

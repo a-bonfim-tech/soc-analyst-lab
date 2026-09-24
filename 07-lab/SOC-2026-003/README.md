@@ -155,8 +155,11 @@ Metadata and native event timestamps remain unchanged.
 [Microsoft's legacy query builder source](https://github.com/PowerShell/PowerShell/blob/v6.0.0-alpha.9/src/Microsoft.PowerShell.Commands.Diagnostics/GetEventCommand.cs)
 provides the conversion path. Local regression tests model it and check the collector
 source template; they do not execute the Windows 5.1 binary or native event query.
-The exact endpoint runtime result must be verified by recollection. No real telemetry
-was generated, copied into tests or collected by this correction.
+At the time of the temporal-filter correction, the exact endpoint runtime result
+still required authorized recollection; that recollection was subsequently completed
+and is reflected in the retained SOC-2026-003 case evidence. The correction itself
+generated no real telemetry, copied no real telemetry into tests and did not by itself
+constitute endpoint collection.
 
 ## E — cleanup
 
@@ -166,7 +169,7 @@ and SOCAnalystLab-GUID HKCU key. Do not use broad wildcard deletion. No autostar
 created; never represent these registry markers as successful persistence. Preserve
 collection packages and operator notes before reverting the disposable VM snapshot.
 
-## F — transfer and ingestion (after real collection)
+## F — transfer and ingestion
 
 Transfer privately using an approved encrypted/local channel; verify checksums on
 arrival. Do not commit raw exports. On a workstation with Python 3.10+, run:

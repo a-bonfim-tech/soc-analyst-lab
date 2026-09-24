@@ -4,19 +4,19 @@
 
 Original scenario narratives and fixtures exist; this remediation corrects claims and adds retrospective review/templates. Personal mastery is not established by AI-assisted documentation.
 
-SOC004 and SOC002 synthetic; SOC001 retained excerpt labeled lab; DFIR notes training-derived
+SOC003 uses real endpoint-generated Windows lab telemetry with sanitized derived public evidence and private raw exports; SOC004 and SOC002 are synthetic; SOC001 uses a retained lab excerpt; DFIR notes are training-derived.
 
 ## What is supported
 
-Synthetic case reasoning and restricted local detection tests plus limited Linux excerpt. Inspect [03-investigations/SOC-2026-001/evidence-review.md](03-investigations/SOC-2026-001/evidence-review.md) and [REPRODUCE.md](REPRODUCE.md). Presence of a retained record is not independent proof of who performed every step.
+Supported evidence includes sanitized derived analysis of real endpoint-generated Windows lab telemetry for SOC-2026-003, synthetic-case reasoning for SOC-2026-002 and SOC-2026-004, restricted local detection tests, and the limited SOC-2026-001 Linux excerpt. Inspect [03-investigations/SOC-2026-003/investigation.md](03-investigations/SOC-2026-003/investigation.md), [03-investigations/SOC-2026-001/evidence-review.md](03-investigations/SOC-2026-001/evidence-review.md) and [REPRODUCE.md](REPRODUCE.md). Presence of a retained record is not independent proof of who performed every step.
 
 ## Execution, synthetic scope and changes
 
-SOC-2026-002 has retained Azure Data Explorer / Kusto output against a verified synthetic fixture. For SOC-2026-004, `unusual-admin-logon.kql`, `suspicious-powershell.kql` and `registry-run-key-persistence.kql` now have retained Azure Data Explorer / Kusto output against verified synthetic inputs. The earlier Linux narrative exceeded its excerpt; that limitation was corrected, not concealed. Read the reproduction entry for current execution status. New documentation and proposed lab instructions are not newly executed evidence. Describe only work you personally understand and can reproduce; do not memorize AI-generated claims as personal experience.
+SOC-2026-003 has retained sanitized derived evidence from real endpoint-generated Windows Security, Sysmon and PowerShell Operational telemetry collected in an authorized disposable lab; raw endpoint exports remain private. SOC-2026-002 has retained Azure Data Explorer / Kusto output against a verified synthetic fixture. For SOC-2026-004, `unusual-admin-logon.kql`, `suspicious-powershell.kql` and `registry-run-key-persistence.kql` have retained Azure Data Explorer / Kusto output against verified synthetic inputs. The earlier Linux narrative exceeded its excerpt; that limitation was corrected, not concealed. Read the reproduction entry for current execution status. New documentation and proposed lab instructions are not newly executed evidence. Describe only work you personally understand and can reproduce; do not memorize AI-generated claims as personal experience.
 
 ## Conclusion and boundary
 
-No production SOC work or reviewed real Windows package. Retained KQL engine evidence currently covers SOC-2026-002 plus all three SOC-2026-004 KQL queries in Azure Data Explorer / Kusto against synthetic fixtures; it is not Microsoft Sentinel or production-tenant evidence. The retained registry result establishes a controlled Run-value query match, not later autostart execution, effective ACLs or malicious intent. Containment recommendations are not actions taken. Do not invent failures, changes, actions, timestamps or runtime results.
+No production SOC work or public raw Windows evidence package is claimed. SOC-2026-003 documents an authorized disposable-lab collection using real endpoint-generated Windows Security, Sysmon and PowerShell Operational telemetry; the raw exports remain private and the public repository retains sanitized derived evidence. This is not a production incident, customer environment, Microsoft Sentinel execution or commercial SIEM/EDR experience. Retained KQL engine evidence covers SOC-2026-002 plus all three SOC-2026-004 KQL queries in Azure Data Explorer / Kusto against synthetic fixtures. The retained registry result establishes a controlled Run-value query match, not later autostart execution, effective ACLs or malicious intent. Containment recommendations are not actions taken. Do not invent failures, changes, actions, timestamps or runtime results.
 
 ## Five questions to defend from evidence
 
