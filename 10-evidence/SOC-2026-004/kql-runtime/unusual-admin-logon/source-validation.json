@@ -1,0 +1,83 @@
+{
+  "case": "SOC-2026-004",
+  "detection": "unusual-admin-logon",
+  "engine": "Azure Data Explorer / Kusto",
+  "database": "SOC2026002",
+  "validated_utc": "2026-09-24T14:43:27.671072+00:00",
+  "tables": {
+    "Security004": {
+      "row_count": 13,
+      "schema": [
+        {
+          "column": "RecordId",
+          "column_type": "string"
+        },
+        {
+          "column": "TimeGenerated",
+          "column_type": "datetime"
+        },
+        {
+          "column": "Computer",
+          "column_type": "string"
+        },
+        {
+          "column": "EventID",
+          "column_type": "int"
+        },
+        {
+          "column": "Account",
+          "column_type": "string"
+        },
+        {
+          "column": "LogonType",
+          "column_type": "int"
+        },
+        {
+          "column": "IpAddress",
+          "column_type": "string"
+        },
+        {
+          "column": "TargetLogonId",
+          "column_type": "string"
+        },
+        {
+          "column": "SubjectLogonId",
+          "column_type": "string"
+        },
+        {
+          "column": "SubjectUserName",
+          "column_type": "string"
+        },
+        {
+          "column": "TargetUserName",
+          "column_type": "string"
+        },
+        {
+          "column": "ProcessName",
+          "column_type": "string"
+        },
+        {
+          "column": "PrivilegeList",
+          "column_type": "string"
+        }
+      ]
+    },
+    "AssetContext004": {
+      "row_count": 1,
+      "schema": [
+        {
+          "column": "hostname",
+          "column_type": "string"
+        },
+        {
+          "column": "privileged_accounts",
+          "column_type": "dynamic"
+        },
+        {
+          "column": "expected_admin_sources",
+          "column_type": "dynamic"
+        }
+      ]
+    }
+  }
+}

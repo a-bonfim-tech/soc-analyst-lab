@@ -1,0 +1,4 @@
+ColumnName,ColumnOrdinal,DataType,ColumnType
+hostname,0,System.String,string
+privileged_accounts,1,System.Object,dynamic
+expected_admin_sources,2,System.Object,dynamic

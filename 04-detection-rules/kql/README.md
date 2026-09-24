@@ -8,13 +8,13 @@
 | KQL_EXECUTED | Actual engine execution with retained output, timestamp, environment and exact query |
 | KQL_RESULT_RETAINED | Reviewed result export linked to input and query hashes |
 
-Current status: the SOC-2026-002 authentication query is **KQL_RESULT_RETAINED** from Azure Data Explorer / Kusto execution against the verified synthetic fixture. The three SOC-2026-004 queries remain **KQL_WRITTEN** with no retained KQL runtime execution. Python tests remain restricted local models, not KQL syntax/backend validation.
+Current status: the SOC-2026-002 authentication query is **KQL_RESULT_RETAINED** from Azure Data Explorer / Kusto execution against the verified synthetic fixture. For SOC-2026-004, `unusual-admin-logon.kql` is **KQL_RESULT_RETAINED** from Azure Data Explorer / Kusto execution against verified synthetic `Security004` and `AssetContext004` inputs; `suspicious-powershell.kql` and `registry-run-key-persistence.kql` remain **KQL_WRITTEN** with no retained KQL runtime execution. Python tests remain restricted local models, not KQL syntax/backend validation.
 
 | Query | Purpose / assumptions | Expected fields / interpretation | Benign alternatives / limits |
 |---|---|---|---|
 | [002 authentication](SOC-2026-002/repeated-failures-followed-by-success.kql) | Custom SigninLogs-style fixture; correlate same account/IP failures in preceding 5 minutes | UserPrincipalName, IPAddress, FailureCount, FirstFailure, LastFailure, SuccessTime, SuccessApp; expected one qualifying account/IP | Retries, password errors, travel/VPN; synthetic risk and short baseline; no compromise proof |
 | [004 PowerShell](SOC-2026-004/suspicious-powershell.kql) | Custom Sysmon004 process table per query comments | Projected event, host, user, image, parent and command fields; investigate encoded Office-child process | Authorized automation; narrow strings miss variants; no malicious intent proof |
-| [004 admin logon](SOC-2026-004/unusual-admin-logon.kql) | Security004 plus AssetContext004; explicit account/source enrichment | Projected authentication and source context; outside configured baseline | Planned administration, stale inventory, VPN; no adversarial use proof |
+| [004 admin logon](SOC-2026-004/unusual-admin-logon.kql) | Security004 plus AssetContext004; explicit account/source enrichment; retained ADX/Kusto runtime evidence | Projected authentication and source context; retained result `SEC-009` outside configured baseline | Planned administration, stale inventory, VPN; synthetic fixture and ADX/Kusto execution do not prove adversarial use or production efficacy |
 | [004 Run value](SOC-2026-004/registry-run-key-persistence.kql) | Sysmon004 registry table | Projected target/value and process context; suspicious configuration | Installers and updaters; Public path is not effective-ACL evidence; no persistence execution proof |
 
 ## Runtime evidence procedure

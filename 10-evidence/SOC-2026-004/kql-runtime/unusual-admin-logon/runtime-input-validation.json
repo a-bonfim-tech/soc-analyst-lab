@@ -1,0 +1,23 @@
+{
+  "case": "SOC-2026-004",
+  "detection": "unusual-admin-logon",
+  "engine": "Azure Data Explorer / Kusto",
+  "database": "SOC2026002",
+  "validated_utc": "2026-09-24T14:43:27.672810+00:00",
+  "security_fixture": {
+    "source": "02-datasets/soc-2026-004/windows-security-events.csv",
+    "sha256": "d93abd41d616b020acdd166fdb63f97da57983cb1408236b44d7ae5f7b32eed9",
+    "fixture_rows": 13,
+    "runtime_rows": 13,
+    "differences": 0,
+    "comparison": "full normalized row-for-row equality"
+  },
+  "asset_context_fixture": {
+    "source": "02-datasets/soc-2026-004/asset-context.json",
+    "sha256": "1314ae8e630dfce8532f13ab3fdd90aad059b9161bc71fc1fb5edc43caab51ba",
+    "fixture_rows": 1,
+    "runtime_rows": 1,
+    "differences": 0,
+    "comparison": "full normalized row equality for query-relevant fields"
+  }
+}
