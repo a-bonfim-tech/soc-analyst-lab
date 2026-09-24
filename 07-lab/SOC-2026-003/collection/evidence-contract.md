@@ -1,9 +1,11 @@
 # SOC-2026-003 — real-telemetry evidence contract
 
-Authority: [existing lab plan](../lab-plan.md), unchanged. Collection target: the
-operator's disposable Windows 11 ARM64 VM in UTM on the planned Apple M2/8 GB host.
-Record the actual hostname/OS in the package; no endpoint is claimed to exist or
-have produced events yet. Stop heavyweight host services as the plan requires.
+Authority: [existing lab plan](../lab-plan.md). This contract governed collection
+from the authorized disposable Windows 11 ARM64 VM used for SOC-2026-003.
+
+The completed exercise produced real endpoint-generated Windows telemetry. Endpoint-
+specific hostname, account and raw evidence details remain private; the public
+repository contains sanitized derived evidence and analyst documentation.
 
 **REAL TELEMETRY:** events actually produced by the Windows endpoint during the
 authorized lab.
