@@ -1,6 +1,6 @@
 # Reproduce bounded SOC artifacts
 
-Prerequisites: Python 3.12 (CI), Python 3.10+ for the local utilities, Bash, Git, isolated Python environment with `pysigma==0.11.23` (includes YAML support). Run from repository root. No Windows endpoint, SIEM backend or cloud credentials are used by these local tests.
+Prerequisites: Python 3.12 (CI), Python 3.10+ for the local utilities, Bash and Git. The parser-only validation suite uses the isolated dependency set in `requirements-dev.txt`; Sigma backend translation uses the separate pinned environment in `requirements-sigma-backend.txt`. Run from repository root. Neither local validation path requires a Windows endpoint, KQL engine or cloud credentials.
 
 ```sh
 python3 -m venv .venv
@@ -13,6 +13,21 @@ bash 07-lab/detection-tests/SOC-2026-001/test.sh
 bash 07-lab/detection-tests/SOC-2026-001-sigma/test.sh
 bash 07-lab/detection-tests/SOC-2026-002/test.sh
 ```
+
+Reproduce the retained SOC-2026-004 Sigma backend translation separately:
+
+```sh
+python3 -m venv /tmp/sigma-backend-validation
+/tmp/sigma-backend-validation/bin/python -m pip install \
+  -r requirements-sigma-backend.txt
+/tmp/sigma-backend-validation/bin/python -B \
+  06-scripts/validate_sigma_backend_translation.py
+```
+
+This second environment verifies the pinned `KustoBackend` /
+`microsoft_xdr_pipeline()` translation output and the expected enriched-admin
+translation failure. It does not execute KQL or contact Microsoft Defender
+XDR, Microsoft Sentinel or Azure Data Explorer.
 
 Expected: positive/negative fixture assertions, rule parsing, integrity and byte-for-byte SOC-2026-004 timeline tests pass. Inspect failure output rather than changing expected results to force PASS. Inputs are versioned fixtures and the limited Linux excerpt; the test suite contains artificial controls.
 
