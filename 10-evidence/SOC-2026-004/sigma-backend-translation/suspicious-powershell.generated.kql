@@ -1,0 +1,2 @@
+DeviceProcessEvents
+| where (FolderPath endswith "\\powershell.exe" or FolderPath endswith "\\pwsh.exe") and (InitiatingProcessFolderPath endswith "\\winword.exe" or InitiatingProcessFolderPath endswith "\\excel.exe" or InitiatingProcessFolderPath endswith "\\outlook.exe") and (ProcessCommandLine contains " -EncodedCommand " or ProcessCommandLine contains " -enc ")

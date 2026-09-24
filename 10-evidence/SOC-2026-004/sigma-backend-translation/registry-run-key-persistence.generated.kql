@@ -1,0 +1,2 @@
+DeviceRegistryEvents
+| where RegistryKey endswith "\\Software\\Microsoft\\Windows\\CurrentVersion\\Run*" and (RegistryValueData contains "\\Users\\Public\\" or RegistryValueData contains "\\AppData\\") and (RegistryValueData endswith ".exe" or RegistryValueData endswith ".exe\"")
