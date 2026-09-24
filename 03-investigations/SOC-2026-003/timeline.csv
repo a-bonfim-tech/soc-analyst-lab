@@ -1,0 +1,10 @@
+timestamp_utc,source,event_id,observation,analyst_interpretation
+2026-09-24T00:49:43.291Z,Windows Security,4688,"PowerShell process created with benign SOC003 process marker command","Process creation independently observable in Security telemetry"
+2026-09-24T00:49:43.313Z,Sysmon,1,"Corresponding PowerShell process creation observed","Corroborates process execution across a second telemetry source"
+2026-09-24T00:49:44.307Z,PowerShell Operational,4104,"Script block recorded benign process marker","Provides script-level context for the process activity"
+2026-09-24T00:49:45.401Z,PowerShell Operational,4104,"Harmless payload associated with -EncodedCommand recorded","Encoded execution requires inspection; retained content supports benign lab explanation"
+2026-09-24T00:49:45.649Z,Sysmon,12,"Temporary lab Registry key created","Registry modification observed; not sufficient to establish persistence"
+2026-09-24T00:49:45.657Z,Sysmon,13,"Temporary SOC003Marker Registry value written","Value identified as benign lab marker rather than autostart configuration"
+2026-09-24T00:49:45.671Z,Sysmon,11,"Temporary SOC003 marker file created","File creation observed; no malicious file conclusion supported"
+2026-09-24T00:49:45.675Z,Sysmon,12,"Temporary lab Registry key removed","Cleanup consistent with controlled activity"
+2026-09-24T00:49:45.677Z,PowerShell Operational,4103,"Cleanup activity for temporary marker file observed","Supports completion of controlled lab sequence"

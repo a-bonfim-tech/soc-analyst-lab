@@ -2,7 +2,7 @@
 
 **Flagship reproducible case — synthetic only.** Independently authored fixtures;
 no Windows collection, real incident, customer system or production SOC response.
-SOC-2026-003 remains the separate unfinished real-endpoint-telemetry track.
+SOC-2026-003 is the separate real-endpoint-telemetry laboratory track.
 
 ## Alert and disposition
 

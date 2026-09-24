@@ -175,4 +175,12 @@ ticketing systems, enterprise RBAC, 24x7 operations or real incidents.
 
 ## Status
 
-Environment preparation in progress.
+Real endpoint telemetry collection, integrity validation, normalization and
+multi-source correlation completed for the defined laboratory activity.
+
+The analyst investigation and disposition are documented under
+`03-investigations/SOC-2026-003/`.
+
+Raw endpoint exports remain private. Public artifacts are sanitized derived records.
+
+This remains a production-style laboratory exercise, not production SOC experience.
