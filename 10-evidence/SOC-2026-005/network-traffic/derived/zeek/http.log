@@ -1,0 +1,15 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	http
+#open	2026-09-24-20-16-15
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	trans_depth	method	host	uri	referrer	version	user_agent	origin	request_body_len	response_body_len	status_code	status_msg	info_code	info_msg	tags	username	password	proxied	orig_fuids	orig_filenames	orig_mime_types	resp_fuids	resp_filenames	resp_mime_types
+#types	time	string	addr	port	addr	port	count	string	string	string	string	string	string	string	count	count	count	string	count	string	set[enum]	string	string	set[string]	vector[string]	vector[string]	vector[string]	vector[string]	vector[string]	vector[string]
+1790273767.570357	C1aYPx2sx2W2631Yud	127.0.0.1	50302	127.0.0.1	18080	1	GET	127.0.0.1:18080	/health.txt	-	1.0	Mozilla/5.0 SOC005-Benign-Control	-	0	34	200	OK	-	-	(empty)	-	-	-	-	-	-	Fjzdmj2T6PqfUxOTB4	-	text/plain
+1790273767.588569	CQ2DSnUPs1BKzDSY7	127.0.0.1	50303	127.0.0.1	18080	1	GET	127.0.0.1:18080	/beacon.txt?host=SYN-LAB-005&seq=1	-	1.0	SOC005-Lab-Agent/1.0	-	0	38	200	OK	-	-	(empty)	-	-	-	-	-	-	F5X3Ia4X1DfBC8P8ye	-	text/plain
+1790273768.626359	CCu9NC13tTTcBvKNSi	127.0.0.1	50304	127.0.0.1	18080	1	GET	127.0.0.1:18080	/beacon.txt?host=SYN-LAB-005&seq=2	-	1.0	SOC005-Lab-Agent/1.0	-	0	38	200	OK	-	-	(empty)	-	-	-	-	-	-	FLV1zb4A4gk5FTGZid	-	text/plain
+1790273769.656018	CoOzP43posyB188RU9	127.0.0.1	50305	127.0.0.1	18080	1	GET	127.0.0.1:18080	/beacon.txt?host=SYN-LAB-005&seq=3	-	1.0	SOC005-Lab-Agent/1.0	-	0	38	200	OK	-	-	(empty)	-	-	-	-	-	-	FXAfSuVuIbUfhtAkf	-	text/plain
+1790273770.685677	CRoGyM2SkBZj6IHWHc	127.0.0.1	50306	127.0.0.1	18080	1	GET	127.0.0.1:18080	/beacon.txt?host=SYN-LAB-005&seq=4	-	1.0	SOC005-Lab-Agent/1.0	-	0	38	200	OK	-	-	(empty)	-	-	-	-	-	-	FPMT6J3z7g3djO1Yml	-	text/plain
+1790273771.727511	Cj9QG83wth5sKrhPV2	127.0.0.1	50307	127.0.0.1	18080	1	GET	127.0.0.1:18080	/lab-update.bin	-	1.0	SOC005-Lab-Agent/1.0	-	0	89	200	OK	-	-	(empty)	-	-	-	-	-	-	FH6zNt1mVQD1go6Plj	-	text/plain
+#close	2026-09-24-20-16-15

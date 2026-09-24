@@ -1,0 +1,7 @@
+frame.number|frame.time_epoch|ip.src|tcp.srcport|ip.dst|tcp.dstport|http.request.method|http.host|http.request.uri|http.user_agent
+4|1790273767.570357000|127.0.0.1|50302|127.0.0.1|18080|GET|127.0.0.1:18080|/health.txt|Mozilla/5.0 SOC005-Benign-Control
+19|1790273767.588569000|127.0.0.1|50303|127.0.0.1|18080|GET|127.0.0.1:18080|/beacon.txt?host=SYN-LAB-005&seq=1|SOC005-Lab-Agent/1.0
+33|1790273768.626359000|127.0.0.1|50304|127.0.0.1|18080|GET|127.0.0.1:18080|/beacon.txt?host=SYN-LAB-005&seq=2|SOC005-Lab-Agent/1.0
+47|1790273769.656018000|127.0.0.1|50305|127.0.0.1|18080|GET|127.0.0.1:18080|/beacon.txt?host=SYN-LAB-005&seq=3|SOC005-Lab-Agent/1.0
+61|1790273770.685677000|127.0.0.1|50306|127.0.0.1|18080|GET|127.0.0.1:18080|/beacon.txt?host=SYN-LAB-005&seq=4|SOC005-Lab-Agent/1.0
+75|1790273771.727511000|127.0.0.1|50307|127.0.0.1|18080|GET|127.0.0.1:18080|/lab-update.bin|SOC005-Lab-Agent/1.0

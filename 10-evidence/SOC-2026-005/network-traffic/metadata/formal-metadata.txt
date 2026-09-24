@@ -1,0 +1,17 @@
+case_id=SOC-2026-005
+evidence_state_candidate=REAL CONTROLLED LAB
+formal_start_utc=2026-09-24T18:16:05Z
+formal_sequence_end_utc=2026-09-24T18:16:11Z
+formal_end_utc=2026-09-24T18:16:13Z
+capture_interface=lo0
+capture_filter=tcp port 18080
+client_ip=127.0.0.1
+server_ip=127.0.0.1
+server_port=18080
+tshark_http_requests=6
+zeek_http_gets=6
+zeek_checksum_validation=disabled_with_-C_for_analysis
+pcap_sha256=5f3c3450a87710db595bfc8892b177c28afef9ef86349dc5b30b72caea908643
+server_artifact_sha256=1bec000c532136b0d0558e834ef793f78e983f661c07c15fa2508fbeba71084e
+downloaded_artifact_sha256=1bec000c532136b0d0558e834ef793f78e983f661c07c15fa2508fbeba71084e
+scenario_contract_sha256=a3ed64c94e5dad92fc1cfe61557c75178c1c4127720353d4693423d427d7087d
