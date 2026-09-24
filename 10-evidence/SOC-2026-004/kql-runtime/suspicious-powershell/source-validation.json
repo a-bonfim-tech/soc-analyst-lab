@@ -1,0 +1,74 @@
+{
+  "case": "SOC-2026-004",
+  "detection": "suspicious-powershell",
+  "engine": "Azure Data Explorer / Kusto",
+  "database": "SOC2026002",
+  "validated_utc": "2026-09-24T15:09:57.809064+00:00",
+  "tables": {
+    "Sysmon004": {
+      "row_count": 10,
+      "schema": [
+        {
+          "column": "RecordId",
+          "column_type": "string"
+        },
+        {
+          "column": "UtcTime",
+          "column_type": "datetime"
+        },
+        {
+          "column": "Computer",
+          "column_type": "string"
+        },
+        {
+          "column": "EventID",
+          "column_type": "int"
+        },
+        {
+          "column": "Image",
+          "column_type": "string"
+        },
+        {
+          "column": "ParentImage",
+          "column_type": "string"
+        },
+        {
+          "column": "CommandLine",
+          "column_type": "string"
+        },
+        {
+          "column": "User",
+          "column_type": "string"
+        },
+        {
+          "column": "LogonId",
+          "column_type": "string"
+        },
+        {
+          "column": "ProcessGuid",
+          "column_type": "string"
+        },
+        {
+          "column": "DestinationIp",
+          "column_type": "string"
+        },
+        {
+          "column": "DestinationPort",
+          "column_type": "int"
+        },
+        {
+          "column": "TargetObject",
+          "column_type": "string"
+        },
+        {
+          "column": "Details",
+          "column_type": "string"
+        },
+        {
+          "column": "EventType",
+          "column_type": "string"
+        }
+      ]
+    }
+  }
+}

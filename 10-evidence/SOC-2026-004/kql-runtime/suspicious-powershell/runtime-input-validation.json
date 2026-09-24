@@ -1,0 +1,15 @@
+{
+  "case": "SOC-2026-004",
+  "detection": "suspicious-powershell",
+  "engine": "Azure Data Explorer / Kusto",
+  "database": "SOC2026002",
+  "validated_utc": "2026-09-24T15:09:57.809803+00:00",
+  "fixture": {
+    "source": "02-datasets/soc-2026-004/sysmon-events.json",
+    "sha256": "b61aaebb5f488531e6122ca05c3cb18a210d3b5ba5a554c49bafece5fff059c5",
+    "fixture_rows": 10,
+    "runtime_rows": 10,
+    "differences": 0,
+    "comparison": "full normalized row-for-row equality; empty DestinationPort mapped to null"
+  }
+}
