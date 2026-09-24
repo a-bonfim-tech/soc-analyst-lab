@@ -4,21 +4,26 @@
 
 Evidence-first portfolio for an entry-level **SOC Analyst / Security Operations** role. It demonstrates bounded lab investigation, alert triage, timeline reconstruction, detection logic and written escalation. It does not establish professional production SOC experience.
 
-## Start with the evidence
+## Primary analyst evidence
 
-| Case | Evidence state | What can be inspected | Limits |
-|---|---|---|---|
-| [SOC-2026-003 — Windows endpoint investigation](03-investigations/SOC-2026-003/investigation.md) | REAL CONTROLLED LAB | 541 normalized source events; Windows Security 4688; Sysmon 1/11/12/13; PowerShell 4103/4104; timeline, findings and disposition | Sanitized derived evidence; raw endpoint exports remain private; authorized laboratory exercise |
-| [SOC-2026-004 — Windows detection investigation](03-investigations/SOC-2026-004/investigation.md) | SYNTHETIC | 23-event timeline; Windows Security/Sysmon-style fixtures; three Sigma rules; three KQL queries; severity and Tier 2 handoff | Local restricted evaluator and pySigma parsing; no Sigma backend or KQL runtime execution |
-| [SOC-2026-001 — SSH authentication](03-investigations/SOC-2026-001/evidence-review.md) | REAL CONTROLLED LAB excerpt + scenario narrative | Eight failed passwords, one accepted login and a sudo command reference to `/etc/shadow` in the retained excerpt | Partial timestamps; scenario counts/baseline are not established by the excerpt; file contents and unauthorized access not proven |
-| [SOC-2026-002 — identity correlation](03-investigations/SOC-2026-002/investigation.md) | SYNTHETIC | SigninLogs-style data, written KQL and local regression model | Reported ADX execution not retained; not Sentinel execution; compromise not confirmed |
-| [DFIR access and collection methodology](03-dfir/accessing-compromised-network.md) | TRAINING-DERIVED | Defensive collection reasoning, artifact selection and limitations | Training-derived methodology rather than professional incident-response evidence |
+| Case | Evidence | Analyst work |
+|---|---|---|
+| [SOC-2026-003 — Windows endpoint investigation](03-investigations/SOC-2026-003/investigation.md) | Real endpoint-generated Windows Security, Sysmon and PowerShell telemetry; 541 normalized source events | Multi-source correlation, timeline reconstruction, encoded-PowerShell review, Registry/file analysis, severity reassessment and disposition |
+| [SOC-2026-001 — SSH authentication](03-investigations/SOC-2026-001/evidence-review.md) | Retained controlled-lab Linux authentication excerpt | Authentication review, successful-login correlation, privileged-command analysis and escalation reasoning |
 
-## Review a case in five minutes
+## Detection and analysis exercises
 
-**Real Windows endpoint case:** [SOC-2026-003 investigation](03-investigations/SOC-2026-003/investigation.md) → [derived endpoint evidence](10-evidence/SOC-2026-003/windows-endpoint-correlation.md) → [timeline](03-investigations/SOC-2026-003/timeline.csv) → [findings](03-investigations/SOC-2026-003/findings.md) → [escalation decision](03-investigations/SOC-2026-003/escalation.md).
+| Case | Exercise | Analyst work |
+|---|---|---|
+| [SOC-2026-004 — Windows detection investigation](03-investigations/SOC-2026-004/investigation.md) | Reproducible synthetic Windows Security/Sysmon dataset | Detection logic, Sigma, KQL, timeline reconstruction, severity and Tier 2 handoff |
+| [SOC-2026-002 — identity correlation](03-investigations/SOC-2026-002/investigation.md) | Synthetic SigninLogs-style dataset | Identity-event correlation, KQL reasoning and hypothesis testing |
+| [DFIR collection methodology](03-dfir/accessing-compromised-network.md) | Training-derived methodology | Defensive artifact selection, collection prioritization and evidence handling |
 
-**Detection-engineering case:** [SOC-2026-004 investigation](03-investigations/SOC-2026-004/investigation.md) → [evidence and provenance](02-datasets/soc-2026-004/README.md) → [timeline](03-investigations/SOC-2026-004/timeline.csv) → [findings](03-investigations/SOC-2026-004/findings.md) → [escalation](03-investigations/SOC-2026-004/escalation.md).
+## Review the strongest case first
+
+**SOC-2026-003 — Windows endpoint investigation:** [investigation](03-investigations/SOC-2026-003/investigation.md) → [derived endpoint evidence](10-evidence/SOC-2026-003/windows-endpoint-correlation.md) → [timeline](03-investigations/SOC-2026-003/timeline.csv) → [findings](03-investigations/SOC-2026-003/findings.md) → [disposition](03-investigations/SOC-2026-003/escalation.md).
+
+For detection-engineering depth, continue with [SOC-2026-004](03-investigations/SOC-2026-004/investigation.md).
 
 [Detection rules and ATT&CK limits](04-detection-rules/ATTACK-COVERAGE.md) · [KQL evidence states](04-detection-rules/kql/README.md) · [Reproduce locally](REPRODUCE.md) · [Interview defense](INTERVIEW_DEFENSE.md).
 
