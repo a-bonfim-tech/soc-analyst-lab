@@ -1,0 +1,15 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	conn
+#open	2026-09-24-20-16-15
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	proto	service	duration	orig_bytes	resp_bytes	conn_state	local_orig	local_resp	missed_bytes	history	orig_pkts	orig_ip_bytes	resp_pkts	resp_ip_bytes	tunnel_parents	ip_proto
+#types	time	string	addr	port	addr	port	enum	string	interval	count	count	string	bool	bool	count	string	count	count	count	count	set[string]	count
+1790273771.727230	Cj9QG83wth5sKrhPV2	127.0.0.1	50307	127.0.0.1	18080	tcp	http	0.002544	102	289	SF	T	T	0	ShAaDdfF	7	478	7	665	-	6
+1790273770.685519	CRoGyM2SkBZj6IHWHc	127.0.0.1	50306	127.0.0.1	18080	tcp	http	0.001293	121	224	SF	T	T	0	ShAaDdfF	7	497	7	600	-	6
+1790273769.655772	CoOzP43posyB188RU9	127.0.0.1	50305	127.0.0.1	18080	tcp	http	0.001303	121	224	SF	T	T	0	ShAaDdfF	7	497	7	600	-	6
+1790273768.626116	CCu9NC13tTTcBvKNSi	127.0.0.1	50304	127.0.0.1	18080	tcp	http	0.001489	121	224	SF	T	T	0	ShAaDdfF	7	497	7	600	-	6
+1790273767.588394	CQ2DSnUPs1BKzDSY7	127.0.0.1	50303	127.0.0.1	18080	tcp	http	0.001070	121	224	SF	T	T	0	ShAaDdfF	7	497	7	600	-	6
+1790273767.570107	C1aYPx2sx2W2631Yud	127.0.0.1	50302	127.0.0.1	18080	tcp	http	0.004106	111	220	SF	T	T	0	ShADadfF	7	487	7	596	-	6
+#close	2026-09-24-20-16-15

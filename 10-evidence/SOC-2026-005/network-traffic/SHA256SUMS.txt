@@ -1,0 +1,11 @@
+c017a628825dad4030a9f1d13e41bd2af77f0d78164570f2c0fa33cb2fefab11  ./README.md
+73de03d17a4b47e6bc271d0b4cc1d9a5613ca4c1441ddd5f0a1ab3c1b607523a  ./derived/tshark-http.txt
+891d6d81ed5eeb8b883f35c2743007e97efb6f6fba9833ca4a6d0da24e9e354e  ./derived/zeek/conn.log
+6b5bf031629bf5fd3ad2df8477cf7470c423bfd0e053cc4d6fa80460c07019ed  ./derived/zeek/files.log
+241f8ef728f6549a60a504526f7f9fe44bf36edf59e9f118433f3e6882e22dc7  ./derived/zeek/http.log
+8fdc4030fc7aca1d3fd7bccd78af2a03c1c54f604f2fdf85be710375d1ef4f3c  ./diagnostics/zeek-default-weird.log
+691dc4bbc1f333bee21c9dc83f3c48e64c9a0ad7b7227334ed779c8bcb1d68e1  ./metadata/capinfos.txt
+243a0ddca9390f4686580ae42b789aa745e29624e51b9fb334202b13d04dd8a0  ./metadata/formal-metadata.txt
+cb6430f48dbc72fbbfa6eb85e7560a23b39eb9a6f91febfcdb4a2ff904dfeb09  ./metadata/source-artifact-sha256.txt
+9f2e669b64ccde2831799d0b5f63a5c1a4b14408d475217708c7e4c49bedb43b  ./metadata/tool-versions.txt
+5f3c3450a87710db595bfc8892b177c28afef9ef86349dc5b30b72caea908643  ./raw/soc-2026-005-formal.pcap
