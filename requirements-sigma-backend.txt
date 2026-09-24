@@ -1,0 +1,4 @@
+# Isolated Sigma backend translation reproducibility gate.
+# Keep separate from parser-only requirements-dev.txt.
+pysigma==1.5.1
+pysigma-backend-kusto==1.0.1

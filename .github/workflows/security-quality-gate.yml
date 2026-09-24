@@ -103,6 +103,19 @@ jobs:
             -p 'test_*.py' \
             -v
 
+      - name: Validate Sigma backend translation reproducibility
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/sigma-backend-validation
+          python -m venv /tmp/sigma-backend-validation
+          /tmp/sigma-backend-validation/bin/python -m pip install \
+            --disable-pip-version-check \
+            --quiet \
+            -r requirements-sigma-backend.txt
+          /tmp/sigma-backend-validation/bin/python -B \
+            06-scripts/validate_sigma_backend_translation.py
+
       - name: Validate Bash syntax
         shell: bash
         run: |

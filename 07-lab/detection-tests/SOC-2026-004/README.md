@@ -78,6 +78,33 @@ Sentinel execution, production telemetry analysis, broad detection efficacy,
 recall or false-positive rates. The separately authored SOC-2026-004 KQL
 queries retain their independent ADX/Kusto runtime evidence.
 
+## Reproduce Sigma backend translation locally
+
+Backend translation uses a separate dependency environment from the
+parser-only validation suite:
+
+```bash
+python3 -m venv /tmp/soc004-sigma-backend
+/tmp/soc004-sigma-backend/bin/python -m pip install \
+  -r requirements-sigma-backend.txt
+/tmp/soc004-sigma-backend/bin/python -B \
+  06-scripts/validate_sigma_backend_translation.py
+```
+
+Expected translation-reproducibility states:
+
+- `suspicious-powershell.yml`: retained Microsoft XDR backend query
+  reproduced exactly;
+- `registry-run-key-persistence.yml`: retained backend query reproduced
+  exactly, including the already documented `Run*` semantic mismatch;
+- `unusual-admin-logon.yml`: expected `SigmaTransformationError`
+  reproduced with `PrivilegedAccount` as the blocking enrichment field.
+
+The validator checks backend translation determinism against the retained
+evidence package. It does not execute the generated KQL in Azure Data
+Explorer / Kusto, Microsoft Defender XDR or Microsoft Sentinel. The retained
+ADX/Kusto semantic-test evidence remains separate.
+
 ## KQL input contract and runtime status
 
 Create your own sandbox tables before running the three queries:
@@ -103,6 +130,13 @@ file-system permissions or malicious intent.
 
 ## CI
 
-Existing Security & Quality Gate runs these unit and portfolio checks after the
-existing Sigma validation. Older detection tests remain in place. CI success can
-only be claimed after a GitHub run; local success alone is not a remote CI result.
+The Security & Quality Gate keeps the parser-only validation environment
+separate from Sigma backend translation. Its backend-reproducibility step
+creates an isolated virtual environment, installs
+`requirements-sigma-backend.txt` and runs
+`06-scripts/validate_sigma_backend_translation.py`.
+
+Existing unit, portfolio, Windows collection and detection tests remain
+separate. The CI backend step performs translation only; it does not connect
+to or execute a KQL engine. CI success for a revision can only be claimed
+after its matching GitHub Actions run completes successfully.
