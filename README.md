@@ -9,6 +9,7 @@ Evidence-first portfolio for an entry-level **SOC Analyst / Security Operations*
 | Case | Evidence boundary | Demonstrated analyst work |
 |---|---|---|
 | **[SOC-2026-003 — Windows endpoint investigation](03-investigations/SOC-2026-003/investigation.md)** | Real endpoint-generated Windows Security, Sysmon and PowerShell telemetry; 541 normalized source events | Multi-source correlation, timeline reconstruction, encoded-PowerShell review, Registry/file analysis, severity reassessment and disposition |
+| **[SOC-2026-005 — network traffic investigation](03-investigations/SOC-2026-005/investigation.md)** | Real controlled-lab loopback PCAP with TShark and Zeek-derived telemetry | PCAP review, HTTP sequence reconstruction, timing analysis, file-transfer correlation, alternative-hypothesis testing and evidence-bounded disposition |
 | **[SOC-2026-001 — SSH authentication](03-investigations/SOC-2026-001/evidence-review.md)** | Retained controlled-lab Linux authentication excerpt | Failed-authentication review, successful-login correlation, privileged-command analysis and escalation reasoning |
 | **[SOC-2026-004 — Windows detection investigation](03-investigations/SOC-2026-004/investigation.md)** | Reproducible synthetic Windows Security/Sysmon dataset | Sigma and KQL reasoning, detection testing, timeline reconstruction, severity assessment and Tier 2 handoff |
 | **[SOC-2026-002 — identity correlation](03-investigations/SOC-2026-002/investigation.md)** | Synthetic SigninLogs-style dataset | Identity-event correlation, KQL reasoning and hypothesis testing |
@@ -17,6 +18,7 @@ Evidence-first portfolio for an entry-level **SOC Analyst / Security Operations*
 
 - **Alert triage and escalation:** evidence review, severity reassessment, disposition and Tier 2 handoff.
 - **Windows investigation:** Security, Sysmon and PowerShell telemetry correlation across host, process and time context.
+- **Network traffic analysis:** PCAP review with TShark and Zeek, HTTP sequence reconstruction, timing analysis and file-transfer correlation.
 - **Authentication analysis:** failed/successful login correlation and privileged-command review.
 - **Detection engineering:** Sigma rules, KQL analysis, positive/negative controls and documented semantic limitations.
 - **Timeline reconstruction:** Python-based normalization and bounded event correlation with source preservation.
@@ -27,7 +29,8 @@ Evidence-first portfolio for an entry-level **SOC Analyst / Security Operations*
 
 1. **Strongest investigation:** [SOC-2026-003 investigation](03-investigations/SOC-2026-003/investigation.md) → [derived endpoint evidence](10-evidence/SOC-2026-003/windows-endpoint-correlation.md) → [timeline](03-investigations/SOC-2026-003/timeline.csv) → [findings](03-investigations/SOC-2026-003/findings.md) → [disposition](03-investigations/SOC-2026-003/escalation.md).
 2. **Detection-engineering depth:** [SOC-2026-004 investigation](03-investigations/SOC-2026-004/investigation.md) → [Sigma/KQL evidence states](04-detection-rules/kql/README.md) → [local reproduction](REPRODUCE.md).
-3. **Operational reasoning:** [SOC-2026-001 SSH investigation](03-investigations/SOC-2026-001/evidence-review.md) and [SOC-2026-002 identity correlation](03-investigations/SOC-2026-002/investigation.md).
+3. **Network traffic / PCAP analysis:** [SOC-2026-005 investigation](03-investigations/SOC-2026-005/investigation.md) → [retained network evidence](10-evidence/SOC-2026-005/network-traffic/README.md) → [timeline](03-investigations/SOC-2026-005/timeline.csv) → [findings](03-investigations/SOC-2026-005/findings.md).
+4. **Operational reasoning:** [SOC-2026-001 SSH investigation](03-investigations/SOC-2026-001/evidence-review.md) and [SOC-2026-002 identity correlation](03-investigations/SOC-2026-002/investigation.md).
 
 [Detection rules and ATT&CK limits](04-detection-rules/ATTACK-COVERAGE.md) · [CI definition](.github/workflows/security-quality-gate.yml) · [Interview defense](INTERVIEW_DEFENSE.md)
 
@@ -57,7 +60,7 @@ An event, ATT&CK mapping, suspicious path, passing fixture test or successful ba
 | [05-threat-intelligence](05-threat-intelligence/README.md) / [06-scripts](06-scripts/README.md) | Threat-intelligence area / validation utilities |
 | [07-lab](07-lab/README.md) / [08-tryhackme](08-tryhackme/README.md) | Lab procedures / training boundaries |
 | [09-reports](09-reports/README.md) / [09-templates](09-templates/README.md) | Reporting area / reusable analyst templates |
-| [10-evidence](10-evidence/README.md) | Sanitized derived Windows endpoint evidence, retained controlled-lab excerpts and synthetic identity data |
+| [10-evidence](10-evidence/README.md) | Sanitized derived Windows endpoint evidence, reviewed controlled-lab network traffic and authentication excerpts, and synthetic identity data |
 
 Directory presence alone does not mean a capability is demonstrated.
 
