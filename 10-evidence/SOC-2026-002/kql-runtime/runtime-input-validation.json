@@ -1,0 +1,26 @@
+{
+  "case": "SOC-2026-002",
+  "engine": "Azure Data Explorer / Kusto",
+  "database": "SOC2026002",
+  "table": "SigninLogs",
+  "validated_utc": "2026-09-24T13:51:38.551877+00:00",
+  "comparison": "full normalized row-for-row equality",
+  "fixture_source": "10-evidence/SOC-2026-002/signinlogs-synthetic.csv",
+  "fixture_sha256": "ab652d2c0de129f6e2fd231db69289af5f40880d528778a17f3d1eddb987738b",
+  "fixture_rows": 22,
+  "runtime_rows": 22,
+  "compared_columns": [
+    "TimeGenerated",
+    "UserPrincipalName",
+    "UserDisplayName",
+    "IPAddress",
+    "Location",
+    "AppDisplayName",
+    "ResultType",
+    "ResultDescription",
+    "IsInteractive",
+    "IsRisky",
+    "RiskEventTypes_V2"
+  ],
+  "differences": 0
+}

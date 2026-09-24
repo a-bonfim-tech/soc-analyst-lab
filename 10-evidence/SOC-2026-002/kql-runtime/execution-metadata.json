@@ -1,0 +1,23 @@
+{
+  "case": "SOC-2026-002",
+  "engine": "Azure Data Explorer / Kusto",
+  "database": "SOC2026002",
+  "query_source": "04-detection-rules/kql/SOC-2026-002/repeated-failures-followed-by-success.kql",
+  "dataset_source": "10-evidence/SOC-2026-002/signinlogs-synthetic.csv",
+  "query_sha256": "8d07568f3fe1048c4a60baf54e9a5916c034ecae6e6a928ced12bc16cdc6308b",
+  "dataset_sha256": "ab652d2c0de129f6e2fd231db69289af5f40880d528778a17f3d1eddb987738b",
+  "started_utc": "2026-09-24T13:36:36.089161+00:00",
+  "finished_utc": "2026-09-24T13:37:46.416719+00:00",
+  "result_rows": 1,
+  "result_columns": [
+    "UserPrincipalName",
+    "IPAddress",
+    "FailureCount",
+    "FirstFailure",
+    "LastFailure",
+    "SuccessTime",
+    "SuccessApp"
+  ],
+  "python_version": "3.14.7",
+  "azure_kusto_data_version": "6.0.4"
+}

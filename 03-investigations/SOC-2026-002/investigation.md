@@ -8,7 +8,7 @@ This exercise is designed to reproduce a Tier 1 SOC workflow applicable to Micro
 
 ## Execution evidence boundary
 
-**KQL_WRITTEN. Runtime execution NOT VERIFIED: no retained query output or execution metadata was found.** Earlier Azure Data Explorer execution was reported in prose; that report does not satisfy the retained-output gate. Python regression models and fixture-derived expected rows are not a KQL engine.
+**KQL_RESULT_RETAINED.** The versioned query was executed unchanged in Azure Data Explorer / Kusto against a runtime `SigninLogs` table whose 22 rows were verified to match the versioned synthetic fixture after deterministic normalization. Retained evidence includes the query result, execution metadata, source schema, source validation and runtime-input validation. This is not Microsoft Sentinel or production-tenant evidence.
 
 ## 1. Data Source
 
@@ -16,7 +16,7 @@ This exercise is designed to reproduce a Tier 1 SOC workflow applicable to Micro
 - Database: SOC2026002
 - Table: SigninLogs
 - Dataset: Synthetic
-- Fixture events: 22; ingestion NOT VERIFIED
+- Fixture events: 22; runtime table contents verified 22/22 against the versioned fixture; the original ingestion procedure itself is not retained
 - Query language: KQL
 
 The dataset is synthetic and must not be represented as production Microsoft Entra ID or Microsoft Sentinel telemetry.
@@ -96,7 +96,7 @@ Detection artifact:
 
 `04-detection-rules/kql/SOC-2026-002/repeated-failures-followed-by-success.kql`
 
-Expected result derived from the fixture and local model (not retained KQL output):
+Retained Azure Data Explorer / Kusto runtime result, matching the prior fixture-derived and local-model expectation:
 
 - UserPrincipalName: alex.meyer@contoso-lab.example
 - IPAddress: 203.0.113.77
@@ -159,7 +159,7 @@ Escalate for:
 ## 12. Limitations
 
 - Dataset is synthetic.
-- Azure Data Explorer use was reported, but runtime output is not retained; execution is NOT VERIFIED.
+- Azure Data Explorer / Kusto runtime execution is retained and verified for this synthetic fixture; no Microsoft Sentinel runtime or production-tenant execution is claimed.
 - No real Microsoft Entra ID tenant telemetry was analyzed.
 - No device, MFA, Conditional Access, token, endpoint, or network telemetry is available.
 - Geographic information is scenario data, not independent IP geolocation.
@@ -167,7 +167,7 @@ Escalate for:
 
 ## 13. Current Conclusion
 
-The written query and local regression model describe a repeated-failure-followed-by-success pattern. The model distinguishes the bounded fixtures; KQL runtime behavior remains NOT VERIFIED.
+The versioned query was executed unchanged in Azure Data Explorer / Kusto and returned the expected one-row repeated-failure-followed-by-success correlation. Retained output and execution metadata verify runtime behavior for this bounded synthetic fixture; this does not establish production detection efficacy.
 
 The activity is classified as suspicious for training purposes, but account compromise is not confirmed.
 
