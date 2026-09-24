@@ -44,6 +44,40 @@ The portfolio check validates required artifacts, Python syntax, structured data
 basic Markdown/link integrity and obvious sensitive-value patterns. This is a
 heuristic leak check, not proof that arbitrary confidential data cannot be present.
 
+## Sigma backend translation status
+
+A separate retained exercise under
+[`10-evidence/SOC-2026-004/sigma-backend-translation`](../../../10-evidence/SOC-2026-004/sigma-backend-translation/README.md)
+executed `KustoBackend` with `microsoft_xdr_pipeline()` using pySigma 1.5.1 and
+pysigma-backend-kusto 1.0.1. This is separate from the parser-only dependency
+pin used by the repository validation suite.
+
+Observed states:
+
+- `suspicious-powershell.yml`: `BACKEND_TRANSLATED` and
+  `KUSTO_SEMANTIC_TEST_PASSED`. The generated `DeviceProcessEvents` query
+  returned only the intended positive case in the retained read-only
+  Azure Data Explorer / Kusto inline-datatable test.
+- `registry-run-key-persistence.yml`: `BACKEND_TRANSLATED` and
+  `KUSTO_SEMANTIC_MISMATCH_CONFIRMED`. The generated
+  `DeviceRegistryEvents` predicate used an `endswith` expression ending in
+  literal `Run*`; the tested realistic `...\Run\LabUpdater` path did not
+  match, while a literal-star control did.
+- `unusual-admin-logon.yml`:
+  `BACKEND_TRANSLATION_BLOCKED_BY_ENRICHMENT`. Translation stopped with
+  `SigmaTransformationError` because `PrivilegedAccount` is an explicit
+  enrichment field outside the tested Microsoft XDR `DeviceLogonEvents`
+  field contract.
+
+The source Sigma rules were not altered merely to force backend compatibility.
+The semantic tests used synthetic inline values and created no persistent
+tables, performed no ingestion and dropped no tables.
+
+This evidence does not establish Microsoft Defender XDR execution, Microsoft
+Sentinel execution, production telemetry analysis, broad detection efficacy,
+recall or false-positive rates. The separately authored SOC-2026-004 KQL
+queries retain their independent ADX/Kusto runtime evidence.
+
 ## KQL input contract and runtime status
 
 Create your own sandbox tables before running the three queries:

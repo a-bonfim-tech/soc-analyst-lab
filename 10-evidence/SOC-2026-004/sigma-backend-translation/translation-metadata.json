@@ -1,0 +1,45 @@
+{
+  "case": "SOC-2026-004",
+  "evidence_type": "sigma_backend_translation",
+  "translation_environment": {
+    "pysigma": "1.5.1",
+    "pysigma_backend_kusto": "1.0.1",
+    "pipeline": "microsoft_xdr_pipeline",
+    "backend": "KustoBackend",
+    "environment_scope": "disposable local virtual environment",
+    "python_version": "3.14.7"
+  },
+  "rules": {
+    "suspicious-powershell.yml": {
+      "source_sha256": "952e419a4ad5827caabef21753a990aeb150b171e4bb224a28d3aa50ca8b284f",
+      "translation_status": "BACKEND_TRANSLATED",
+      "generated_query_sha256": "01770f04a7ea7ed6a1f07c928d9c7763c87ec5b42b3138ea16f1ef735914b7f4",
+      "semantic_test_status": "KUSTO_SEMANTIC_TEST_PASSED",
+      "retained_file_sha256": "1fa8ed15a4b735958db668bbec288ec039cd55db8aea4a200533fe1e15e7f77f"
+    },
+    "registry-run-key-persistence.yml": {
+      "source_sha256": "ca82cfa560c091cd4796d703b66d3f69ee1c24fbe1c3b28c346ec958c01df15c",
+      "translation_status": "BACKEND_TRANSLATED",
+      "generated_query_sha256": "7f575292449508d90488f8062ad742d625e95fe7642851ab6561469546976288",
+      "semantic_test_status": "KUSTO_SEMANTIC_MISMATCH_CONFIRMED",
+      "retained_file_sha256": "7cce823cd8699a0004970c5a81cced066d7b14c695815a7d80cc92c50742f270"
+    },
+    "unusual-admin-logon.yml": {
+      "source_sha256": "af794576b406dde1c1dd893089c38f8b5882ce86b3e893d81eaec962dfc16be2",
+      "translation_status": "BACKEND_TRANSLATION_BLOCKED_BY_ENRICHMENT",
+      "generated_query_sha256": null,
+      "semantic_test_status": "NOT_APPLICABLE",
+      "error_type": "SigmaTransformationError",
+      "blocking_field": "PrivilegedAccount"
+    }
+  },
+  "source_commit": "6e01410cb651c833cb2b5a6dd3f34320ce55486f",
+  "evidence_recorded_at_utc": "2026-09-24T16:49:58Z",
+  "execution_timestamp_utc": null,
+  "execution_timestamp_status": "NOT_RETAINED_CONTEMPORANEOUSLY",
+  "hash_contract": {
+    "source_sha256": "SHA-256 of the exact current source rule bytes at source_commit",
+    "generated_query_sha256": "SHA-256 of the UTF-8 backend-emitted query string before the terminal newline used by the retained .kql file",
+    "retained_file_sha256": "SHA-256 of the exact retained .kql file bytes"
+  }
+}

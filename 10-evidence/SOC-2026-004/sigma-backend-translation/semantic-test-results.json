@@ -1,0 +1,35 @@
+{
+  "engine": "Azure Data Explorer / Kusto",
+  "execution_scope": "read-only inline print/datatable semantic tests",
+  "persistent_tables_created": false,
+  "data_ingested": false,
+  "tables_dropped": false,
+  "tests": {
+    "endswith_semantics": {
+      "realistic_run_value_matches_generated_suffix": false,
+      "literal_star_value_matches_generated_suffix": true
+    },
+    "registry_translated_query": {
+      "row_count": 1,
+      "matched_cases": [
+        "literal-star-control"
+      ],
+      "expected_real_shape_matched": false,
+      "conclusion": "Generated Registry query does not preserve the intended Run-value matching semantics for the tested realistic registry path."
+    },
+    "powershell_translated_query": {
+      "row_count": 1,
+      "matched_cases": [
+        "expected-positive"
+      ],
+      "wrong_parent_matched": false,
+      "no_encoded_command_matched": false,
+      "conclusion": "Generated PowerShell query preserved the tested positive and negative fixture semantics."
+    }
+  },
+  "source_commit": "6e01410cb651c833cb2b5a6dd3f34320ce55486f",
+  "evidence_recorded_at_utc": "2026-09-24T16:49:58Z",
+  "execution_timestamp_utc": null,
+  "execution_timestamp_status": "NOT_RETAINED_CONTEMPORANEOUSLY",
+  "python_version": "3.14.7"
+}
