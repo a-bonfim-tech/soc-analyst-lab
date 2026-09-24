@@ -18,6 +18,7 @@ Evidence-first portfolio for an entry-level **SOC Analyst / Security Operations*
 | [SOC-2026-004 — Windows detection investigation](03-investigations/SOC-2026-004/investigation.md) | Reproducible synthetic Windows Security/Sysmon dataset | Detection logic, Sigma, KQL, timeline reconstruction, severity and Tier 2 handoff |
 | [SOC-2026-002 — identity correlation](03-investigations/SOC-2026-002/investigation.md) | Synthetic SigninLogs-style dataset | Identity-event correlation, KQL reasoning and hypothesis testing |
 | [DFIR collection methodology](03-dfir/accessing-compromised-network.md) | Training-derived methodology | Defensive artifact selection, collection prioritization and evidence handling |
+| [Windows Forensics 1 — Registry forensics](03-dfir/windows-forensics-1/README.md) | Authorized hands-on Windows Registry forensic training; documented completion state 96% | Offline hive analysis, transaction-log replay, user-activity artifacts, execution artifacts, USB forensics and timestamp interpretation |
 
 ## Review the strongest case first
 
