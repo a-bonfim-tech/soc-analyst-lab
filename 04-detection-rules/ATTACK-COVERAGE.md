@@ -5,16 +5,19 @@ Synthetic fixture behavior only; not broad ATT&CK coverage or production efficac
 | Detection / behavior | Data source | ATT&CK scope | Sigma | KQL | Dataset records | Validated |
 |---|---|---|---|---|---|---|
 | Office-parent encoded PowerShell | Sysmon 1 | T1059.001 represented execution mechanism; intent unconfirmed | [Rule](sigma/SOC-2026-004/suspicious-powershell.yml) | [Query](kql/SOC-2026-004/suspicious-powershell.kql) | SYS-005 | pySigma parse + local selection regression |
-| Remote privileged account outside baseline | Security 4624 + asset context; 4672 corroborates manually | T1078 candidate only; successful authentication is not proof of account abuse | [Rule](sigma/SOC-2026-004/unusual-admin-logon.yml) | [Query](kql/SOC-2026-004/unusual-admin-logon.kql) | SEC-009/010 | pySigma parse + local enriched selection regression |
+| Remote privileged account outside baseline | Security 4624 + asset context; 4672 corroborates manually | T1078 candidate only; successful authentication is not proof of account abuse | [Rule](sigma/SOC-2026-004/unusual-admin-logon.yml) | [Query](kql/SOC-2026-004/unusual-admin-logon.kql) | SEC-009/010 | pySigma parse + local enriched selection regression + retained ADX/Kusto `SEC-009` result |
 | Run value referencing Public or AppData executable | Sysmon 13 | T1547.001 configuration; execution at next logon unproven | [Rule](sigma/SOC-2026-004/registry-run-key-persistence.yml) | [Query](kql/SOC-2026-004/registry-run-key-persistence.kql) | SYS-007 | pySigma parse + local selection regression |
 
 [Dataset](../02-datasets/soc-2026-004/README.md) ·
 [Investigation](../03-investigations/SOC-2026-004/investigation.md) ·
 [Test procedure and limits](../07-lab/detection-tests/SOC-2026-004/README.md)
 
-No Sigma backend execution or KQL runtime execution is claimed. Python regressions
-read the actual YAML conditions through a deliberately restricted evaluator. KQL
-is reviewed text, with expected results derived from fixtures, not measured results.
+No Sigma backend execution is claimed. Python regressions read the actual YAML
+conditions through a deliberately restricted evaluator. For KQL, only
+`unusual-admin-logon.kql` currently has retained Azure Data Explorer / Kusto runtime
+evidence, producing `SEC-009` against verified synthetic inputs. The PowerShell and
+registry KQL queries remain reviewed text with fixture-derived expectations, not
+measured KQL runtime results.
 The admin Sigma rule requires PrivilegedAccount/SourceApproved enrichment; KQL joins
 asset context instead. This is conceptual alignment, not proven platform equivalence.
 Account and source arrays require canonical case/format; string predicates use

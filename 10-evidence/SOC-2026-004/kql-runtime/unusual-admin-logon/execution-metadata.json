@@ -1,0 +1,34 @@
+{
+  "case": "SOC-2026-004",
+  "detection": "unusual-admin-logon",
+  "engine": "Azure Data Explorer / Kusto",
+  "database": "SOC2026002",
+  "query_source": "04-detection-rules/kql/SOC-2026-004/unusual-admin-logon.kql",
+  "security_fixture_source": "02-datasets/soc-2026-004/windows-security-events.csv",
+  "asset_fixture_source": "02-datasets/soc-2026-004/asset-context.json",
+  "query_sha256": "2d099dad5d32c11111660f9299911f7e32b096ecae943ccf849a9879a23b215b",
+  "security_fixture_sha256": "d93abd41d616b020acdd166fdb63f97da57983cb1408236b44d7ae5f7b32eed9",
+  "asset_fixture_sha256": "1314ae8e630dfce8532f13ab3fdd90aad059b9161bc71fc1fb5edc43caab51ba",
+  "runtime_tables": {
+    "Security004": {
+      "row_count": 13
+    },
+    "AssetContext004": {
+      "row_count": 1
+    }
+  },
+  "started_utc": "2026-09-24T14:39:59.031963+00:00",
+  "finished_utc": "2026-09-24T14:40:47.560891+00:00",
+  "result_rows": 1,
+  "result_columns": [
+    "TimeGenerated",
+    "RecordId",
+    "Computer",
+    "Account",
+    "IpAddress",
+    "TargetLogonId",
+    "LogonType"
+  ],
+  "python_version": "3.14.7",
+  "azure_kusto_data_version": "6.0.4"
+}

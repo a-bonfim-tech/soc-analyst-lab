@@ -31,8 +31,10 @@ mutations exercise case handling, alternate paths, new source addresses, missing
 context, other event IDs and near-match registry paths. Schema and pySigma parsing
 validate rule structure. The narrow test evaluator accepts only one AND selection,
 OR lists, equality, contains and endswith; unsupported conditions fail explicitly.
-It is not a Sigma backend. No KQL execution, backend query translation, live ingestion,
-recall estimate or real-world false-positive rate is established.
+It is not a Sigma backend. This local detection-test utility does not itself execute KQL,
+perform backend query translation or establish live ingestion, recall estimates or real-world
+false-positive rates. Separately, `unusual-admin-logon.kql` has retained Azure Data Explorer /
+Kusto runtime evidence against the versioned synthetic Security and asset-context fixtures.
 
 Timeline tests cover count/order, byte-for-byte regeneration, exact evidence retention,
 correlation identities, host isolation, timezone normalization, shuffled input,
@@ -41,7 +43,7 @@ The portfolio check validates required artifacts, Python syntax, structured data
 basic Markdown/link integrity and obvious sensitive-value patterns. This is a
 heuristic leak check, not proof that arbitrary confidential data cannot be present.
 
-## KQL input contract (execution pending)
+## KQL input contract and runtime status
 
 Create your own sandbox tables before running the three queries:
 
@@ -58,8 +60,10 @@ not fetch data or embed secret endpoints. Missing hosts are excluded by inner jo
 track context completeness separately. Duplicated context rows would duplicate hits.
 
 Expected results: suspicious-powershell SYS-005; unusual-admin-logon SEC-009;
-registry-run-key-persistence SYS-007. These are predictions, not KQL test results.
-Save actual query output and engine/schema details before upgrading that claim.
+registry-run-key-persistence SYS-007. The `unusual-admin-logon.kql` expectation has been
+confirmed by retained Azure Data Explorer / Kusto execution against verified synthetic inputs.
+The PowerShell and registry expectations remain predictions, not KQL runtime results.
+Save actual query output and engine/schema details before upgrading either remaining claim.
 
 ## CI
 
