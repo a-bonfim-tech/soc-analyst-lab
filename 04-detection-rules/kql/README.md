@@ -1,4 +1,4 @@
-# KQL evidence states and pending runtime gate
+# KQL evidence states and runtime evidence
 
 | State | Required evidence |
 |---|---|
@@ -8,7 +8,7 @@
 | KQL_EXECUTED | Actual engine execution with retained output, timestamp, environment and exact query |
 | KQL_RESULT_RETAINED | Reviewed result export linked to input and query hashes |
 
-Current four queries: **KQL_WRITTEN**. SOC-2026-002 execution is reported historically but not verified by a retained output. SOC-2026-004 has no runtime execution. Python tests are restricted local models, not KQL syntax/backend validation.
+Current status: the SOC-2026-002 authentication query is **KQL_RESULT_RETAINED** from Azure Data Explorer / Kusto execution against the verified synthetic fixture. The three SOC-2026-004 queries remain **KQL_WRITTEN** with no retained KQL runtime execution. Python tests remain restricted local models, not KQL syntax/backend validation.
 
 | Query | Purpose / assumptions | Expected fields / interpretation | Benign alternatives / limits |
 |---|---|---|---|
@@ -17,7 +17,7 @@ Current four queries: **KQL_WRITTEN**. SOC-2026-002 execution is reported histor
 | [004 admin logon](SOC-2026-004/unusual-admin-logon.kql) | Security004 plus AssetContext004; explicit account/source enrichment | Projected authentication and source context; outside configured baseline | Planned administration, stale inventory, VPN; no adversarial use proof |
 | [004 Run value](SOC-2026-004/registry-run-key-persistence.kql) | Sysmon004 registry table | Projected target/value and process context; suspicious configuration | Installers and updaters; Public path is not effective-ACL evidence; no persistence execution proof |
 
-## PENDING execution procedure
+## Runtime evidence procedure
 
 1. Use an authorized isolated Kusto environment; record product/version, database/table schema, query text/hash and UTC interval. Do not claim Sentinel from an ADX run.
 2. Import only the existing synthetic fixtures using the exact types and names in each query. Retain import diagnostics and input hash. No production tenant is required.
@@ -26,4 +26,4 @@ Current four queries: **KQL_WRITTEN**. SOC-2026-002 execution is reported histor
 5. Add account and source-IP summaries using the same imported fields; retain exact queries and results. Extend process hunting only where telemetry supports it. Record failed/changed queries honestly.
 6. Store private originals separately; publish only reviewed derivatives under case evidence. Record redactions and hashes. Remove only lab resources created by this exercise.
 
-Acceptance: a reviewer can trace query → schema → input → engine → output → interpretation → limits. Until that package exists, leave runtime status NOT VERIFIED.
+Acceptance: a reviewer can trace query → schema → input → engine → output → interpretation → limits. For any query without that retained package, leave runtime status NOT VERIFIED.

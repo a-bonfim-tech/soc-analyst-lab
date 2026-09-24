@@ -1,0 +1,67 @@
+{
+  "case": "SOC-2026-002",
+  "engine": "Azure Data Explorer / Kusto",
+  "database": "SOC2026002",
+  "table": "SigninLogs",
+  "captured_utc": "2026-09-24T13:45:09.930753+00:00",
+  "source_row_count": 22,
+  "schema_query": "SigninLogs | getschema",
+  "count_query": "SigninLogs | count",
+  "schema": [
+    {
+      "column": "TimeGenerated",
+      "data_type": "System.DateTime",
+      "column_type": "datetime"
+    },
+    {
+      "column": "UserPrincipalName",
+      "data_type": "System.String",
+      "column_type": "string"
+    },
+    {
+      "column": "UserDisplayName",
+      "data_type": "System.String",
+      "column_type": "string"
+    },
+    {
+      "column": "IPAddress",
+      "data_type": "System.String",
+      "column_type": "string"
+    },
+    {
+      "column": "Location",
+      "data_type": "System.String",
+      "column_type": "string"
+    },
+    {
+      "column": "AppDisplayName",
+      "data_type": "System.String",
+      "column_type": "string"
+    },
+    {
+      "column": "ResultType",
+      "data_type": "System.String",
+      "column_type": "string"
+    },
+    {
+      "column": "ResultDescription",
+      "data_type": "System.String",
+      "column_type": "string"
+    },
+    {
+      "column": "IsInteractive",
+      "data_type": "System.SByte",
+      "column_type": "bool"
+    },
+    {
+      "column": "IsRisky",
+      "data_type": "System.SByte",
+      "column_type": "bool"
+    },
+    {
+      "column": "RiskEventTypes_V2",
+      "data_type": "System.String",
+      "column_type": "string"
+    }
+  ]
+}
