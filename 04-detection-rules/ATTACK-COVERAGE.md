@@ -6,7 +6,7 @@ Synthetic fixture behavior only; not broad ATT&CK coverage or production efficac
 |---|---|---|---|---|---|---|
 | Office-parent encoded PowerShell | Sysmon 1 | T1059.001 represented execution mechanism; intent unconfirmed | [Rule](sigma/SOC-2026-004/suspicious-powershell.yml) | [Query](kql/SOC-2026-004/suspicious-powershell.kql) | SYS-005 | pySigma parse + local selection regression + retained ADX/Kusto `SYS-005` result |
 | Remote privileged account outside baseline | Security 4624 + asset context; 4672 corroborates manually | T1078 candidate only; successful authentication is not proof of account abuse | [Rule](sigma/SOC-2026-004/unusual-admin-logon.yml) | [Query](kql/SOC-2026-004/unusual-admin-logon.kql) | SEC-009/010 | pySigma parse + local enriched selection regression + retained ADX/Kusto `SEC-009` result |
-| Run value referencing Public or AppData executable | Sysmon 13 | T1547.001 configuration; execution at next logon unproven | [Rule](sigma/SOC-2026-004/registry-run-key-persistence.yml) | [Query](kql/SOC-2026-004/registry-run-key-persistence.kql) | SYS-007 | pySigma parse + local selection regression |
+| Run value referencing Public or AppData executable | Sysmon 13 | T1547.001 configuration; execution at next logon unproven | [Rule](sigma/SOC-2026-004/registry-run-key-persistence.yml) | [Query](kql/SOC-2026-004/registry-run-key-persistence.kql) | SYS-007 | pySigma parse + local selection regression + retained ADX/Kusto `SYS-007` result |
 
 [Dataset](../02-datasets/soc-2026-004/README.md) ·
 [Investigation](../03-investigations/SOC-2026-004/investigation.md) ·
@@ -14,10 +14,11 @@ Synthetic fixture behavior only; not broad ATT&CK coverage or production efficac
 
 No Sigma backend execution is claimed. Python regressions read the actual YAML
 conditions through a deliberately restricted evaluator. For KQL,
-`unusual-admin-logon.kql` and `suspicious-powershell.kql` currently have retained Azure
-Data Explorer / Kusto runtime evidence, producing `SEC-009` and `SYS-005` respectively
-against verified synthetic inputs. The registry KQL query remains reviewed text with a
-fixture-derived expectation, not a measured KQL runtime result.
+`unusual-admin-logon.kql`, `suspicious-powershell.kql` and
+`registry-run-key-persistence.kql` have retained Azure Data Explorer / Kusto runtime
+evidence, producing `SEC-009`, `SYS-005` and `SYS-007` respectively against verified
+synthetic inputs. These measured fixture results do not establish production efficacy
+or platform equivalence.
 The admin Sigma rule requires PrivilegedAccount/SourceApproved enrichment; KQL joins
 asset context instead. This is conceptual alignment, not proven platform equivalence.
 Account and source arrays require canonical case/format; string predicates use

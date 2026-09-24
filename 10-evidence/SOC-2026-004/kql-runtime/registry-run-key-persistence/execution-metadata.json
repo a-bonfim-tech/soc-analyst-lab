@@ -1,0 +1,30 @@
+{
+  "case": "SOC-2026-004",
+  "detection": "registry-run-key-persistence",
+  "engine": "Azure Data Explorer / Kusto",
+  "database": "SOC2026002",
+  "query_source": "04-detection-rules/kql/SOC-2026-004/registry-run-key-persistence.kql",
+  "fixture_source": "02-datasets/soc-2026-004/sysmon-events.json",
+  "query_sha256": "da6e361c771c449cde5d9a5d18558fe8d7fb01225c1b38570e958ad042b3a9d6",
+  "fixture_sha256": "b61aaebb5f488531e6122ca05c3cb18a210d3b5ba5a554c49bafece5fff059c5",
+  "runtime_tables": {
+    "Sysmon004": {
+      "row_count": 10
+    }
+  },
+  "started_utc": "2026-09-24T15:33:29.398430+00:00",
+  "finished_utc": "2026-09-24T15:34:06.947981+00:00",
+  "result_rows": 1,
+  "result_columns": [
+    "UtcTime",
+    "RecordId",
+    "Computer",
+    "User",
+    "ProcessGuid",
+    "Image",
+    "TargetObject",
+    "Details"
+  ],
+  "python_version": "3.14.7",
+  "azure_kusto_data_version": "6.0.4"
+}
