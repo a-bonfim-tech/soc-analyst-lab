@@ -1,0 +1,3 @@
+Indicator,Type,Source evidence,First observed time,Context,Confidence,Enrichment source and time,Disposition,Limitations
+https://invoice-review.example/review/SOC-2026-007,URL,10-evidence/SOC-2026-007/suspicious-email.eml,"Fri, 25 Sep 2026 09:14:20 +0000",Message body,High,Controlled enrichment: reserved synthetic domain,No real-world reputation assigned,Synthetic reserved-domain indicator; no live request performed
+invoice-review.example,Domain,10-evidence/SOC-2026-007/suspicious-email.eml,"Fri, 25 Sep 2026 09:14:20 +0000",URL hostname,High,Controlled enrichment: reserved synthetic domain,No real-world reputation assigned,Synthetic reserved-domain indicator; no reputation inference

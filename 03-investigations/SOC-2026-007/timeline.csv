@@ -1,0 +1,9 @@
+Timestamp,State,Event,Evidence,Evidence class
+2026-09-25 09:14:20 +0000,MESSAGE,Synthetic message Date header records the message timestamp.,10-evidence/SOC-2026-007/suspicious-email.eml,FACT
+2026-09-25 09:14:27 +0000,TRANSPORT,Inner Received header records transfer from the synthetic sender workstation to the synthetic relay.,10-evidence/SOC-2026-007/suspicious-email.eml,FACT
+2026-09-25 09:14:32 +0000,TRANSPORT,Outer Received header records transfer from the synthetic relay to the synthetic receiving host.,10-evidence/SOC-2026-007/suspicious-email.eml,FACT
+UNKNOWN,TRIAGE,"Analyst identified sender/reply/envelope differences, authentication observations, urgency and the embedded review URL.",03-investigations/SOC-2026-007/header-authentication-analysis.md,ANALYST ASSESSMENT
+UNKNOWN,ENRICHMENT,Controlled enrichment documented reserved synthetic indicators and intentionally made no real-world reputation claim.,03-investigations/SOC-2026-007/enrichment.md,ANALYST ASSESSMENT
+UNKNOWN,IMPACT,"User interaction, credential exposure, endpoint impact, identity impact, financial impact and broader delivery scope remain unknown.",03-investigations/SOC-2026-007/user-impact-assessment.md,ANALYST ASSESSMENT
+UNKNOWN,DECISION,Initial and final Tier 1 severity retained as Medium; case classified as suspicious phishing-like email.,03-investigations/SOC-2026-007/severity-and-disposition.md,ANALYST ASSESSMENT
+UNKNOWN,ESCALATION,Tier 1 escalated the case because material uncertainty requires additional telemetry and scope validation.,03-investigations/SOC-2026-007/escalation.md,ANALYST ASSESSMENT

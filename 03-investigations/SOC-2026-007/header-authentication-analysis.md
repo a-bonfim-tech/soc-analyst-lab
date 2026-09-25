@@ -1,0 +1,187 @@
+# SOC-2026-007 — Header and Authentication Analysis
+
+## Evidence state
+
+SYNTHETIC / CONTROLLED LAB.
+
+Source evidence:
+
+- `10-evidence/SOC-2026-007/suspicious-email.eml`
+- `10-evidence/SOC-2026-007/derived/email-metadata.json`
+
+The message is controlled synthetic evidence, not production mail telemetry.
+
+## Header observations
+
+### FACT — visible author identity
+
+The retained `From` header presents:
+
+`accounts-payable@corp-lab.example`
+
+The display name is `Accounts Payable`.
+
+### FACT — reply destination
+
+The retained `Reply-To` header points to:
+
+`invoice-review@mailer-lab.example`
+
+The reply destination therefore differs from the domain presented in the visible `From` identity.
+
+### FACT — envelope return path
+
+The retained `Return-Path` is:
+
+`bounce@mailer-lab.example`
+
+The envelope return domain differs from the visible `From` domain.
+
+### FACT — transport chain
+
+Two `Received` headers are retained.
+
+The recorded path is:
+
+`workstation.sender-lab.example`
+→ `relay.mailer-lab.example`
+→ `mx.corp-lab.example`
+
+The source addresses in the synthetic transport evidence use documentation address ranges.
+
+### FACT — message timestamp
+
+The retained message timestamp is:
+
+`Fri, 25 Sep 2026 09:14:20 +0000`
+
+The two retained transport timestamps occur subsequently at `09:14:27 +0000` and `09:14:32 +0000`.
+
+### DERIVED — transport chronology
+
+Based only on the retained timestamps:
+
+- message date → first retained relay event: approximately 7 seconds;
+- first retained relay event → receiving MX event: approximately 5 seconds.
+
+This is mechanical chronology, not evidence of maliciousness.
+
+## Authentication observations
+
+### FACT — SPF
+
+The retained `Authentication-Results` records:
+
+`spf=pass smtp.mailfrom=mailer-lab.example`
+
+SPF therefore passes for the recorded envelope sender domain `mailer-lab.example`.
+
+### FACT — DKIM
+
+The retained `Authentication-Results` records:
+
+`dkim=none`
+
+No DKIM pass is established by the retained scenario evidence.
+
+### FACT — DMARC
+
+The retained `Authentication-Results` records:
+
+`dmarc=fail header.from=corp-lab.example`
+
+DMARC therefore fails for the visible `From` domain in the retained scenario evidence.
+
+### DERIVED — identifier alignment
+
+The visible `From` domain is `corp-lab.example`.
+
+The SPF-authenticated envelope domain is `mailer-lab.example`.
+
+Those domains are different.
+
+The retained authentication result also explicitly records DMARC failure for the visible `From` domain.
+
+## Message-content observations
+
+### FACT — subject
+
+The subject is:
+
+`Urgent: invoice payment requires review`
+
+### FACT — requested action
+
+The body requests immediate invoice review and directs the recipient to a URL.
+
+### FACT — URL
+
+The retained URL is:
+
+`https://invoice-review.example/review/SOC-2026-007`
+
+The parser derived the hostname:
+
+`invoice-review.example`
+
+### FACT — attachments
+
+No attachment is present in the retained message.
+
+## Analyst assessment — suspicious characteristics
+
+The following characteristics increase suspicion within this controlled scenario:
+
+1. finance/payment-themed urgency;
+2. a visible `From` identity representing the laboratory corporate domain;
+3. a different `Reply-To` domain;
+4. a different envelope return domain;
+5. DMARC failure for the visible `From` domain;
+6. no retained DKIM authentication;
+7. a request to follow an external-looking review URL.
+
+These characteristics support continued phishing triage. They do not, by themselves, establish credential theft, malware delivery, successful compromise, or user interaction.
+
+## Benign alternatives
+
+Potential benign explanations that must not be discarded solely from these headers include:
+
+- an authorized third-party mailer;
+- legitimate outsourced invoice processing;
+- a misconfigured laboratory authentication policy;
+- intentional forwarding or relay architecture;
+- an incorrectly configured Reply-To workflow.
+
+No retained evidence currently establishes any of these alternatives as true.
+
+## UNKNOWN
+
+The retained evidence does not establish:
+
+- whether the recipient clicked the URL;
+- whether credentials were entered;
+- whether the recipient replied;
+- whether the URL served any content;
+- whether any payload was downloaded;
+- whether any attachment existed outside the retained message;
+- whether the sender was authorized to represent the visible `From` identity;
+- whether equivalent messages reached other recipients;
+- whether any endpoint or identity compromise occurred;
+- reputation of the synthetic URL/domain;
+- production SPF, DKIM or DMARC behavior.
+
+## Current analytical state
+
+The evidence supports a **suspicious phishing-like email requiring continued Tier 1 investigation**.
+
+A final disposition is intentionally not assigned at this stage.
+
+Severity and verdict remain pending user-impact assessment and controlled enrichment.
+
+## Evidence limitations
+
+- The email is synthetic controlled-lab evidence.
+- `Authentication-Results` is scenario evidence and was not independently generated by a production mail server.
+- Reserved laboratory domains and documentation IP ranges cannot provide meaningful real-world reputation.
+- No live request to the URL has been performed.
+- Absence of observed interaction is not evidence that interaction did not occur.

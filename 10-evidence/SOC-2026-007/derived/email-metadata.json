@@ -1,0 +1,42 @@
+{
+  "evidence_type": "SYNTHETIC / CONTROLLED LAB",
+  "source_file": "10-evidence/SOC-2026-007/suspicious-email.eml",
+  "source_sha256": "a30f0e2f152dfe4c77869c1626fd0382e5ebffb3f612b9bc88cf4fae2734bc5c",
+  "date": "Fri, 25 Sep 2026 09:14:20 +0000",
+  "message_id": "<SOC-2026-007-001@mailer-lab.example>",
+  "subject": "Urgent: invoice payment requires review",
+  "from": [
+    "Accounts Payable <accounts-payable@corp-lab.example>"
+  ],
+  "reply_to": [
+    "Invoice Desk <invoice-review@mailer-lab.example>"
+  ],
+  "to": [
+    "finance.user@corp-lab.example"
+  ],
+  "return_path": "<bounce@mailer-lab.example>",
+  "received": [
+    "from relay.mailer-lab.example (relay.mailer-lab.example [192.0.2.44]) by mx.corp-lab.example with ESMTP id LAB007 for <finance.user@corp-lab.example>; Fri, 25 Sep 2026 09:14:32 +0000",
+    "from workstation.sender-lab.example (workstation.sender-lab.example [198.51.100.27]) by relay.mailer-lab.example with ESMTP id RELAY007; Fri, 25 Sep 2026 09:14:27 +0000"
+  ],
+  "received_count": 2,
+  "authentication_results_raw": "mx.corp-lab.example; spf=pass smtp.mailfrom=mailer-lab.example; dkim=none; dmarc=fail header.from=corp-lab.example",
+  "authentication": {
+    "spf": "pass",
+    "dkim": "none",
+    "dmarc": "fail"
+  },
+  "urls": [
+    "https://invoice-review.example/review/SOC-2026-007"
+  ],
+  "url_domains": [
+    "invoice-review.example"
+  ],
+  "attachments": [],
+  "limitations": [
+    "Synthetic controlled-lab email; not production telemetry.",
+    "Authentication-Results is retained scenario evidence, not independently validated mail-server runtime.",
+    "No live URL request is performed by this parser.",
+    "No reputation result is inferred from absence of evidence."
+  ]
+}

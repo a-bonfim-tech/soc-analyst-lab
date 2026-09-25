@@ -1,0 +1,33 @@
+Return-Path: <bounce@mailer-lab.example>
+Received: from relay.mailer-lab.example (relay.mailer-lab.example [192.0.2.44])
+ by mx.corp-lab.example with ESMTP id LAB007
+ for <finance.user@corp-lab.example>;
+ Fri, 25 Sep 2026 09:14:32 +0000
+Received: from workstation.sender-lab.example (workstation.sender-lab.example [198.51.100.27])
+ by relay.mailer-lab.example with ESMTP id RELAY007;
+ Fri, 25 Sep 2026 09:14:27 +0000
+Authentication-Results: mx.corp-lab.example;
+ spf=pass smtp.mailfrom=mailer-lab.example;
+ dkim=none;
+ dmarc=fail header.from=corp-lab.example
+From: "Accounts Payable" <accounts-payable@corp-lab.example>
+Reply-To: "Invoice Desk" <invoice-review@mailer-lab.example>
+To: <finance.user@corp-lab.example>
+Date: Fri, 25 Sep 2026 09:14:20 +0000
+Message-ID: <SOC-2026-007-001@mailer-lab.example>
+Subject: Urgent: invoice payment requires review
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+
+Hello,
+
+An invoice scheduled for payment requires immediate review.
+
+Open the review page below before the processing window closes:
+
+https://invoice-review.example/review/SOC-2026-007
+
+If the payment information is incorrect, reply directly to this message.
+
+Regards,
+Accounts Payable
