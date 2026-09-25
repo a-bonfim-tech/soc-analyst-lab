@@ -43,40 +43,10 @@ Real endpoint-generated Windows Security, Sysmon and PowerShell telemetry across
 
 [SOC-2026-004 — Sigma/KQL detection investigation](03-investigations/SOC-2026-004/investigation.md) · [SOC-2026-002 — identity correlation](03-investigations/SOC-2026-002/investigation.md) · [Detection evidence states](04-detection-rules/kql/README.md) · [Reproduction](REPRODUCE.md)
 
-## Scope boundary
+## Evidence boundary
 
-The workflow is **validate → collect context → correlate → test alternatives → assess severity → document → escalate or close**.
+This is an evidence-based training and laboratory portfolio. Results are bounded by the retained artifacts and must not be interpreted as production SOC employment or as proof of malicious activity beyond the evidence.
 
-An event, ATT&CK mapping, suspicious path, passing fixture test or successful backend translation does not independently prove malicious intent, persistence execution or effective production detection. Live Microsoft Sentinel, Defender XDR and Entra investigations, phishing analysis and operational ticket handling are not claimed as demonstrated production capabilities.
+## Technical resources
 
-## What is implemented
-
-- [Python timeline builder](05-automation/build_timeline.py): source preservation, UTC normalization and bounded host/session/process correlation.
-- [Unit tests](tests/test_soc004.py) and [detection fixtures](07-lab/detection-tests/): positive and negative controls for documented local models.
-- [Evidence and severity runbook](01-runbooks/evidence-and-severity.md), [triage procedure](01-runbooks/alert-triage.md) and [analyst templates](09-templates/README.md).
-- [CI definition](.github/workflows/security-quality-gate.yml): Sigma parsing, SOC/portfolio tests, Windows collection validation, detection tests and isolated Sigma backend-translation reproducibility. A workflow file is configuration; check the matching commit's completed run before claiming remote success.
-
-## Repository map
-
-| Path | Contents |
-|---|---|
-| [00-governance](00-governance/README.md) | Scope, publication and evidence controls |
-| [01-runbooks](01-runbooks/README.md) / [02-alerts](02-alerts/README.md) | Procedures / alert documentation area |
-| [02-datasets](02-datasets/soc-2026-004/README.md) | Synthetic Windows fixtures |
-| [03-investigations](03-investigations/README.md) / [03-dfir](03-dfir/key-artifacts-matrix.md) | Cases / collection methodology |
-| [04-detection-rules](04-detection-rules/README.md) | Sigma, KQL and mapping limitations |
-| [05-automation](05-automation/build_timeline.py) / [tests](tests/test_soc004.py) | Timeline implementation / unit assertions |
-| [05-threat-intelligence](05-threat-intelligence/README.md) / [06-scripts](06-scripts/README.md) | Threat-intelligence area / validation utilities |
-| [07-lab](07-lab/README.md) / [08-tryhackme](08-tryhackme/README.md) | Lab procedures / training boundaries |
-| [09-reports](09-reports/README.md) / [09-templates](09-templates/README.md) | Reporting area / reusable analyst templates |
-| [10-evidence](10-evidence/README.md) | Sanitized derived Windows endpoint evidence, reviewed controlled-lab network traffic and authentication excerpts, and synthetic identity data |
-
-Directory presence alone does not mean a capability is demonstrated.
-
-## Evidence, reuse and assistance
-
-Only reviewed synthetic, sanitized or explicitly approved artifacts belong here. Do not commit credentials, personal/customer information, raw sensitive captures, training flags or proprietary solutions. See [governance](00-governance/README.md) and [security reporting](SECURITY.md).
-
-No open-source reuse license has been selected. Public visibility is not a blanket license to copy, modify or redistribute the material; third-party rights remain applicable. See the [reuse decision](00-governance/REUSE.md).
-
-AI tools, including ChatGPT and Codex, may assist exercises, drafting and repository engineering. Claims remain bounded by retained artifacts; reviewed code and automated outputs still require the stated validation. AI assistance is not an independently demonstrated SOC capability.
+[Runbooks](01-runbooks/README.md) · [Investigations](03-investigations/README.md) · [Detection rules](04-detection-rules/README.md) · [Automation](05-automation/build_timeline.py) · [Lab](07-lab/README.md) · [Evidence](10-evidence/README.md) · [Reproduction](REPRODUCE.md) · [Governance](00-governance/README.md)
