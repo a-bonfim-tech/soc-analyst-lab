@@ -18,6 +18,13 @@ Real endpoint-generated Windows Security, Sysmon and PowerShell telemetry across
 
 ## Three cases to review
 
+<p align="center">
+  <a href="assets/soc-2026-006/soc-2026-006-xdr-incident.png"><img src="assets/soc-2026-006/soc-2026-006-xdr-incident.png" alt="Microsoft Defender XDR incident for SOC-2026-006 showing Medium severity, Resolved status, False alert classification and two PowerShell-related alerts" width="49%"></a>
+  <a href="assets/soc-2026-006/soc-2026-006-sentinel-query.png"><img src="assets/soc-2026-006/soc-2026-006-sentinel-query.png" alt="Microsoft Sentinel SecurityAlert query result for SOC-2026-006 showing two Defender-generated alert records" width="49%"></a>
+</p>
+
+<p align="center"><sub>Left: Microsoft Defender XDR incident generated during the authorized SOC-2026-006 laboratory exercise. Right: Microsoft Sentinel <code>SecurityAlert</code> query result from post-closure SOC-2026-006 evidence validation; two Defender-generated alert records were returned.</sub></p>
+
 | Case | What happened | What I did | Outcome |
 |---|---|---|---|
 | **[SOC-2026-006 — EDR/XDR + Sentinel](03-investigations/SOC-2026-006/investigation.md)** | Defender for Endpoint generated PowerShell-related alerts correlated into a Defender XDR incident, with separate Sentinel visibility | Reviewed endpoint/process context, used Defender Advanced Hunting and Sentinel KQL, and reassessed severity | Authorized lab activity; final analyst severity Informational; incident resolved without Tier 2 escalation |
