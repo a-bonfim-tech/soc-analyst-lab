@@ -8,7 +8,7 @@ Hands-on **SOC investigation portfolio** showing how I move from an alert or sec
 
 ## See a complete investigation in 3 minutes
 
-**[SOC-2026-003 — Windows endpoint investigation](03-investigations/SOC-2026-003/investigation.md)**
+**[SOC-2026-003 — Windows endpoint investigation](03-investigations/SOC-2026-003/CASE_OVERVIEW.md)**
 
 Real endpoint-generated Windows Security, Sysmon and PowerShell telemetry across **541 normalized source events**.
 
@@ -20,7 +20,7 @@ Real endpoint-generated Windows Security, Sysmon and PowerShell telemetry across
 
 | Case | Evidence | Analyst work |
 |---|---|---|
-| **[SOC-2026-003 — Windows endpoint](03-investigations/SOC-2026-003/investigation.md)** | Real endpoint-generated Windows Security, Sysmon and PowerShell telemetry | Correlation, timeline reconstruction, PowerShell/Registry/file analysis, severity reassessment and disposition |
+| **[SOC-2026-003 — Windows endpoint](03-investigations/SOC-2026-003/CASE_OVERVIEW.md)** | Real endpoint-generated Windows Security, Sysmon and PowerShell telemetry | Correlation, timeline reconstruction, PowerShell/Registry/file analysis, severity reassessment and disposition |
 | **[SOC-2026-005 — Network traffic](03-investigations/SOC-2026-005/investigation.md)** | Real controlled-lab loopback PCAP with TShark and Zeek-derived telemetry | HTTP sequence reconstruction, timing analysis, file-transfer correlation, hypothesis testing and disposition |
 | **[SOC-2026-001 — SSH authentication](03-investigations/SOC-2026-001/evidence-review.md)** | Retained controlled-lab Linux authentication excerpt | Failed/successful authentication correlation, privileged-command analysis and escalation reasoning |
 
