@@ -12,5 +12,6 @@ Do not store TryHackMe flags, credentials, copyrighted room content, or challeng
 - [Introduction to EDR](introduction-to-edr/README.md) — guided training covering EDR architecture, endpoint telemetry, detection concepts, response capabilities and simulated detection investigation.
 
 - [Splunk: The Basics](splunk-the-basics/README.md) — guided hands-on Splunk lab covering core architecture, JSON log ingestion, index creation and SPL-based filtering and aggregation.
+- [Alert Triage With Splunk](alert-triage-with-splunk/README.md) — guided hands-on SIEM triage covering Linux authentication analysis, Windows event and process correlation, scheduled-task persistence, web-log investigation and evidence-based escalation.
 
 Training completion documents guided practice only. It does not establish production SOC experience or vendor-platform runtime evidence.
