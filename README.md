@@ -18,11 +18,11 @@ Real endpoint-generated Windows Security, Sysmon and PowerShell telemetry across
 
 ## Three cases to review
 
-| Case | Evidence | Analyst work |
-|---|---|---|
-| **[SOC-2026-003 — Windows endpoint](03-investigations/SOC-2026-003/CASE_OVERVIEW.md)** | Real endpoint-generated Windows Security, Sysmon and PowerShell telemetry | Correlation, timeline reconstruction, PowerShell/Registry/file analysis, severity reassessment and disposition |
-| **[SOC-2026-005 — Network traffic](03-investigations/SOC-2026-005/investigation.md)** | Real controlled-lab loopback PCAP with TShark and Zeek-derived telemetry | HTTP sequence reconstruction, timing analysis, file-transfer correlation, hypothesis testing and disposition |
-| **[SOC-2026-001 — SSH authentication](03-investigations/SOC-2026-001/evidence-review.md)** | Retained controlled-lab Linux authentication excerpt | Failed/successful authentication correlation, privileged-command analysis and escalation reasoning |
+| Case | What happened | What I did | Outcome |
+|---|---|---|---|
+| **[SOC-2026-006 — EDR/XDR + Sentinel](03-investigations/SOC-2026-006/investigation.md)** | Defender for Endpoint generated PowerShell-related alerts correlated into a Defender XDR incident, with separate Sentinel visibility | Reviewed endpoint/process context, used Defender Advanced Hunting and Sentinel KQL, and reassessed severity | Authorized lab activity; final analyst severity Informational; incident resolved without Tier 2 escalation |
+| **[SOC-2026-007 — Phishing / email](03-investigations/SOC-2026-007/investigation.md)** | Synthetic finance-themed email showed sender/reply/envelope differences, DMARC failure, no DKIM result and an embedded review URL | Performed header/authentication analysis, controlled enrichment and user-impact assessment | Medium severity; escalated to Tier 2 because user interaction, scope and impact remained unresolved |
+| **[SOC-2026-005 — Network traffic](03-investigations/SOC-2026-005/investigation.md)** | Controlled loopback PCAP showed repeated HTTP requests followed by file retrieval | Reconstructed the sequence with TShark and Zeek, analyzed timing, verified file hashes and tested competing hypotheses | Authorized controlled-lab activity; no malicious-incident escalation |
 
 ## Demonstrated SOC workflow
 
