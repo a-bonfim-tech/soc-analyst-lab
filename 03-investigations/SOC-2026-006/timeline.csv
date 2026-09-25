@@ -1,0 +1,8 @@
+timestamp_utc,event_type,event
+2026-09-25T01:34:31.436Z,alert,"First PowerShell-related alert linked to the Microsoft XDR incident"
+2026-09-25T01:35:38.193Z,alert,"Second PowerShell-related alert linked to the Microsoft XDR incident"
+2026-09-25T02:46:35.713Z,ownership,"Incident assignment recorded"
+2026-09-25T02:49:14.906Z,status,"Incident changed from Active to In Progress"
+2026-09-25T17:05:58.895Z,triage,"Tier 1 triage and investigation comment recorded after evidence review"
+2026-09-25T17:09:35.180Z,decision,"XDR recorded determination Not malicious and classification False positive"
+2026-09-25T17:11:54.116Z,status,"Incident changed from In Progress to Resolved and resolution comment was recorded"

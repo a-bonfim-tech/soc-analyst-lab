@@ -1,0 +1,4 @@
+SecurityIncident
+| where TimeGenerated > ago(24h)
+| project TimeGenerated, Title, Severity, Status, ProviderName
+| order by TimeGenerated desc

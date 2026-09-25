@@ -1,0 +1,8 @@
+DeviceProcessEvents
+| where DeviceName =~ "soc-win11-01"
+| extend QueryExecutedAtUTC = now()
+| project QueryExecutedAtUTC, Timestamp, DeviceName, AccountName, FileName,
+    ProcessCommandLine, InitiatingProcessFileName,
+    InitiatingProcessCommandLine, ProcessId, InitiatingProcessId
+| order by Timestamp desc
+| take 50
