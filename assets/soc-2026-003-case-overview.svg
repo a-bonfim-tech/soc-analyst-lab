@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">SOC-2026-003 Windows Endpoint Investigation</title>
+  <desc id="desc">Recruiter-facing summary of an authorized controlled-lab Windows endpoint investigation.</desc>
+
+  <rect width="1200" height="630" rx="24" fill="#0d1117"/>
+  <rect x="48" y="44" width="1104" height="542" rx="20" fill="#161b22" stroke="#30363d" stroke-width="2"/>
+
+  <text x="88" y="102" fill="#58a6ff" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">SOC-2026-003 · REAL CONTROLLED LAB</text>
+  <text x="88" y="150" fill="#f0f6fc" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700">Windows Endpoint Investigation</text>
+
+  <text x="88" y="202" fill="#8b949e" font-family="Arial, Helvetica, sans-serif" font-size="21">Suspicious PowerShell → evidence correlation → analyst decision</text>
+
+  <rect x="88" y="242" width="300" height="102" rx="14" fill="#0d1117" stroke="#30363d"/>
+  <text x="112" y="277" fill="#8b949e" font-family="Arial, Helvetica, sans-serif" font-size="17">INITIAL PRIORITY</text>
+  <text x="112" y="321" fill="#f0f6fc" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="700">MEDIUM</text>
+
+  <rect x="450" y="242" width="300" height="102" rx="14" fill="#0d1117" stroke="#30363d"/>
+  <text x="474" y="277" fill="#8b949e" font-family="Arial, Helvetica, sans-serif" font-size="17">FINAL SEVERITY</text>
+  <text x="474" y="321" fill="#f0f6fc" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="700">LOW</text>
+
+  <rect x="812" y="242" width="300" height="102" rx="14" fill="#0d1117" stroke="#30363d"/>
+  <text x="836" y="277" fill="#8b949e" font-family="Arial, Helvetica, sans-serif" font-size="17">TIER 2</text>
+  <text x="836" y="321" fill="#f0f6fc" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">NOT REQUIRED</text>
+
+  <text x="88" y="398" fill="#f0f6fc" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700">CORRELATED TELEMETRY</text>
+  <text x="88" y="436" fill="#c9d1d9" font-family="Arial, Helvetica, sans-serif" font-size="20">Security 4688   ·   Sysmon 1 / 11 / 12 / 13   ·   PowerShell 4103 / 4104</text>
+
+  <text x="88" y="490" fill="#f0f6fc" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700">ANALYST DISPOSITION</text>
+  <text x="88" y="528" fill="#3fb950" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700">Authorized benign laboratory activity</text>
+
+  <text x="88" y="564" fill="#8b949e" font-family="Arial, Helvetica, sans-serif" font-size="16">Evidence-bounded result · No production SOC / Sentinel / enterprise EDR claim</text>
+</svg>
