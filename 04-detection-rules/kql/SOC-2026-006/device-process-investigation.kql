@@ -1,0 +1,6 @@
+DeviceProcessEvents
+| where DeviceName =~ "soc-win11-01"
+| project Timestamp, DeviceName, AccountName, FileName, ProcessCommandLine,
+    InitiatingProcessFileName
+| order by Timestamp desc
+| take 50

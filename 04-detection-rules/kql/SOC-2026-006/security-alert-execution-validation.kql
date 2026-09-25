@@ -1,0 +1,5 @@
+let QueryExecutedAtUTC = now();
+SecurityAlert
+| where TimeGenerated > ago(24h)
+| project QueryExecutedAtUTC, TimeGenerated, AlertName, AlertSeverity, ProviderName, ProductName
+| order by TimeGenerated desc
