@@ -8,15 +8,17 @@ Hands-on **SOC investigation portfolio** showing how I move from an alert or sec
 
 **ALERT → INVESTIGATE → CORRELATE EVIDENCE → ASSESS SEVERITY → ESCALATE / CLOSE**
 
-## See a complete investigation in 3 minutes
+## See a complete SOC investigation in 3 minutes
 
-**[SOC-2026-003 — Windows endpoint investigation](03-investigations/SOC-2026-003/CASE_OVERVIEW.md)**
+**[SOC-2026-006 — EDR-to-SIEM Incident Lifecycle](03-investigations/SOC-2026-006/investigation.md)**
 
-Real endpoint-generated Windows Security, Sysmon and PowerShell telemetry across **541 normalized source events**.
+Defender for Endpoint PowerShell-related alerts → Defender XDR incident → Microsoft Sentinel visibility + KQL → severity reassessment → analyst disposition → resolution.
 
-**Analyst path:** suspicious activity → multi-source correlation → encoded-PowerShell and Registry/file review → timeline reconstruction → severity reassessment → documented disposition.
+**Analyst decision:** Microsoft/vendor severity `Medium` → final analyst severity `Informational`; authorized laboratory activity; incident resolved as `False alert` without Tier 2 escalation or containment.
 
-[Investigation](03-investigations/SOC-2026-003/investigation.md) → [Evidence](10-evidence/SOC-2026-003/windows-endpoint-correlation.md) → [Timeline](03-investigations/SOC-2026-003/timeline.csv) → [Findings](03-investigations/SOC-2026-003/findings.md) → [Disposition](03-investigations/SOC-2026-003/escalation.md)
+[Investigation](03-investigations/SOC-2026-006/investigation.md) → [Analyst ticket](03-investigations/SOC-2026-006/ticket.md) → [Findings](03-investigations/SOC-2026-006/findings.md) → [KQL runtime evidence](04-detection-rules/kql/SOC-2026-006/README.md) → [Incident report](09-reports/SOC-2026-006/incident-report.md)
+
+**Additional strong case:** [SOC-2026-003 — Windows endpoint investigation](03-investigations/SOC-2026-003/CASE_OVERVIEW.md) — real endpoint-generated Windows Security, Sysmon and PowerShell telemetry; severity reassessed from `Medium` to `Low`; closed as authorized benign laboratory activity.
 
 ## Three cases to review
 
