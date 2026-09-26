@@ -2,58 +2,57 @@
 
 ![SOC-2026-003 Windows Endpoint Investigation](../../assets/soc-2026-003-case-overview.svg)
 
-> **REAL CONTROLLED LAB** | Windows endpoint telemetry | Initial priority: **Medium** | Final severity: **Low** | Disposition: **Authorized benign laboratory activity**
+> **REAL CONTROLLED LAB** | Real endpoint-generated Windows telemetry | **541 normalized source events** | Initial priority: **Medium** → Final severity: **Low**
 
-## 30-second case review
+## What happened
 
-**Signal**
+Suspicious-looking PowerShell execution, including `-EncodedCommand`, occurred alongside Registry and file activity on an authorized disposable Windows laboratory endpoint.
 
-Suspicious-looking PowerShell execution, including an encoded invocation, occurred together with Registry and file activity on an authorized disposable Windows laboratory endpoint.
+The combination warranted investigation because encoded PowerShell, Registry modification and file creation can require additional context before an analyst can distinguish benign activity from malicious execution, persistence or harmful file activity.
 
-**Evidence correlated**
+## Investigation path
 
-| Source | Event IDs | Analyst use |
-|---|---:|---|
-| Windows Security | 4688 | Independent process-creation evidence |
-| Sysmon | 1 | Corroborated PowerShell process execution |
-| PowerShell Operational | 4103, 4104 | Command and script-block context |
-| Sysmon | 12, 13 | Registry creation and value modification |
-| Sysmon | 11 | File-creation evidence |
+`PowerShell signal → Windows telemetry → process correlation → encoded-content review → Registry/file review → timeline reconstruction → severity reassessment → disposition`
 
-**Investigation path**
+I correlated Windows Security, Sysmon and PowerShell Operational telemetry, reviewed the encoded PowerShell content, examined the Registry and file activity, reconstructed the sequence and tested whether the evidence supported malicious execution, persistence or an authorized explanation.
 
-`PowerShell signal → multi-source correlation → encoded-content review → Registry/file analysis → timeline reconstruction → hypothesis testing → severity reassessment → disposition`
+## What I found
 
-## Analyst decision
+- Windows Security Event ID 4688 and Sysmon Event ID 1 independently recorded corresponding PowerShell process creation.
+- PowerShell Operational Event ID 4104 exposed the harmless payload associated with the controlled `-EncodedCommand` execution.
+- Sysmon Event IDs 12/13 recorded temporary Registry activity; the observed value was a laboratory marker rather than an autostart configuration.
+- Sysmon Event ID 11 recorded creation of a temporary marker file, and cleanup activity was subsequently observed.
+- Correlation across Security, Sysmon and PowerShell telemetry supported the authorized controlled-lab explanation with high confidence within the retained evidence scope.
 
-The encoded PowerShell invocation was suspicious in isolation, but retained PowerShell telemetry exposed a harmless controlled payload.
+**Key sequence:** `process creation → script-block context → encoded payload review → Registry activity → file creation → cleanup`
 
-Registry activity was investigated for possible persistence. The observed value was a temporary laboratory marker rather than an autostart configuration.
+## Why it mattered
 
-File creation was investigated for possible malicious activity. The retained evidence identified a temporary laboratory marker and subsequent cleanup.
+**FACT:** The final collection contained 541 normalized source events from real endpoint-generated telemetry. The relevant investigation sequence was independently observable across Windows Security, Sysmon and PowerShell Operational records.
 
-Multi-source telemetry therefore supported the authorized controlled-lab explanation with high confidence within the evidence scope.
+**ASSESSMENT:** Encoded PowerShell, Registry modification and file creation justified an initial Medium triage priority, but none of those observations independently established malicious activity. Payload inspection, Registry context, file context, cross-source correlation, authorization and observed cleanup did not support malicious encoded execution, persistence or malware activity within the retained evidence scope.
 
-**Initial laboratory triage priority:** Medium
-**Post-investigation severity:** Low
-**Disposition:** Close as authorized benign laboratory activity
-**Tier 2 escalation:** Not required for the completed scenario
+## Decision
 
-## Evidence chain
+| Decision point | Result |
+|---|---|
+| Initial laboratory triage priority | **Medium** |
+| Post-investigation severity | **Low** |
+| Disposition | **Close as authorized benign laboratory activity** |
+| Tier 2 escalation | **Not required for the completed scenario** |
 
-[Full investigation](investigation.md) → [Timeline](timeline.csv) → [Findings](findings.md) → [Disposition](escalation.md) → [Public correlation evidence](../../10-evidence/SOC-2026-003/windows-endpoint-correlation.md)
+The investigation moved from a suspicious-looking signal to an evidence-supported benign disposition without converting observable behaviors into unsupported claims of compromise.
 
-## What this demonstrates
+## Evidence
 
-- Windows endpoint investigation
-- multi-source telemetry correlation
-- PowerShell analysis
-- Registry and file-event analysis
-- timeline reconstruction
-- competing-hypothesis testing
-- evidence-bounded severity reassessment
-- documented closure and escalation criteria
+| Source | Key evidence used |
+|---|---|
+| Windows Security | Event ID 4688 — PowerShell process creation |
+| Sysmon | Event ID 1 — process corroboration; 11 — file creation; 12/13 — Registry activity |
+| PowerShell Operational | Event IDs 4103/4104 — command, script-block and cleanup context |
+
+[Full investigation](investigation.md) → [Timeline](timeline.csv) → [Findings](findings.md) → [Public correlation evidence](../../10-evidence/SOC-2026-003/windows-endpoint-correlation.md) → [Disposition / escalation boundary](escalation.md)
 
 ## Evidence boundary
 
-This case demonstrates work performed in an **authorized controlled laboratory**. It does not establish production SOC employment, enterprise EDR/XDR detection, Microsoft Sentinel execution, production SIEM alert creation, malicious intent, compromise, persistence, malware execution or production containment.
+This was an authorized controlled laboratory investigation using real endpoint-generated Windows telemetry. It does not represent a production incident, confirmed compromise, production containment, enterprise EDR/XDR detection or Microsoft Sentinel execution.
