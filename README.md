@@ -4,6 +4,8 @@
 
 Hands-on **SOC investigation portfolio** showing how I move from an alert or security signal to evidence correlation, timeline reconstruction, severity assessment, disposition and escalation.
 
+**7 documented SOC investigations · 3 Tier 2 escalation decisions · 9 evidence/telemetry categories · Microsoft Defender + Sentinel runtime**
+
 **ALERT → INVESTIGATE → CORRELATE EVIDENCE → ASSESS SEVERITY → ESCALATE / CLOSE**
 
 ## See a complete investigation in 3 minutes
