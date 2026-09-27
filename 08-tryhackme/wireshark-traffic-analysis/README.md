@@ -465,7 +465,9 @@ training and production SOC experience explicit.
 
 ## Relationship to SOC-2026-006
 
-This room contributes to SOC-2026-006 preparation in:
+This room is complementary to the already completed SOC-2026-006 investigation.
+
+It reinforces skills relevant to that case in:
 
 - network-telemetry interpretation;
 - source/destination reasoning;
@@ -480,18 +482,24 @@ This room contributes to SOC-2026-006 preparation in:
 - evidence-versus-assumption discipline;
 - translating findings into defensive recommendations.
 
-It does **not** satisfy the SOC-2026-006 runtime requirements for:
+This TryHackMe room does **not** constitute or replace the Microsoft-platform
+runtime evidence retained for SOC-2026-006.
 
-- Defender for Endpoint onboarding;
+SOC-2026-006 separately contains evidence of:
+
+- Defender for Endpoint onboarding and telemetry;
 - genuine Defender alert generation;
-- Defender XDR incident evidence;
+- Defender XDR incident handling;
 - Microsoft Sentinel ingestion;
-- actual Microsoft Sentinel KQL execution;
-- retained Sentinel query output;
-- analyst-authored laboratory ticket evidence;
-- Microsoft-platform incident closure or escalation.
+- Microsoft Sentinel KQL execution;
+- retained Sentinel query evidence;
+- analyst-authored laboratory ticketing;
+- severity reassessment;
+- incident disposition and closure.
 
-SOC-2026-006 therefore remains **PLANNED / PENDING EXECUTION**.
+The Wireshark training therefore provides complementary packet-analysis practice,
+while SOC-2026-006 remains the separate completed Microsoft Defender/XDR/Sentinel
+SOC investigation.
 
 ## Portfolio value
 
