@@ -54,9 +54,9 @@ Defender for Endpoint PowerShell-related alerts → Defender XDR incident → Mi
 
 [SOC-2026-004 — Sigma/KQL detection investigation](03-investigations/SOC-2026-004/investigation.md) · [SOC-2026-002 — identity correlation](03-investigations/SOC-2026-002/investigation.md) · [Detection evidence states](04-detection-rules/kql/README.md) · [Reproduction](REPRODUCE.md)
 
-## Evidence boundary
+## Evidence scope
 
-This is an evidence-based training and laboratory portfolio. Results are bounded by the retained artifacts and must not be interpreted as production SOC employment or as proof of malicious activity beyond the evidence.
+This portfolio contains reproducible training and laboratory investigations grounded in retained artifacts. Conclusions are limited to the evidence documented for each case.
 
 ## Technical resources
 
