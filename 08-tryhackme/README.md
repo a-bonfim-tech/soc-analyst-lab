@@ -17,5 +17,6 @@ Do not store TryHackMe flags, credentials, copyrighted room content, or challeng
 - [Wireshark: Traffic Analysis](wireshark-traffic-analysis/README.md) — guided hands-on network-traffic investigation covering scan analysis, ARP/MITM detection, host and user identification, DNS/ICMP tunnelling, FTP/HTTP analysis, TLS decryption and actionable findings.
 - [NetworkMiner](networkminer/README.md) — guided hands-on network-forensics training covering PCAP triage, host and session analysis, OS fingerprinting, DNS review, artifact extraction, credential discovery, anomaly review and correlation with deeper Wireshark/tcpdump analysis.
 - [Snort](snort/README.md) — guided hands-on network-security-monitoring training covering IDS/IPS concepts, traffic sniffing, packet logging, alert modes, PCAP analysis, configuration validation and rule-based detection fundamentals.
+- [Snort Challenge — The Basics](snort-challenge-basics/README.md) — guided hands-on Snort detection training covering HTTP/FTP rule creation, file-signature detection, rule syntax and logic troubleshooting, external-rule analysis, exploit-related traffic investigation, payload filtering and alert-to-packet correlation.
 
 Training completion documents guided practice only. It does not establish production SOC experience or vendor-platform runtime evidence.
