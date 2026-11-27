@@ -58,6 +58,8 @@ Defender for Endpoint PowerShell-related alerts → Defender XDR incident → Mi
 
 This portfolio contains reproducible training and laboratory investigations grounded in retained artifacts. Conclusions are limited to the evidence documented for each case.
 
+AI assistance was used throughout this repository and every part was reviewed by me; see [AI usage and authorship](AI_USAGE.md).
+
 ## Technical resources
 
 [Runbooks](01-runbooks/README.md) · [Investigations](03-investigations/README.md) · [Detection rules](04-detection-rules/README.md) · [Automation](05-automation/build_timeline.py) · [Lab](07-lab/README.md) · [Evidence](10-evidence/README.md) · [Reproduction](REPRODUCE.md) · [Governance](00-governance/README.md)
