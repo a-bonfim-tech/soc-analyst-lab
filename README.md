@@ -4,7 +4,7 @@
 
 Hands-on **SOC investigation portfolio** showing how I move from an alert or security signal to evidence correlation, timeline reconstruction, severity assessment, disposition and escalation.
 
-**7 documented SOC investigations · 3 Tier 2 escalation decisions · 9 evidence/telemetry categories · Microsoft Defender + Sentinel runtime**
+**[7 documented SOC investigations](03-investigations/README.md) · 3 Tier 2 escalation decisions ([001](03-investigations/SOC-2026-001/escalation.md), [004](03-investigations/SOC-2026-004/escalation.md), [007](03-investigations/SOC-2026-007/escalation.md)) · [9 evidence/telemetry categories](10-evidence/README.md#evidence-and-telemetry-categories) · Microsoft Defender + Sentinel runtime**
 
 **ALERT → INVESTIGATE → CORRELATE EVIDENCE → ASSESS SEVERITY → ESCALATE / CLOSE**
 
@@ -61,3 +61,10 @@ This portfolio contains reproducible training and laboratory investigations grou
 ## Technical resources
 
 [Runbooks](01-runbooks/README.md) · [Investigations](03-investigations/README.md) · [Detection rules](04-detection-rules/README.md) · [Automation](05-automation/build_timeline.py) · [Lab](07-lab/README.md) · [Evidence](10-evidence/README.md) · [Reproduction](REPRODUCE.md) · [Governance](00-governance/README.md)
+
+## License
+
+- **Code** — scripts, automation, tests, workflows and Sigma/KQL detection rules: [MIT](LICENSE).
+- **Documentation and evidence** — investigation write-ups, runbooks, reports, evidence packages and images: [CC BY 4.0](LICENSE-docs).
+
+Third-party names, trademarks, screenshots of third-party product interfaces and summarized training material (for example TryHackMe room notes) remain the property of their respective owners and are not relicensed here.
